@@ -1,6 +1,6 @@
 <?
 
-require('../../src/config.php');
+require('../../../src/config.php');
 
 if (isset($_POST["deleteUserBTN"])) {
     $sql = "

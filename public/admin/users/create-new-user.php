@@ -1,5 +1,6 @@
 <?
-require('../../src/config.php');
+
+require('../../../src/config.php');
 
 $firstName = "";
 $lastName = "";
