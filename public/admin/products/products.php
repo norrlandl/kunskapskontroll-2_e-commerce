@@ -1,6 +1,6 @@
 <?
 
-require('../../src/config.php');
+require('../../../src/config.php');
 
 if (isset($_POST["deleteProductBTN"])) {
     $sql = "
@@ -24,7 +24,7 @@ if (isset($_POST["clearAllproducts"])) {
     $stmt = $pdo->query("SELECT * FROM products");
     $products = array_reverse($stmt->fetchAll());
 
-// Skriv om ovan till klasser.
+// Ovan skrivs om till klasser
 
 ?>
 

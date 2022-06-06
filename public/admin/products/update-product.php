@@ -1,9 +1,8 @@
 <?
-    require('../../src/config.php');
 
-    //update post
+require('../../../src/config.php');
+
 if (isset($_POST["updateProduct"])) {
-
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
     $price = trim($_POST["price"]);
@@ -11,7 +10,8 @@ if (isset($_POST["updateProduct"])) {
 
     $sql = "
     UPDATE products
-    SET description = :description, title = :title, price = :price, stock = :stock
+    SET description = :description, title = :title,
+    price = :price, stock = :stock
     WHERE id = :id;
     ";
     $stmt = $pdo->prepare($sql);
