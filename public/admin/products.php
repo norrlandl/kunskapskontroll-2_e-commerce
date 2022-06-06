@@ -1,6 +1,6 @@
 <?
 
-// require("../src/DBconnect.php"); Lägg upp via config
+require('../../src/config.php');
 
 if (isset($_POST["deleteProductBTN"])) {
     $sql = "
@@ -21,13 +21,8 @@ if (isset($_POST["clearAllproducts"])) {
     $stmt->execute();
 }
 
-function fetchData() {
-    global $pdo;
     $stmt = $pdo->query("SELECT * FROM products");
-    return array_reverse($stmt->fetchAll());
-}
-
-$products = fetchData();
+    $products = array_reverse($stmt->fetchAll());
 
 // Skriv om ovan till klasser.
 
