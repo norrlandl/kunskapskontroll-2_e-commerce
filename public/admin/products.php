@@ -24,7 +24,7 @@ if (isset($_POST["clearAllproducts"])) {
     $stmt = $pdo->query("SELECT * FROM products");
     $products = array_reverse($stmt->fetchAll());
 
-// Skriv om ovan till klasser.
+// Ovan skrivs om till klasser
 
 ?>
 
