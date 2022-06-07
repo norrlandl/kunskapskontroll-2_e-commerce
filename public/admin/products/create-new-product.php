@@ -30,7 +30,7 @@ if (isset($_POST["addNewProduct"])) {
 }
 ?>  
 
-<form action="./products.php">
+<form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
 
