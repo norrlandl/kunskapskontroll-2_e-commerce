@@ -86,7 +86,6 @@ if (isset($_POST["clearAllproducts"])) {
 
 <?
 
-
 if (isset($_POST["deleteUserBTN"])) {
     $sql = "
     DELETE FROM users
