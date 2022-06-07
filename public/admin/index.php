@@ -5,7 +5,8 @@
   </head>
   <body>
     <h1>Welcome admin!</h1>
-    <? require('../../src/config.php');
+    
+<? require('../../src/config.php');
 
 if (isset($_POST["deleteProductBTN"])) {
     $sql = "
