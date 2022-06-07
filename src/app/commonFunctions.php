@@ -5,4 +5,3 @@ function debug($value) {
     print_r($value);
     echo "</pre>";
 }
-
