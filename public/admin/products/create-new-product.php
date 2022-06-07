@@ -9,7 +9,6 @@ $stock = "";
 
 if (isset($_POST["addNewProduct"])) {
 
-    debug($_FILES['uploadedFile']);
     
     if (is_uploaded_file($_FILES['uploadedFile']['tmp_name'])) {
         // This is the actuall name of the file
@@ -26,6 +25,7 @@ if (isset($_POST["addNewProduct"])) {
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
     $price = trim($_POST["price"]);
+    $stock = trim($_POST["stock"]);
     $stock = trim($_POST["stock"]);
 
     $sql = "
