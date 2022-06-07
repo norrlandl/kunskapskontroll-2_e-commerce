@@ -1,4 +1,4 @@
-<?php
+<?
 
     require('../../src/config.php');
     
@@ -11,13 +11,13 @@
         ';
     }
 
-    if (isset($_GET['logout'])) {
+  /*   if (isset($_GET['logout'])) {
         $message = '
             <div class="success_msg">
                 Du är nu utloggad.
             </div>
         ';
-    }
+    } */
 
     if (isset($_POST['doLogin'])) {
         $email    = trim($_POST['email']);
@@ -36,7 +36,6 @@
         $user = $stmt->fetch();
 
         if ($user) {
-            // User exists
             $_SESSION['username'] = $user['username'];
             $_SESSION['id']       = $user['id'];
             header('Location: ./index.php');
@@ -53,7 +52,6 @@
     }
 ?>
 
-    <!-- Sidans/Dokumentets huvudsakliga innehåll -->
     <div id="content">
         <article class="border">
             <form method="POST" action="#">

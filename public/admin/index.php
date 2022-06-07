@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Admin</title>
-  </head>
-  <body>
-    <h1>Welcome admin!</h1>
-    
-<? require('../../src/config.php');
 
-if (isset($_POST["deleteProductBTN"])) {
-    $sql = "
-    DELETE FROM products
-    WHERE id = :id;
-    ";
-    $stmt = $pdo->prepare($sql); $stmt->bindParam(":id", $_POST['productID']);
-    $stmt->execute(); } if (isset($_POST["clearAllproducts"])) { $sql = " DELETE
-    FROM products "; $stmt = $pdo->prepare($sql); $stmt->execute(); } $stmt =
-    $pdo->query("SELECT * FROM products"); $products =
-    array_reverse($stmt->fetchAll()); // Ovan skrivs om till klasser ?>
+<h1>Welcome admin!</h1>
+    
+<? 
+  require('../../src/config.php');
+
+  if (isset($_POST["deleteProductBTN"])) {
+      $sql = "
+      DELETE FROM products
+      WHERE id = :id;
+      ";
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(":id", $_POST['productID']);
+      $stmt->execute();
+    } 
+      
+      if (isset($_POST["clearAllproducts"])) {
+      $sql = " DELETE FROM products ";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute();
+    } $stmt = $pdo->query("SELECT * FROM products");
+      $products = array_reverse($stmt->fetchAll());
+?>
 
     <h2>Manage products</h2>
     <div class="top-buttons">
@@ -62,9 +65,10 @@ if (isset($_POST["deleteProductBTN"])) {
             €
           </td>
           <td><?= htmlentities($product["stock"]) ?></td>
-          <td><img src="../img/<?= htmlentities($product["img_url"]) ?>" width="60px" height="60px" alt="<?= htmlentities($product["title"]) ?>"></td>
+          <td><img src="../img/<?= htmlentities($product["img_url"]) ?>"
+          width="60px" height="60px" alt="<?= htmlentities($product["title"]) ?>"></td>
           <td class="action">
-            <form action="./update-product.php" method="GET">
+            <form action="./products/update-product.php" method="GET">
               <input type="hidden" name="productID" value="<?= htmlentities($product["id"]) ?>">
               <input type="submit" class="btn btn-dark" value="Update" />
             </form>
@@ -98,11 +102,18 @@ if (isset($_POST["deleteUserBTN"])) {
     DELETE FROM users
     WHERE id = :id;
     ";
-    $stmt = $pdo->prepare($sql); $stmt->bindParam(":id", $_POST['userID']);
-    $stmt->execute(); } if (isset($_POST["clearAllUsers"])) { $sql = " DELETE
-    FROM users "; $stmt = $pdo->prepare($sql); $stmt->execute(); } $stmt =
-    $pdo->query("SELECT * FROM users"); $users =
-    array_reverse($stmt->fetchAll()); // Ovan skrivs om till klasser ?>
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $_POST['userID']);
+    $stmt->execute();
+  } 
+  if (isset($_POST["clearAllUsers"])) { 
+    $sql = " DELETE FROM users ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(); 
+  } 
+  $stmt = $pdo->query("SELECT * FROM users");
+  $users = array_reverse($stmt->fetchAll());
+?>
 
     <h2>Manage users</h2>
     <div class="top-buttons">
@@ -142,7 +153,7 @@ if (isset($_POST["deleteUserBTN"])) {
           <td><?= htmlentities($user["last_name"]) ?></td>
           <td><?= htmlentities($user["email"]) ?></td>
           <td class="action">
-            <form action="./update-user.php" method="GET">
+            <form action="./users/update-user.php" method="GET">
               <input type="hidden" name="userID" value="<?= htmlentities($user["id"]) ?>">
               <input type="submit" class="btn btn-dark" value="Update" />
             </form>
@@ -160,7 +171,3 @@ if (isset($_POST["deleteUserBTN"])) {
         <? endforeach; ?>
       </tbody>
     </table>
-
-    <!-- adasdasda -->
-  </body>
-</html>
