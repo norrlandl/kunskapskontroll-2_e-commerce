@@ -29,6 +29,7 @@
               <p><?=htmlentities($product['description'])?></p>
               <p class="title"><?=htmlentities($product['price'])?></p>
               <p class="content"><?=htmlentities($product['stock'])?></p>
+              <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="180px" height="200px" alt="<?= htmlentities($product["title"]) ?>">
               <form action="product.php" method="GET">
                   <input type="hidden" name="productId" value="<?=htmlentities($product['id']) ?>">
                   <input type="submit" value="Read more">
