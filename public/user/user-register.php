@@ -74,7 +74,7 @@
       $stmt->bindParam(':password',     $encryptedPassword);
       $stmt->execute();
 
-      header("Location: user.php");
+      header("Location: user-login.php");
 
     }
 
