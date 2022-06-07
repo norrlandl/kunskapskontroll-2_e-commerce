@@ -47,21 +47,39 @@ if (isset($_POST["updateUser"])) {
     $singleUser = $stmt->fetch();
     ?>
 
-<form action="./users.php">
+<form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
 
 </br>
 </br>
 <form action="" method="POST">
-    <input type="text" class="form-control" name="first_name" placeholder="First Name" value="<?= htmlentities($singleUser["first_name"]) ?>" ><br>
-    <input type="text" class="form-control"  name="last_name" placeholder="Last Name" value="<?= htmlentities($singleUser["last_name"]) ?>"><br>
-    <input type="text" class="form-control"  name="email" placeholder="Email" value="<?= htmlentities($singleUser["email"]) ?>"><br>
-    <input type="text" class="form-control"  name="password" placeholder="Password" value="<?= htmlentities($singleUser["password"]) ?>"><br>
-    <input type="text" class="form-control"  name="phone" placeholder="Phone" value="<?= htmlentities($singleUser["phone"]) ?>"><br>
-    <input type="text" class="form-control"  name="street" placeholder="Street" value="<?= htmlentities($singleUser["street"]) ?>"><br>
-    <input type="text" class="form-control"  name="postal_code" placeholder="Postal Code" value="<?= htmlentities($singleUser["postal_code"]) ?>"><br>
-    <input type="text" class="form-control"  name="city" placeholder="City" value="<?= htmlentities($singleUser["city"]) ?>"><br>
-    <input type="text" class="form-control"  name="country" placeholder="Country" value="<?= htmlentities($singleUser["country"]) ?>"><br>
+    <label for="first_name">First name:</label><br>
+        <input type="text" class="form-control" name="first_name" value="
+        <?= htmlentities($singleUser["first_name"]) ?>" ><br>
+    <label for="last_name">Last name:</label><br>
+        <input type="text" class="form-control"  name="last_name" value="
+        <?= htmlentities($singleUser["last_name"]) ?>"><br>
+    <label for="email">Email:</label><br>
+        <input type="text" class="form-control"  name="email" value="
+        <?= htmlentities($singleUser["email"]) ?>"><br>
+    <label for="password">Password:</label><br>
+        <input type="text" class="form-control"  name="password" value="
+        <?= htmlentities($singleUser["password"]) ?>"><br>
+    <label for="phone">Phone:</label><br>
+        <input type="text" class="form-control"  name="phone" value="
+        <?= htmlentities($singleUser["phone"]) ?>"><br>
+    <label for="street">Street:</label><br>
+        <input type="text" class="form-control"  name="street" value="
+        <?= htmlentities($singleUser["street"]) ?>"><br>
+    <label for="postal_code">Postal code:</label><br>
+        <input type="text" class="form-control"  name="postal_code" value="
+        <?= htmlentities($singleUser["postal_code"]) ?>"><br>
+    <label for="city">City:</label><br>
+        <input type="text" class="form-control"  name="city" value=
+        "<?= htmlentities($singleUser["city"]) ?>"><br>
+    <label for="country">Country:</label><br>
+        <input type="text" class="form-control"  name="country" value="
+        <?= htmlentities($singleUser["country"]) ?>"><br>
     <input type="submit" name="updateUser" class="btn btn-outline-primary" value="Update"><br>
 </form>

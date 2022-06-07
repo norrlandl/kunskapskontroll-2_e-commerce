@@ -11,12 +11,10 @@ if (isset($_POST["addNewProduct"])) {
 
     
     if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-        // This is the actuall name of the file
 		$fileName 	    = $_FILES['img_url']['name'];
 		$fileType 	    = $_FILES['img_url']['type'];
 		$fileTempPath   = $_FILES['img_url']['tmp_name'];
 		$path 		    = '../../img/';
-		// img/dummy-profile.png
 		$newFilePath = $path . $fileName; 
     }
     
@@ -57,5 +55,3 @@ if (isset($_POST["addNewProduct"])) {
         <input type="file" class="form-control" id="image" name="img_url" placeholder="Add image"><br><br>
     <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Create new product"><br>
 </form>
-
-<img src="<?=$newFilePath?>">
