@@ -1,5 +1,5 @@
 <?php
-  require('../src/dbconnect.php');
+  require('../../src/dbconnect.php');
   $pageTitle = "Registrera användare";
   $pageId    = "user-register";
   // checkLoginSession();
