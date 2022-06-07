@@ -46,7 +46,7 @@ if (isset($_POST["addNewUser"])) {
 }
 ?>  
 
-<form action="./users.php">
+<form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
 

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Admin</title>
-</head>
-<body>
-
-<?
-
-require('../../src/config.php');
+	<head>
+		<title>Admin</title>
+	</head>
+	<body>
+	<h1>Welcome admin!</h1>
+<? require('../../src/config.php');
 
 if (isset($_POST["deleteProductBTN"])) {
     $sql = "
@@ -35,8 +33,9 @@ if (isset($_POST["clearAllproducts"])) {
 
 ?>
 
+<h2>Manage products</h2>
 <div class="top-buttons">
-    <form action="./create-new-product.php">
+    <form action="./products/create-new-product.php">
         <input type="submit" class="btn btn-outline-primary" value="Create new product">
     </form>
     <form action="" method="POST">
@@ -85,10 +84,7 @@ if (isset($_POST["clearAllproducts"])) {
 <br>
 <br>
 
-
 <?
-
-require('../../src/config.php');
 
 if (isset($_POST["deleteUserBTN"])) {
     $sql = "
@@ -116,8 +112,9 @@ if (isset($_POST["clearAllUsers"])) {
 
 ?>
 
+<h2>Manage users</h2>
 <div class="top-buttons">
-    <form action="./create-new-user.php">
+    <form action="./users/create-new-user.php">
         <input type="submit" class="btn btn-outline-primary" value="Create new user">
     </form>
     <form action="" method="POST">
@@ -132,13 +129,6 @@ if (isset($_POST["clearAllUsers"])) {
             <th>First Name</th>
             <th>Second Name</th>
             <th>Email</th>
-            <th>Password</th>
-            <th>Phone</th>
-            <th>Street</th>
-            <th>Postal Code</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Created</th>
             <th>Manage</th>
         </tr>
     </thead>
@@ -150,14 +140,6 @@ if (isset($_POST["clearAllUsers"])) {
                 <td><?= htmlentities($user["first_name"]) ?></td>
                 <td><?= htmlentities($user["last_name"]) ?></td>
                 <td><?= htmlentities($user["email"]) ?></td>
-                <td><?= htmlentities($user["password"]) ?></td>
-                <td><?= htmlentities($user["phone"]) ?></td>
-                <td><?= htmlentities($user["street"]) ?></td>
-                <td><?= htmlentities($user["postal_code"]) ?></td>
-                <td><?= htmlentities($user["city"]) ?></td>
-                <td><?= htmlentities($user["country"]) ?></td>
-                <td><?= htmlentities($user["create_date"]) ?></td>
-
                 <td class="action">
                     <form action="./update-user.php" method="GET">
                         <input type="hidden" name="userID" value="<?= htmlentities($user["id"]) ?>">
