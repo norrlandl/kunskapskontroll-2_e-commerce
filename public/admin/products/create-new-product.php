@@ -16,7 +16,7 @@ if (isset($_POST["addNewProduct"])) {
 		$fileName 	    = $_FILES['uploadedFile']['name'];
 		$fileType 	    = $_FILES['uploadedFile']['type'];
 		$fileTempPath   = $_FILES['uploadedFile']['tmp_name'];
-		$path 		    = '../../public/admin/img/';
+		$path 		    = '../../img/';
 		// uploads/dummy-profile.png
 		$newFilePath = $path . $fileName; 
     }
@@ -27,7 +27,6 @@ if (isset($_POST["addNewProduct"])) {
     $description = trim($_POST["description"]);
     $price = trim($_POST["price"]);
     $stock = trim($_POST["stock"]);
-/*     $newFilePath = trim($_POST["uploadedFile"]); */
 
     $sql = "
     INSERT INTO products (title, description, price, stock) 
@@ -38,7 +37,6 @@ if (isset($_POST["addNewProduct"])) {
     $stmt->bindParam(":description", $description);
     $stmt->bindParam(":price", $price);
     $stmt->bindParam(":stock", $stock);
-/*     $stmt->bindParam(":uploadedFile", $newFilePath); */
     $stmt->execute();
 }
 ?>  
@@ -59,4 +57,4 @@ if (isset($_POST["addNewProduct"])) {
     <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Create new product"><br>
 </form>
 
-<!-- <img src="<?=$imgUrl?>"> -->
+<img src="<?=$newFilePath?>">
