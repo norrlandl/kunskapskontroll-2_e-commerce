@@ -10,13 +10,13 @@ $stock = "";
 if (isset($_POST["addNewProduct"])) {
 
     
-    if (is_uploaded_file($_FILES['uploadedFile']['tmp_name'])) {
+    if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
         // This is the actuall name of the file
-		$fileName 	    = $_FILES['uploadedFile']['name'];
-		$fileType 	    = $_FILES['uploadedFile']['type'];
-		$fileTempPath   = $_FILES['uploadedFile']['tmp_name'];
+		$fileName 	    = $_FILES['img_url']['name'];
+		$fileType 	    = $_FILES['img_url']['type'];
+		$fileTempPath   = $_FILES['img_url']['tmp_name'];
 		$path 		    = '../../img/';
-		// uploads/dummy-profile.png
+		// img/dummy-profile.png
 		$newFilePath = $path . $fileName; 
     }
     
@@ -26,17 +26,18 @@ if (isset($_POST["addNewProduct"])) {
     $description = trim($_POST["description"]);
     $price = trim($_POST["price"]);
     $stock = trim($_POST["stock"]);
-    $stock = trim($_POST["stock"]);
+    $img = $fileName;
 
     $sql = "
-    INSERT INTO products (title, description, price, stock) 
-    VALUES (:title, :description, :price, :stock);
+    INSERT INTO products (title, description, price, stock, img_url) 
+    VALUES (:title, :description, :price, :stock, :img_url);
     ";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":title", $title);
     $stmt->bindParam(":description", $description);
     $stmt->bindParam(":price", $price);
     $stmt->bindParam(":stock", $stock);
+    $stmt->bindParam(":img_url", $img);
     $stmt->execute();
 }
 ?>  
@@ -53,7 +54,7 @@ if (isset($_POST["addNewProduct"])) {
     <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="price" name="price" placeholder="Price" value="<?= htmlentities($price) ?>"><br>
     <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" value="<?= htmlentities($stock) ?>"><br>
     <label for="image">Add image:</label><br>
-        <input type="file" class="form-control" id="image" name="uploadedFile" placeholder="Add image" value="<?= htmlentities($stock) ?>"><br><br>
+        <input type="file" class="form-control" id="image" name="img_url" placeholder="Add image"><br><br>
     <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Create new product"><br>
 </form>
 

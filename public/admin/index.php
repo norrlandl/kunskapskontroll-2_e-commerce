@@ -51,7 +51,7 @@ if (isset($_POST["clearAllproducts"])) {
             <th>Description</th>
             <th>Price</th>
             <th>Stock</th>
-            <!-- <th>Image</th> -->
+            <th>Image</th>
             <th>Manage</th>
         </tr>
     </thead>
@@ -64,6 +64,7 @@ if (isset($_POST["clearAllproducts"])) {
                 <td><?= htmlentities($product["description"]) ?></td>
                 <td><?= htmlentities($product["price"]) ?> €</td>
                 <td><?= htmlentities($product["stock"]) ?></td>
+                <td><img width="30px" height="30px" src="./img/<?= htmlentities($product["img_url"]) ?>"></td>
                 <td class="action">
                     <form action="./update-product.php" method="GET">
                         <input type="hidden" name="productID" value="<?= htmlentities($product["id"]) ?>">
