@@ -2,6 +2,7 @@
 
     require('../../src/config.php');
     
+    $message = "";
     if (isset($_GET['mustLogin'])) {
         $message = '
             <div class="error_msg">
@@ -22,17 +23,24 @@
         $email    = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        $user = $userDbHandler->fetchUserByEmail($email);
-    
+        $sql = "
+            SELECT * FROM users
+            WHERE email = :email AND password = :password
+        ";
 
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
 
-        // Tom array => false
-        // Icke tim array => true
-        if ($user && password_verify($password, $user['password'])) { // password_verify($password, $encryptedPassword);
+        $user = $stmt->fetch();
+
+        if ($user) {
             // User exists
             $_SESSION['username'] = $user['username'];
             $_SESSION['id']       = $user['id'];
-            redirect('users.php');
+            header('Location: ./index.php');
+            exit;
         } else {
             $message = '
                 <div class="error_msg">
@@ -44,12 +52,15 @@
 
     }
 ?>
+
     <!-- Sidans/Dokumentets huvudsakliga innehåll -->
     <div id="content">
         <article class="border">
             <form method="POST" action="#">
                 <fieldset>
                     <legend>Logga in</legend>
+
+                    <?=$message ?>
                     
                     <p>
                         <label for="input1">E-post:</label> <br>
