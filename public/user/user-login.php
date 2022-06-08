@@ -1,14 +1,14 @@
 <?php
-    session_start();
     require('../../src/dbconnect.php');
     $pageTitle = "Logga in användare";
     $pageId    = "user-login";
 
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
+    // echo "<pre>";
+    // print_r($_GET);
+    // echo "</pre>";
 
     $message = "";
+    $email = "";
 
     if (isset($_POST['userLogin'])) {
         $email      = trim($_POST['email']);
@@ -24,7 +24,7 @@
         $stmt->execute();
         
         $user = $stmt->fetch();
-   
+
         if ($user && password_verify($password, $user['password'])) { 
             $_SESSION['email']    = $user['email'];
             $_SESSION['id']       = $user['id'];
@@ -42,6 +42,7 @@
 ?>
 
 
+
 <div id="">
   <form method="POST" action="#">
       <?=$message ?>
@@ -49,13 +50,13 @@
       <h1>Logga in användare</h1>
 
       <label for="input1">E-post:</label> <br>
-      <input type="text" class="text" name="email"> <br>
+      <input type="text" class="text" name="email" value="<?=htmlentities($email) ?>"> <br>
 
       <label for="input2">Lösenord:</label> <br>
       <input type="password" class="text" name="password"> <br>
     
       <input type="submit" name="userLogin" value="login">     
   </form>
-    <p>REGISTERA</p>
+    <a href="user-register.php"><p>REGISTERA</p></a>
 </div>
 
