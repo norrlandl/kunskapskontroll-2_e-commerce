@@ -1,18 +1,18 @@
 <?php
-  require('../src/dbconnect.php');
+  require('../../src/dbconnect.php');
   $pageTitle = "Registrera användare";
   $pageId    = "user-register";
   // checkLoginSession();
 
 
-  echo "<pre>";
-  print_r($_POST);
-  echo "</pre>";
+  // echo "<pre>";
+  // print_r($_POST);
+  // echo "</pre>";
 
    /**
      * Create user
      */
-
+     $error = "";
      $message = "";
 
      $first_name = "";
@@ -37,13 +37,44 @@
       $password     = trim($_POST['password']);
       $confirm      = trim($_POST['confirm']);
 
+      if (empty($first_name)) {
+        $error .= "Förnamn är obligatoriskt <br>";
+      }
+
+      if (empty($last_name)) {
+        $error .= "Efternamn är obligatoriskt <br>";
+      }
+
+      if (empty($phone)) {
+        $error .= "Mobilnummer är obligatoriskt <br>";
+      }
+
+      if (empty($email)) {
+        $error .= "E-post är obligatoriskt <br>";
+      }
+
+      if (empty($password)) {
+        $error .= "Du har glömt fylla i lösenord <br>";
+      }
+
       if ($password !== $confirm) {
-        $message = '
+        $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
+      }
+
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error .= "Ogiltig e-post <br>";
+      }
+
+      if ($error) {
+        $message = "
             <div>
-                Confirmed password incorrect!
+                {$error}
             </div>
-        ';
-       } else {
+        ";
+      } else {
+
+        try {
+
     // public function addUser(
     //    $first_name, 
     //    $last_name, 
@@ -56,9 +87,9 @@
     //    $password
     //    ){
        $sql = "
-          INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
-          VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
-       ";
+       INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
+       VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
+    ";
 
       $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
       // $stmt = $this->$dbconnect->prepare($sql);
@@ -74,11 +105,21 @@
       $stmt->bindParam(':password',     $encryptedPassword);
       $stmt->execute();
 
-      header("Location: user.php");
+      header("Location: user-login.php?email=$email");
+
+        } catch (\PDOException $e) {
+          if ((int) $e->getCode() === 23000) {
+              $message = "
+                  <div class='error_msg'>
+                      E-post addressen är redan taget. Var snäll ange en annan E-post
+                  </div>
+              ";
+          } else {
+              throw new \PDOException($e->getMessage(), (int) $e->getCode());
+          }
+      }
 
     }
-
-   
   }
 
 ?>
@@ -89,11 +130,10 @@
     <form method="POST" action="#">
         <?=$message ?>
       
-         <label for="input">Förnamn:</label> <br>
+         <label for="input">Förnamn:*</label> <br>
          <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name) ?>">   <br>
- 
-          
-         <label for="input">Efternamn:</label> <br>
+  
+         <label for="input">Efternamn:*</label> <br>
          <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name) ?>">  <br>
          
          <label for="input">Adress:</label> <br>
@@ -108,10 +148,10 @@
          <label for="input">Land:</label> <br>
          <input type="text" class="text" name="country" value="<?=htmlentities($country) ?>">  <br>
          
-         <label for="input">Telefon:</label> <br>
+         <label for="input">Telefon:*</label> <br>
          <input type="text" class="text" name="phone" value="<?=htmlentities($phone) ?>">  <br>
 
-         <label for="input">Email:</label> <br>
+         <label for="input">Email:*</label> <br>
          <input type="text" class="text" name="email" value="<?=htmlentities($email) ?>">  <br>
 
          <label for="input">Lösenord:</label> <br>
