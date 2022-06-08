@@ -93,10 +93,6 @@
    $stmt = $dbconnect->query($sql); 
    $user = $stmt->fetch();
 
-   // echo "<pre>";
-   // print_r($user);
-   // echo "</pre>";
-
 ?>
 
 
@@ -144,8 +140,7 @@
 </form>
 
 
-   <!-- <h4>Tidigare ordrar</h4>
-   <h4>Radera konto</h4> -->
+   <!-- <h4>Tidigare ordrar</h4> -->
    <form method="POST" action="">
       <input type="hidden" name="userID" value="<?=htmlentities($user['id']) ?>">
       <input type="submit" name="deleteUser" value="Radera konto">
