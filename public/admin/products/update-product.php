@@ -1,38 +1,39 @@
 <?
+    require('../../../src/config.php');
+    $pageTitle = "Uppdatera produkt";
 
-require('../../../src/config.php');
+    if (isset($_POST["updateProduct"])) {
+        $title = trim($_POST["title"]);
+        $description = trim($_POST["description"]);
+        $price = trim($_POST["price"]);
+        $stock = trim($_POST["stock"]);
 
-if (isset($_POST["updateProduct"])) {
-    $title = trim($_POST["title"]);
-    $description = trim($_POST["description"]);
-    $price = trim($_POST["price"]);
-    $stock = trim($_POST["stock"]);
-
+        $sql = "
+        UPDATE products
+        SET description = :description, title = :title,
+        price = :price, stock = :stock
+        WHERE id = :id;
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $_GET['productID']);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':stock', $stock);
+        $stmt->execute();
+    }
+        
     $sql = "
-    UPDATE products
-    SET description = :description, title = :title,
-    price = :price, stock = :stock
-    WHERE id = :id;
+    SELECT * FROM products
+    WHERE id = :id
     ";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $_GET['productID']);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':stock', $stock);
     $stmt->execute();
-}
-     
-$sql = "
-SELECT * FROM products
-WHERE id = :id
-";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_GET['productID']);
-$stmt->execute();
-$singleProduct = $stmt->fetch();
+    $singleProduct = $stmt->fetch();
 ?>
 
+<?php include('../../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -54,3 +55,4 @@ $singleProduct = $stmt->fetch();
     <input type="submit" name="updateProduct" class="btn btn-outline-primary" value="Update"><br>
     
 </form>
+<?php include('../../layout/footer.php'); ?>

@@ -3,6 +3,7 @@
     
 <? 
   require('../../src/config.php');
+  $pageTitle = "Admin";
 
   if (isset($_POST["deleteProductBTN"])) {
       $sql = "
@@ -22,6 +23,7 @@
       $products = array_reverse($stmt->fetchAll());
 ?>
 
+<?php include('../layout/header.php'); ?>
     <h2>Manage products</h2>
     <div class="top-buttons">
       <form action="./products/create-new-product.php">
@@ -95,9 +97,8 @@
     <br />
     <br />
 
-    <?
-
-if (isset($_POST["deleteUserBTN"])) {
+<?
+  if (isset($_POST["deleteUserBTN"])) {
     $sql = "
     DELETE FROM users
     WHERE id = :id;
@@ -115,59 +116,61 @@ if (isset($_POST["deleteUserBTN"])) {
   $users = array_reverse($stmt->fetchAll());
 ?>
 
-    <h2>Manage users</h2>
-    <div class="top-buttons">
-      <form action="./users/create-new-user.php">
-        <input
-          type="submit"
-          class="btn btn-outline-primary"
-          value="Create new user"
-        />
-      </form>
-      <form action="" method="POST">
-        <input
-          type="submit"
-          name="clearAllUsers"
-          class="btn btn-outline-secondary"
-          value="Clear all"
-        />
-      </form>
-    </div>
+  <h2>Manage users</h2>
+  <div class="top-buttons">
+    <form action="./users/create-new-user.php">
+      <input
+        type="submit"
+        class="btn btn-outline-primary"
+        value="Create new user"
+      />
+    </form>
+    <form action="" method="POST">
+      <input
+        type="submit"
+        name="clearAllUsers"
+        class="btn btn-outline-secondary"
+        value="Clear all"
+      />
+    </form>
+  </div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Second Name</th>
-          <th>Email</th>
-          <th>Manage</th>
-        </tr>
-      </thead>
-      <br />
-      <tbody>
-        <? foreach ($users as $user) : ?>
-        <tr>
-          <td><?= htmlentities($user["id"]) ?></td>
-          <td><?= htmlentities($user["first_name"]) ?></td>
-          <td><?= htmlentities($user["last_name"]) ?></td>
-          <td><?= htmlentities($user["email"]) ?></td>
-          <td class="action">
-            <form action="./users/update-user.php" method="GET">
-              <input type="hidden" name="userID" value="<?= htmlentities($user["id"]) ?>">
-              <input type="submit" class="btn btn-dark" value="Update" />
-            </form>
-            <form action="" method="POST">
-              <input type="hidden" name="userID" value="<?= $user['id'] ?>" />
-              <input
-                type="submit"
-                name="deleteUserBTN"
-                class="btn btn-dark"
-                value="Delete"
-              />
-            </form>
-          </td>
-        </tr>
-        <? endforeach; ?>
-      </tbody>
-    </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Second Name</th>
+        <th>Email</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <br />
+    <tbody>
+      <? foreach ($users as $user) : ?>
+      <tr>
+        <td><?= htmlentities($user["id"]) ?></td>
+        <td><?= htmlentities($user["first_name"]) ?></td>
+        <td><?= htmlentities($user["last_name"]) ?></td>
+        <td><?= htmlentities($user["email"]) ?></td>
+        <td class="action">
+          <form action="./users/update-user.php" method="GET">
+            <input type="hidden" name="userID" value="<?= htmlentities($user["id"]) ?>">
+            <input type="submit" class="btn btn-dark" value="Update" />
+          </form>
+          <form action="" method="POST">
+            <input type="hidden" name="userID" value="<?= $user['id'] ?>" />
+            <input
+              type="submit"
+              name="deleteUserBTN"
+              class="btn btn-dark"
+              value="Delete"
+            />
+          </form>
+        </td>
+      </tr>
+      <? endforeach; ?>
+    </tbody>
+  </table>
+
+<?php include('layout/footer.php'); ?>

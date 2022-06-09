@@ -1,6 +1,7 @@
 <?
 
     require('../../src/config.php');
+    $pageTitle = "Admin login";
     
     $message = "";
     if (isset($_GET['mustLogin'])) {
@@ -51,7 +52,7 @@
 
     }
 ?>
-
+<?php include('../layout/header.php'); ?>
     <div id="content">
         <article class="border">
             <form method="POST" action="#">
@@ -79,3 +80,4 @@
             <hr>
         </article>
     </div>
+<?php include('../layout/footer.php'); ?>

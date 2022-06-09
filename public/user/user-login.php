@@ -42,21 +42,21 @@
 ?>
 
 
+<?php include('../layout/header.php'); ?>
+    <div id="">
+    <form method="POST" action="#">
+        <?=$message ?>
 
-<div id="">
-  <form method="POST" action="#">
-      <?=$message ?>
+        <h1>Logga in användare</h1>
 
-      <h1>Logga in användare</h1>
+        <label for="input1">E-post:</label> <br>
+        <input type="text" class="text" name="email" value="<?=htmlentities($email) ?>"> <br>
 
-      <label for="input1">E-post:</label> <br>
-      <input type="text" class="text" name="email" value="<?=htmlentities($email) ?>"> <br>
-
-      <label for="input2">Lösenord:</label> <br>
-      <input type="password" class="text" name="password"> <br>
-    
-      <input type="submit" name="userLogin" value="login">     
-  </form>
-    <a href="user-register.php"><p>REGISTERA</p></a>
-</div>
-
+        <label for="input2">Lösenord:</label> <br>
+        <input type="password" class="text" name="password"> <br>
+        
+        <input type="submit" name="userLogin" value="login">     
+    </form>
+        <a href="user-register.php"><p>REGISTERA</p></a>
+    </div>
+<?php include('../layout/footer.php'); ?>

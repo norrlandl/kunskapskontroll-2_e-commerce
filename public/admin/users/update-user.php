@@ -1,42 +1,42 @@
 <?
+    require('../../../src/config.php');
+    $pageTitle = "Uppdatera användare";
 
-require('../../../src/config.php');
+    if (isset($_POST["updateUser"])) {
 
-if (isset($_POST["updateUser"])) {
+        $firstName = trim($_POST["first_name"]);
+        $lastName = trim($_POST["last_name"]);
+        $email = trim($_POST["email"]);
+        $password = trim($_POST["password"]);
+        $phone = trim($_POST["phone"]);
+        $street = trim($_POST["street"]);
+        $postalCode = trim($_POST["postal_code"]);
+        $city = trim($_POST["city"]);
+        $country = trim($_POST["country"]);
 
-    $firstName = trim($_POST["first_name"]);
-    $lastName = trim($_POST["last_name"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-    $phone = trim($_POST["phone"]);
-    $street = trim($_POST["street"]);
-    $postalCode = trim($_POST["postal_code"]);
-    $city = trim($_POST["city"]);
-    $country = trim($_POST["country"]);
+        $sql = "
+        UPDATE users
+        SET first_name = :first_name, last_name = :last_name,
+        email = :email, password = :password, phone = :phone,
+        street = :street, postal_code = :postal_code, city = :city,
+        country = :country
+        WHERE id = :id;
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $_GET['userID']);
+        $stmt->bindParam(":first_name", $firstName);
+        $stmt->bindParam(":last_name", $lastName);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":password", $password);
+        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":street", $street);
+        $stmt->bindParam(":postal_code", $postalCode);
+        $stmt->bindParam(":city", $city);
+        $stmt->bindParam(":country", $country);
 
-    $sql = "
-    UPDATE users
-    SET first_name = :first_name, last_name = :last_name,
-    email = :email, password = :password, phone = :phone,
-    street = :street, postal_code = :postal_code, city = :city,
-    country = :country
-    WHERE id = :id;
-    ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $_GET['userID']);
-    $stmt->bindParam(":first_name", $firstName);
-    $stmt->bindParam(":last_name", $lastName);
-    $stmt->bindParam(":email", $email);
-    $stmt->bindParam(":password", $password);
-    $stmt->bindParam(":phone", $phone);
-    $stmt->bindParam(":street", $street);
-    $stmt->bindParam(":postal_code", $postalCode);
-    $stmt->bindParam(":city", $city);
-    $stmt->bindParam(":country", $country);
-
-    $stmt->execute();
-}
-     
+        $stmt->execute();
+    }
+        
     $sql = "
     SELECT * FROM users
     WHERE id = :id
@@ -45,7 +45,9 @@ if (isset($_POST["updateUser"])) {
     $stmt->bindParam(':id', $_GET['userID']);
     $stmt->execute();
     $singleUser = $stmt->fetch();
-    ?>
+?>
+
+<?php include('../../layout/header.php'); ?>
 
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
@@ -83,3 +85,4 @@ if (isset($_POST["updateUser"])) {
         <?= htmlentities($singleUser["country"]) ?>"><br>
     <input type="submit" name="updateUser" class="btn btn-outline-primary" value="Update"><br>
 </form>
+<?php include('../../layout/footer.php'); ?>
