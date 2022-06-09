@@ -8,7 +8,6 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 </head>
 
-<!-- The body id helps with highlighting current menu choice -->
 <body>
 
   <header>
