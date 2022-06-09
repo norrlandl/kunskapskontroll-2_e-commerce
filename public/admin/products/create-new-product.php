@@ -1,5 +1,4 @@
 <?
-
 require('../../../src/config.php');
 
 $title = "";
@@ -9,17 +8,16 @@ $stock = "";
 
 if (isset($_POST["addNewProduct"])) {
 
-    
     if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-		$fileName 	    = $_FILES['img_url']['name'];
-		$fileType 	    = $_FILES['img_url']['type'];
-		$fileTempPath   = $_FILES['img_url']['tmp_name'];
-		$path 		    = '../../img/';
-		$newFilePath = $path . $fileName; 
+        $fileName         = $_FILES['img_url']['name'];
+        $fileType         = $_FILES['img_url']['type'];
+        $fileTempPath   = $_FILES['img_url']['tmp_name'];
+        $path             = '../../img/';
+        $newFilePath = $path . $fileName;
     }
-    
+
     move_uploaded_file($fileTempPath, $newFilePath);
-    
+
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
     $price = trim($_POST["price"]);
@@ -38,7 +36,7 @@ if (isset($_POST["addNewProduct"])) {
     $stmt->bindParam(":img_url", $img);
     $stmt->execute();
 }
-?>  
+?>
 
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
@@ -52,6 +50,6 @@ if (isset($_POST["addNewProduct"])) {
     <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="price" name="price" placeholder="Price" value="<?= htmlentities($price) ?>"><br>
     <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" value="<?= htmlentities($stock) ?>"><br>
     <label for="image">Add image:</label><br>
-        <input type="file" class="form-control" id="image" name="img_url" placeholder="Add image"><br><br>
+    <input type="file" class="form-control" id="image" name="img_url" placeholder="Add image"><br><br>
     <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Create new product"><br>
 </form>
