@@ -1,13 +1,15 @@
 <?
 require('../../src/config.php');
 
+$pageTitle = "Admin login";
+
 $message = "";
 if (isset($_GET['mustLogin'])) {
     $message = '
-            <div class="error_msg">
-                Sidan är inloggningsskyddad. Var snäll och logga in.
-            </div>
-        ';
+        <div class="error_msg">
+            Sidan är inloggningsskyddad. Var snäll och logga in.
+        </div>
+    ';
 }
 
 /*   if (isset($_GET['logout'])) {
@@ -76,3 +78,4 @@ if (isset($_POST['doLogin'])) {
         <hr>
     </article>
 </div>
+<?php include('../layout/footer.php'); ?>

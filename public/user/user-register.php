@@ -124,43 +124,43 @@
 
 ?>
 
-
-
-<div id="content">
+<?php include('../layout/header.php'); ?>
+  <div id="content">
     <form method="POST" action="#">
-        <?=$message ?>
+      <?=$message ?>
+    
+      <label for="input">Förnamn:*</label> <br>
+      <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name) ?>">   <br>
+
+      <label for="input">Efternamn:*</label> <br>
+      <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name) ?>">  <br>
       
-         <label for="input">Förnamn:*</label> <br>
-         <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name) ?>">   <br>
-  
-         <label for="input">Efternamn:*</label> <br>
-         <input type="text" class="text" name="last_name" value="<?=htmlentities($last_name) ?>">  <br>
-         
-         <label for="input">Adress:</label> <br>
-         <input type="text" class="text" name="street" value="<?=htmlentities($street) ?>">  <br>
+      <label for="input">Adress:</label> <br>
+      <input type="text" class="text" name="street" value="<?=htmlentities($street) ?>">  <br>
 
-         <label for="input">Postkod:</label> <br>
-         <input type="text" class="text" name="postal_code" value="<?=htmlentities($postal_code) ?>">  <br>
+      <label for="input">Postkod:</label> <br>
+      <input type="text" class="text" name="postal_code" value="<?=htmlentities($postal_code) ?>">  <br>
 
-         <label for="input">Stad:</label> <br>
-         <input type="text" class="text" name="city" value="<?=htmlentities($city) ?>">  <br>
+      <label for="input">Stad:</label> <br>
+      <input type="text" class="text" name="city" value="<?=htmlentities($city) ?>">  <br>
 
-         <label for="input">Land:</label> <br>
-         <input type="text" class="text" name="country" value="<?=htmlentities($country) ?>">  <br>
-         
-         <label for="input">Telefon:*</label> <br>
-         <input type="text" class="text" name="phone" value="<?=htmlentities($phone) ?>">  <br>
+      <label for="input">Land:</label> <br>
+      <input type="text" class="text" name="country" value="<?=htmlentities($country) ?>">  <br>
+      
+      <label for="input">Telefon:*</label> <br>
+      <input type="text" class="text" name="phone" value="<?=htmlentities($phone) ?>">  <br>
 
-         <label for="input">Email:*</label> <br>
-         <input type="text" class="text" name="email" value="<?=htmlentities($email) ?>">  <br>
+      <label for="input">Email:*</label> <br>
+      <input type="text" class="text" name="email" value="<?=htmlentities($email) ?>">  <br>
 
-         <label for="input">Lösenord:</label> <br>
-         <input type="password" class="text" name="password">  <br>
-         
-         <label for="input">Bekräfta lösenordet:</label> <br>
-         <input type="password" class="text" name="confirm">  <br>
+      <label for="input">Lösenord:</label> <br>
+      <input type="password" class="text" name="password">  <br>
+      
+      <label for="input">Bekräfta lösenordet:</label> <br>
+      <input type="password" class="text" name="confirm">  <br>
 
-         <input type="submit" name="createUser" value="Registrera">
+      <input type="submit" name="createUser" value="Registrera">
 
-      </form>
-</div>
+    </form>
+  </div>
+<?php include('../layout/footer.php'); ?>

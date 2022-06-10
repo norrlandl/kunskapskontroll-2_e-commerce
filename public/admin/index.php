@@ -1,7 +1,8 @@
 <h1>Welcome admin!</h1>
-
-<?
-require('../../src/config.php');
+    
+<? 
+  require('../../src/config.php');
+  $pageTitle = "Admin";
 
 if (isset($_POST["deleteProductBTN"])) {
   $sql = "
@@ -22,6 +23,7 @@ $stmt = $pdo->query("SELECT * FROM products");
 $products = array_reverse($stmt->fetchAll());
 ?>
 
+<?php include('../layout/header.php'); ?>
 <h2>Manage products</h2>
 <div class="top-buttons">
   <form action="./products/create-new-product.php">
@@ -138,3 +140,4 @@ $users = array_reverse($stmt->fetchAll());
     <? endforeach; ?>
   </tbody>
 </table>
+<?php include('layout/footer.php'); ?>

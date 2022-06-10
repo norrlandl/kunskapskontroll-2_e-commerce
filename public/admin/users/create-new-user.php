@@ -1,6 +1,7 @@
 <?
 
 require('../../../src/config.php');
+$pageTitle = "Skapa användare";
 
 $message = "";
 
@@ -67,7 +68,7 @@ if (isset($_POST["addNewUser"])) {
     }
 }
 ?>  
-
+<?php include('../../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -89,3 +90,5 @@ if (isset($_POST["addNewUser"])) {
 </form>
 
 <?=$message?>
+
+<?php include('../../layout/footer.php'); ?>
