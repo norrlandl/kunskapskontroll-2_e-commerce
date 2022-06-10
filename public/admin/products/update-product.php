@@ -30,16 +30,6 @@
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $_GET['productID']);
     $stmt->execute();
-}
-
-$sql = "
-    SELECT * FROM products
-    WHERE id = :id
-    ";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_GET['productID']);
-$stmt->execute();
-$singleProduct = $stmt->fetch();
 ?>
 
 <?php include('../../layout/header.php'); ?>

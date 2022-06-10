@@ -1,42 +1,42 @@
 <?
-require('../../../src/config.php');
-$pageTitle = "Skapa ny produkt";
+    require('../../../src/config.php');
+    $pageTitle = "Skapa ny produkt";
 
-$title = "";
-$description = "";
-$price = "";
-$stock = "";
+    $title = "";
+    $description = "";
+    $price = "";
+    $stock = "";
 
-if (isset($_POST["addNewProduct"])) {
+    if (isset($_POST["addNewProduct"])) {
 
-    if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-        $fileName         = $_FILES['img_url']['name'];
-        $fileType         = $_FILES['img_url']['type'];
-        $fileTempPath   = $_FILES['img_url']['tmp_name'];
-        $path             = '../../img/';
-        $newFilePath = $path . $fileName;
+        if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
+            $fileName         = $_FILES['img_url']['name'];
+            $fileType         = $_FILES['img_url']['type'];
+            $fileTempPath   = $_FILES['img_url']['tmp_name'];
+            $path             = '../../img/';
+            $newFilePath = $path . $fileName;
+        }
+
+        move_uploaded_file($fileTempPath, $newFilePath);
+
+        $title = trim($_POST["title"]);
+        $description = trim($_POST["description"]);
+        $price = trim($_POST["price"]);
+        $stock = trim($_POST["stock"]);
+        $img = $fileName;
+
+        $sql = "
+        INSERT INTO products (title, description, price, stock, img_url) 
+        VALUES (:title, :description, :price, :stock, :img_url);
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":stock", $stock);
+        $stmt->bindParam(":img_url", $img);
+        $stmt->execute();
     }
-
-    move_uploaded_file($fileTempPath, $newFilePath);
-
-    $title = trim($_POST["title"]);
-    $description = trim($_POST["description"]);
-    $price = trim($_POST["price"]);
-    $stock = trim($_POST["stock"]);
-    $img = $fileName;
-
-    $sql = "
-    INSERT INTO products (title, description, price, stock, img_url) 
-    VALUES (:title, :description, :price, :stock, :img_url);
-    ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":title", $title);
-    $stmt->bindParam(":description", $description);
-    $stmt->bindParam(":price", $price);
-    $stmt->bindParam(":stock", $stock);
-    $stmt->bindParam(":img_url", $img);
-    $stmt->execute();
-}
 ?>
 
 <?php include('../../layout/header.php'); ?>
