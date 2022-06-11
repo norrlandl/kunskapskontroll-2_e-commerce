@@ -3,10 +3,9 @@ require('../../src/dbconnect.php');
 $pageTitle = "Användare";
 $pageId    = "user";
 
-
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+if (!isset($_SESSION['email'])) {
+   header("Location: ./user-login.php?mustLogin");
+}
 
 $message = "";
 
