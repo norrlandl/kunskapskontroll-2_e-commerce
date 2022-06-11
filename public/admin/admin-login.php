@@ -12,13 +12,13 @@ if (isset($_GET['mustLogin'])) {
     ';
 }
 
-/*   if (isset($_GET['logout'])) {
-        $message = '
+if (isset($_GET['logout'])) {
+    $message = '
             <div class="success_msg">
                 Du är nu utloggad.
             </div>
         ';
-    } */
+}
 
 if (isset($_POST['doLogin'])) {
     $email    = trim($_POST['email']);
@@ -37,9 +37,9 @@ if (isset($_POST['doLogin'])) {
     $user = $stmt->fetch();
 
     if ($user) {
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['email']    = $user['email'];
         $_SESSION['id']       = $user['id'];
-        header('Location: ./index.php');
+        header("Location: index.php");
         exit;
     } else {
         $message = '
@@ -78,4 +78,3 @@ if (isset($_POST['doLogin'])) {
         <hr>
     </article>
 </div>
-<?php include('../layout/footer.php'); ?>

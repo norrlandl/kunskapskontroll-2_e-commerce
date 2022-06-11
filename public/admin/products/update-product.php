@@ -1,38 +1,39 @@
 <?
-    require('../../../src/config.php');
-    $pageTitle = "Uppdatera produkt";
+require('../../../src/config.php');
+$pageTitle = "Update product";
 
-    if (isset($_POST["updateProduct"])) {
-        $title = trim($_POST["title"]);
-        $description = trim($_POST["description"]);
-        $price = trim($_POST["price"]);
-        $stock = trim($_POST["stock"]);
+if (isset($_POST["updateProduct"])) {
+    $title = trim($_POST["title"]);
+    $description = trim($_POST["description"]);
+    $price = trim($_POST["price"]);
+    $stock = trim($_POST["stock"]);
 
-        $sql = "
+    $sql = "
         UPDATE products
         SET description = :description, title = :title,
         price = :price, stock = :stock
         WHERE id = :id;
         ";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $_GET['productID']);
-        $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':stock', $stock);
-        $stmt->execute();
-    }
-        
-    $sql = "
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $_GET['productID']);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':price', $price);
+    $stmt->bindParam(':stock', $stock);
+    $stmt->execute();
+}
+
+$sql = "
     SELECT * FROM products
     WHERE id = :id
     ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $_GET['productID']);
-    $stmt->execute();
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id', $_GET['productID']);
+$stmt->execute();
+$singleProduct = $stmt->fetch();
 ?>
 
-<?php include('../../layout/header.php'); ?>
+<?php include('../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -52,6 +53,5 @@
     <label for="stock">Stock:</label><br>
     <input type="number" class="form-control" name="stock" placeholder="Stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
     <input type="submit" name="updateProduct" class="btn btn-outline-primary" value="Update"><br>
-    
+
 </form>
-<?php include('../../layout/footer.php'); ?>

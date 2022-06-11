@@ -67,8 +67,8 @@ if (isset($_POST["addNewUser"])) {
         $country = "";
     }
 }
-?>  
-<?php include('../../layout/header.php'); ?>
+?>
+<?php include('../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -89,6 +89,6 @@ if (isset($_POST["addNewUser"])) {
     <input type="submit" name="addNewUser" class="btn btn-outline-primary" value="Create new user"><br><br>
 </form>
 
-<?=$message?>
+<?= $message ?>
 
 <?php include('../../layout/footer.php'); ?>
