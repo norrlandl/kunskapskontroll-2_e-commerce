@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +13,15 @@
 </head>
 
 <body>
+
     <header>
         <nav>
-            <a href="../../public/index.php">Visit page</a>
-            <a href="#">Log out</a>
+            <? if (isset($_SESSION["email"])) {
+                echo '<a href="../../public/index.php">Visit page</a> <a href="./admin-logout.php">Log out</a>';
+            } else {
+                echo '<a href="../../public/index.php">Visit page</a> <a href="#">Log in</a>';
+            }
+            ?>
         </nav>
     </header>
 

@@ -2,6 +2,10 @@
   require('../../src/config.php');
   $pageTitle = "Admin";
 
+  if (!isset($_SESSION['email'])) {
+    header("Location: ./admin-login.php?mustLogin");
+  }
+
   if (isset($_POST["deleteProductBTN"])) {
     $sql = "
             DELETE FROM products
