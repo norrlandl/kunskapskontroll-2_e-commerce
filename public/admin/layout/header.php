@@ -14,9 +14,9 @@
     <header>
         <nav>
             <?php if (isset($_SESSION["email"])) {
-                echo '<a href="../../public/index.php">Visit homepage</a> <a href="./admin-logout.php">Log out</a>';
+                echo '<a href="/kunskapskontroll-2_e-commerce/public/index.php">Visit homepage</a> <a href="./admin-logout.php">Log out</a>';
             } else {
-                echo '<a href="../../public/index.php">Visit homepage</a> <a href="#">Log in</a>';
+                echo '<a href="/kunskapskontroll-2_e-commerce/public/index.php">Visit homepage</a> <a href="#">Log in</a>';
             }
             ?>
         </nav>
