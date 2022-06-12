@@ -1,6 +1,7 @@
   <?
   require('../../src/config.php');
   $pageTitle = "Admin";
+  include('./layout/header.php');
 
   if (!isset($_SESSION['email'])) {
     header("Location: ./admin-login.php?mustLogin");
@@ -21,13 +22,16 @@
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
   }
+
+
   $stmt = $pdo->query("SELECT * FROM products");
   $products = array_reverse($stmt->fetchAll());
 
 
+
+
   ?>
 
-  <?php include('./layout/header.php'); ?>
   <div class="wrapper">
     <h1>Welcome (admin)!</h1>
     <h2>All products</h2>
@@ -54,7 +58,7 @@
       </thead>
       <br />
       <tbody>
-        <?php foreach ($products as $product) : ?>
+        <? foreach ($products as $product) : ?>
           <tr>
             <td><?= htmlentities($product["id"]) ?></td>
             <td><?= htmlentities($product["title"]) ?></td>
@@ -76,7 +80,7 @@
               </form>
             </td>
           </tr>
-        <?php endforeach; ?>
+        <? endforeach; ?>
       </tbody>
     </table>
 
@@ -122,7 +126,7 @@
       </thead>
       <br />
       <tbody>
-        <?php foreach ($users as $user) : ?>
+        <? foreach ($users as $user) : ?>
           <tr>
             <td><?= htmlentities($user["id"]) ?></td>
             <td><?= htmlentities($user["first_name"]) ?></td>
@@ -139,9 +143,9 @@
               </form>
             </td>
           </tr>
-        <?php endforeach; ?>
+        <? endforeach; ?>
       </tbody>
     </table>
   </div>
 
-  <?php include('../layout/footer.php'); ?>
+  <? include('../layout/footer.php'); ?>

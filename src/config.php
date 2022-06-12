@@ -13,6 +13,5 @@ define('SRC_PATH',  __DIR__ . '/'); // path to 'my-page-3/src/'
 // Include functions and classes
 require(SRC_PATH . '/dbconnect.php');
 require(SRC_PATH . '/app/commonFunctions.php');
-
-/* require(SRC_PATH . '/app/UserDbHandler.php');
-$userDbHandler = new UserDbHandler($pdo); */
+require(SRC_PATH . '/app/UserDbHandler.php');
+$userDbHandler = new UserDbHandler($pdo);
