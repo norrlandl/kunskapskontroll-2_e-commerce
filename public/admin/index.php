@@ -1,7 +1,6 @@
   <?
   require('../../src/config.php');
   $pageTitle = "Admin";
-  include('./layout/header.php');
 
   if (!isset($_SESSION['email'])) {
     header("Location: ./admin-login.php?mustLogin");
@@ -29,6 +28,7 @@
   ?>
 
   <div class="wrapper">
+    <?php include('./layout/header.php'); ?>
     <h1>Welcome (admin)!</h1>
     <h2>All products</h2>
     <div class="top-buttons">
@@ -144,4 +144,4 @@
     </table>
   </div>
 
-  <? include('../layout/footer.php'); ?>
+  <?php include('../layout/footer.php'); ?>
