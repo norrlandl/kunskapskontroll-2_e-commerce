@@ -26,17 +26,16 @@ if (isset($_POST['doLogin'])) {
 
     $sql = "
             SELECT * FROM users
-            WHERE email = :email AND password = :password
+            WHERE email = :email
         ";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password', $password);
     $stmt->execute();
 
     $user = $stmt->fetch();
 
-    if ($user) {
+    if ($user && password_verify($password, $user["password"])) {
         $_SESSION['email']    = $user['email'];
         $_SESSION['id']       = $user['id'];
         header("Location: index.php");
@@ -78,3 +77,4 @@ if (isset($_POST['doLogin'])) {
         <hr>
     </article>
 </div>
+<?php include('../layout/footer.php'); ?>

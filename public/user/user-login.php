@@ -27,7 +27,7 @@ if (isset($_POST['userLogin'])) {
         WHERE email = :email
         ";
 
-    $stmt = $dbconnect->prepare($sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
 

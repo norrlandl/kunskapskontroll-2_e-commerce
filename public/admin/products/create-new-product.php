@@ -1,5 +1,6 @@
 <?
 require('../../../src/config.php');
+include('../layout/header.php');
 $pageTitle = "Create new product";
 
 $title = "";
@@ -39,7 +40,6 @@ if (isset($_POST["addNewProduct"])) {
 }
 ?>
 
-<?php include('../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -55,4 +55,5 @@ if (isset($_POST["addNewProduct"])) {
     <input type="file" class="form-control" id="image" name="img_url" placeholder="Add image"><br><br>
     <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Create new product"><br>
 </form>
-<?php include('../../layout/footer.php'); ?>
+
+<? include('../../layout/footer.php'); ?>
