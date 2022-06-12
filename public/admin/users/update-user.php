@@ -1,7 +1,6 @@
 <?
 require('../../../src/config.php');
 $pageTitle = "Uppdatera användare";
-include('../layout/header.php');
 
 $message = "";
 
@@ -64,7 +63,7 @@ $singleUser = $stmt->fetch();
 ?>
 
 
-
+<?php include('../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -97,4 +96,4 @@ $singleUser = $stmt->fetch();
 
 <?= $message ?>
 
-<? include('../../layout/footer.php'); ?>
+<?php include('../../layout/footer.php'); ?>

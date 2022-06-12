@@ -95,4 +95,4 @@ if (isset($_POST["addNewUser"])) {
 
 <?= $message ?>
 
-<? include('../../layout/footer.php'); ?>
+<?php include('../../layout/footer.php'); ?>

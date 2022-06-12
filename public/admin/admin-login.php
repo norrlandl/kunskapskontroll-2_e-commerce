@@ -50,6 +50,7 @@ if (isset($_POST['doLogin'])) {
 }
 ?>
 
+<?php include('./layout/header.php'); ?>
 <div id="content">
     <article class="border">
         <form method="POST" action="#">

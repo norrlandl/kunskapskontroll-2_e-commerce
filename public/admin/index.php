@@ -27,8 +27,8 @@
 
   ?>
 
+  <?php include('./layout/header.php'); ?>
   <div class="wrapper">
-    <?php include('./layout/header.php'); ?>
     <h1>Welcome (admin)!</h1>
     <h2>All products</h2>
     <div class="top-buttons">
@@ -54,7 +54,7 @@
       </thead>
       <br />
       <tbody>
-        <? foreach ($products as $product) : ?>
+        <?php foreach ($products as $product) : ?>
           <tr>
             <td><?= htmlentities($product["id"]) ?></td>
             <td><?= htmlentities($product["title"]) ?></td>
@@ -76,7 +76,7 @@
               </form>
             </td>
           </tr>
-        <? endforeach; ?>
+        <?php endforeach; ?>
       </tbody>
     </table>
 
@@ -122,7 +122,7 @@
       </thead>
       <br />
       <tbody>
-        <? foreach ($users as $user) : ?>
+        <?php foreach ($users as $user) : ?>
           <tr>
             <td><?= htmlentities($user["id"]) ?></td>
             <td><?= htmlentities($user["first_name"]) ?></td>
@@ -139,7 +139,7 @@
               </form>
             </td>
           </tr>
-        <? endforeach; ?>
+        <?php endforeach; ?>
       </tbody>
     </table>
   </div>

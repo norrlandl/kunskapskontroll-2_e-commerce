@@ -1,6 +1,5 @@
 <?
 require('../../../src/config.php');
-include('../layout/header.php');
 $pageTitle = "Update product";
 
 if (isset($_POST["updateProduct"])) {
@@ -34,6 +33,8 @@ $stmt->execute();
 $singleProduct = $stmt->fetch();
 ?>
 
+<?php include('../layout/header.php'); ?>
+
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
 </form>
@@ -56,4 +57,4 @@ $singleProduct = $stmt->fetch();
 
 </form>
 
-<? include('../../layout/footer.php'); ?>
+<?php include('../../layout/footer.php'); ?>
