@@ -1,6 +1,7 @@
   <?
   require('../../src/config.php');
   $pageTitle = "Admin";
+  include('./layout/header.php');
 
   if (!isset($_SESSION['email'])) {
     header("Location: ./admin-login.php?mustLogin");
@@ -23,9 +24,10 @@
   }
   $stmt = $pdo->query("SELECT * FROM products");
   $products = array_reverse($stmt->fetchAll());
+
+
   ?>
 
-  <?php include('./layout/header.php'); ?>
   <div class="wrapper">
     <h1>Welcome (admin)!</h1>
     <h2>All products</h2>
@@ -141,3 +143,5 @@
       </tbody>
     </table>
   </div>
+
+  <? include('../layout/footer.php'); ?>

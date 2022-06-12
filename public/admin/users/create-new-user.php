@@ -43,11 +43,14 @@ if (isset($_POST["addNewUser"])) {
         VALUES (:first_name, :last_name, :email, :password,
         :phone, :street, :postal_code, :city, :country);
         ";
+
+        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
+
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":first_name", $firstName);
         $stmt->bindParam(":last_name", $lastName);
         $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $password);
+        $stmt->bindParam(":password", $encryptedPassword);
         $stmt->bindParam(":phone", $phone);
         $stmt->bindParam(":street", $street);
         $stmt->bindParam(":postal_code", $postalCode);
@@ -68,6 +71,7 @@ if (isset($_POST["addNewUser"])) {
     }
 }
 ?>
+
 <?php include('../layout/header.php'); ?>
 <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
@@ -75,7 +79,7 @@ if (isset($_POST["addNewUser"])) {
 
 </br>
 </br>
-<form action="" method="POST" class="form-group">
+<form action="" method="POST" class="fm-control"><br><br>
     <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" value="<?= htmlentities($firstName) ?>"><br><br>
     <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" value="<?= htmlentities($lastName) ?>"><br><br>
     <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?= htmlentities($email) ?>"><br><br>
@@ -91,4 +95,4 @@ if (isset($_POST["addNewUser"])) {
 
 <?= $message ?>
 
-<?php include('../../layout/footer.php'); ?>
+<? include('../../layout/footer.php'); ?>
