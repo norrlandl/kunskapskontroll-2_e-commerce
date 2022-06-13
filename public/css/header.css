@@ -3,10 +3,18 @@ nav {
 }
 
 .link {
-  margin: 0 8px;
+  margin: auto 8px;
   text-decoration: none;
   font-weight: bold;
   color: #000;
+}
+
+.link:nth-child(1) {
+  margin-right: 24px;
+}
+
+.link:nth-child(2) {
+  margin-right: auto;
 }
 
 .link:hover {
