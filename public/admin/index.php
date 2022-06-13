@@ -1,4 +1,4 @@
-  <?
+<?php
   require('../../src/config.php');
   $pageTitle = "Admin";
 
@@ -23,8 +23,6 @@
   }
   $stmt = $pdo->query("SELECT * FROM products");
   $products = array_reverse($stmt->fetchAll());
-
-
   ?>
 
   <?php include('./layout/header.php'); ?>
@@ -80,7 +78,7 @@
       </tbody>
     </table>
 
-    <?
+    <?php
 
     if (isset($_POST["deleteUserBTN"])) {
       $sql = "

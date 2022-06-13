@@ -1,4 +1,4 @@
-<?
+<?php
 
 require('../../../src/config.php');
 $pageTitle = "Skapa användare";
