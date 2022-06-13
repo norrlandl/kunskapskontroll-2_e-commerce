@@ -25,6 +25,7 @@
       <a class="link" href="posts.php">Posts</a>
     </div> -->
     <div class="product">
+      <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="180px" height="200px" alt="<?= htmlentities($product["title"]) ?>">
       <h4 class="product-title"><?=htmlentities($product['title'])?></h4>
       <p><?=htmlentities($product['description'])?></p>
       <p class="title"><?=htmlentities($product['price'])?></p>
