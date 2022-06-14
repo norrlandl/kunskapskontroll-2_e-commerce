@@ -134,19 +134,7 @@ class UserDbHandler
         $city,
         $country
     ) {
-
-
-        $firstName = trim($_POST["first_name"]);
-        $lastName = trim($_POST["last_name"]);
-        $email = trim($_POST["email"]);
-        $password = trim($_POST["password"]);
-        $phone = trim($_POST["phone"]);
-        $street = trim($_POST["street"]);
-        $postalCode = trim($_POST["postal_code"]);
-        $city = trim($_POST["city"]);
-        $country = trim($_POST["country"]);
-
-
+        
         $sql = "
         UPDATE users
         SET first_name = :first_name, last_name = :last_name,

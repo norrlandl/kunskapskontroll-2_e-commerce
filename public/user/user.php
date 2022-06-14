@@ -1,5 +1,5 @@
 <?php
-require('../../src/dbconnect.php');
+require('../../src/config.php');
 $pageTitle = "Användare";
 $pageId    = "user";
 
@@ -13,57 +13,66 @@ $message = "";
  * UPDATE 
  */
 
-if (isset($_POST['updateUser'])) {
-   $first_name   = trim($_POST['first_name']);
-   $last_name    = trim($_POST['last_name']);
-   $street       = trim($_POST['street']);
-   $postal_code  = trim($_POST['postal_code']);
-   $city         = trim($_POST['city']);
-   $country      = trim($_POST['country']);
-   $phone        = trim($_POST['phone']);
-   $email        = trim($_POST['email']);
-   $password     = trim($_POST['password']);
-   $confirm      = trim($_POST['confirm']);
-
-   if ($password !== $confirm) {
+if (isset($_POST["updateUser"])) {
+   if (trim($_POST["password"]) !== trim($_POST["confirm"])) {
       $message .= '
           <div>
               Confirmed password incorrect!
           </div>
       ';
    } else {
-
-      $sql = "
-   UPDATE users 
-   SET 
-   first_name  = :first_name, 
-   last_name   = :last_name, 
-   street      = :street, 
-   postal_code = :postal_code, 
-   city        = :city, 
-   country     = :country, 
-   phone       = :phone, 
-   email       = :email, 
-   password    = :password,
-   WHERE id = :id";
-
-
-      $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(":id", $_POST['userID']);
-      $stmt->bindParam(':first_name',   $first_name);
-      $stmt->bindParam(':last_name',    $last_name);
-      $stmt->bindParam(':street',       $street);
-      $stmt->bindParam(':postal_code',  $postal_code);
-      $stmt->bindParam(':city',         $city);
-      $stmt->bindParam(':country',      $country);
-      $stmt->bindParam(':phone',        $phone);
-      $stmt->bindParam(':email',        $email);
-      $stmt->bindParam(':password',     $encryptedPassword);
-      // $stmt->execute();
+      $userDbHandler->updateUser(
+         $firstName = trim($_POST["first_name"]),
+         $lastName = trim($_POST["last_name"]),
+         $email = trim($_POST["email"]),
+         $password = trim($_POST["password"]),
+         $phone = trim($_POST["phone"]),
+         $street = trim($_POST["street"]),
+         $postalCode = trim($_POST["postal_code"]),
+         $city = trim($_POST["city"]),
+         $country = trim($_POST["country"])
+      );
    }
 }
+
+   // if ($password !== $confirm) {
+   //    $message .= '
+   //        <div>
+   //            Confirmed password incorrect!
+   //        </div>
+   //    ';
+   // } else {
+
+   //    $sql = "
+   // UPDATE users 
+   // SET 
+   // first_name  = :first_name, 
+   // last_name   = :last_name, 
+   // street      = :street, 
+   // postal_code = :postal_code, 
+   // city        = :city, 
+   // country     = :country, 
+   // phone       = :phone, 
+   // email       = :email, 
+   // password    = :password,
+   // WHERE id = :id";
+
+
+   //    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+   //    $stmt = $pdo->prepare($sql);
+   //    $stmt->bindParam(":id", $_POST['userID']);
+   //    $stmt->bindParam(':first_name',   $first_name);
+   //    $stmt->bindParam(':last_name',    $last_name);
+   //    $stmt->bindParam(':street',       $street);
+   //    $stmt->bindParam(':postal_code',  $postal_code);
+   //    $stmt->bindParam(':city',         $city);
+   //    $stmt->bindParam(':country',      $country);
+   //    $stmt->bindParam(':phone',        $phone);
+   //    $stmt->bindParam(':email',        $email);
+   //    $stmt->bindParam(':password',     $encryptedPassword);
+   //    // $stmt->execute();
+   // }
 
 
 /**
