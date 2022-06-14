@@ -88,7 +88,7 @@ if (isset($_POST['deleteUser'])) {
    $stmt->bindParam(":id", $_POST['userID']);
    $stmt->execute();
 
-   header("Location: user-login.php");
+   header("Location: user-login.php ");
 }
 
 
