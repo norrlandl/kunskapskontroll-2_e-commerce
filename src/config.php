@@ -16,3 +16,4 @@ require(SRC_PATH . '/dbconnect.php');
 
 require(SRC_PATH . '/app/UserDbHandler.php');
 $userDbHandler = new UserDbHandler($pdo); 
+

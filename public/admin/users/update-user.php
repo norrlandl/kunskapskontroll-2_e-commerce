@@ -5,51 +5,17 @@ $pageTitle = "Uppdatera användare";
 $message = "";
 
 if (isset($_POST["updateUser"])) {
-
-    $firstName = trim($_POST["first_name"]);
-    $lastName = trim($_POST["last_name"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-    $confirmPassword = trim($_POST["confirmPassword"]);
-    $phone = trim($_POST["phone"]);
-    $street = trim($_POST["street"]);
-    $postalCode = trim($_POST["postal_code"]);
-    $city = trim($_POST["city"]);
-    $country = trim($_POST["country"]);
-
-    if ($password !== $confirmPassword) {
-        $message = '
-            <div>
-                Confirmed password incorrect!
-            </div>
-        ';
-    } else {
-
-        $sql = "
-        UPDATE users
-        SET first_name = :first_name, last_name = :last_name,
-        email = :email, password = :password, phone = :phone,
-        street = :street, postal_code = :postal_code, city = :city,
-        country = :country
-        WHERE id = :id;
-        ";
-
-        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $_GET['userID']);
-        $stmt->bindParam(":first_name", $firstName);
-        $stmt->bindParam(":last_name", $lastName);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $encryptedPassword);
-        $stmt->bindParam(":phone", $phone);
-        $stmt->bindParam(":street", $street);
-        $stmt->bindParam(":postal_code", $postalCode);
-        $stmt->bindParam(":city", $city);
-        $stmt->bindParam(":country", $country);
-
-        $stmt->execute();
-    }
+    $userDbHandler->updateUser(
+        $firstName = trim($_POST["first_name"]),
+        $lastName = trim($_POST["last_name"]),
+        $email = trim($_POST["email"]),
+        $password = trim($_POST["password"]),
+        $phone = trim($_POST["phone"]),
+        $street = trim($_POST["street"]),
+        $postalCode = trim($_POST["postal_code"]),
+        $city = trim($_POST["city"]),
+        $country = trim($_POST["country"])
+    );
 }
 
 $sql = "
@@ -80,7 +46,7 @@ $singleUser = $stmt->fetch();
     <label for="password">Password:</label><br>
     <input type="password" class="form-control" name="password" value="<?= htmlentities($singleUser["password"]) ?>"><br>
     <label for="confirmPassword">Confirm password:</label><br>
-    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" value="<?= htmlentities($confirmPassword) ?>"><br>
+    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" value="<?= htmlentities($singleUser["password"]) ?>"><br>
     <label for="phone">Phone:</label><br>
     <input type="text" class="form-control" name="phone" value="<?= htmlentities($singleUser["phone"]) ?>"><br>
     <label for="street">Street:</label><br>

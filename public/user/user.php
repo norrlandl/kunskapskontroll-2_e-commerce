@@ -35,6 +35,45 @@ if (isset($_POST["updateUser"])) {
    }
 }
 
+   // if ($password !== $confirm) {
+   //    $message .= '
+   //        <div>
+   //            Confirmed password incorrect!
+   //        </div>
+   //    ';
+   // } else {
+
+   //    $sql = "
+   // UPDATE users 
+   // SET 
+   // first_name  = :first_name, 
+   // last_name   = :last_name, 
+   // street      = :street, 
+   // postal_code = :postal_code, 
+   // city        = :city, 
+   // country     = :country, 
+   // phone       = :phone, 
+   // email       = :email, 
+   // password    = :password,
+   // WHERE id = :id";
+
+
+   //    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+   //    $stmt = $pdo->prepare($sql);
+   //    $stmt->bindParam(":id", $_POST['userID']);
+   //    $stmt->bindParam(':first_name',   $first_name);
+   //    $stmt->bindParam(':last_name',    $last_name);
+   //    $stmt->bindParam(':street',       $street);
+   //    $stmt->bindParam(':postal_code',  $postal_code);
+   //    $stmt->bindParam(':city',         $city);
+   //    $stmt->bindParam(':country',      $country);
+   //    $stmt->bindParam(':phone',        $phone);
+   //    $stmt->bindParam(':email',        $email);
+   //    $stmt->bindParam(':password',     $encryptedPassword);
+   //    // $stmt->execute();
+   // }
+
 
 /**
  * DELETE 
