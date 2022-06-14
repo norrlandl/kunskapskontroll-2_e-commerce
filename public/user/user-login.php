@@ -36,7 +36,7 @@ if (isset($_POST['userLogin'])) {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['email']    = $user['email'];
         $_SESSION['id']       = $user['id'];
-        header("Location: user.php");
+        header("Location: user.php?userID=" . $user['id']);
         exit;
     } else {
         $message = '
