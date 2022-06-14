@@ -47,6 +47,7 @@ if (isset($_POST['updateUser'])) {
    password    = :password,
    WHERE id = :id";
 
+
       $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
       $stmt = $pdo->prepare($sql);
@@ -88,9 +89,10 @@ if (isset($_POST['deleteUser'])) {
 $sql = "
    SELECT * FROM users
    ";
-
+   
 $stmt = $pdo->query($sql);
 $user = $stmt->fetch();
+
 
 ?>
 
