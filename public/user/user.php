@@ -96,13 +96,14 @@ if (isset($_POST['deleteUser'])) {
  * FETCH 
  */
 $sql = "
-   SELECT * FROM users
-   ";
+    SELECT * FROM users
+    WHERE id = :id
+    ";
    
-$stmt = $pdo->query($sql);
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id', $_GET['userID']);
+$stmt->execute();
 $user = $stmt->fetch();
-
-
 ?>
 
 <?php include('../layout/header.php'); ?>
