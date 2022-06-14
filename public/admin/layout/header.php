@@ -12,12 +12,15 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <?php if (isset($_SESSION["email"])) { ?>
-                <a href="/kunskapskontroll-2_e-commerce/public/index.php">Visit homepage</a> <a href="./admin-logout.php">Log out</a>
-            <?php } else { ?>
-                <a href="/kunskapskontroll-2_e-commerce/public/index.php">Visit homepage</a> <a href="#">Log in</a>
-            <?php } ?>
+    <header class="admin-header">
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">Visit homepage</a>
+            <div class="form-inline">
+                <?php if (isset($_SESSION["email"])) { ?>
+                    <a href="./admin-logout.php">Log out</a>
+                <?php } else { ?>
+                    <a href="#">Log in</a>
+                <?php } ?>
+            </div>
         </nav>
     </header>
