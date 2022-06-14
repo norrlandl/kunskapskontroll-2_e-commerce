@@ -51,31 +51,27 @@ if (isset($_POST['doLogin'])) {
 ?>
 
 <?php include('./layout/header.php'); ?>
-<div id="content">
-    <article class="border">
-        <form method="POST" action="#">
-            <fieldset>
-                <legend>Logga in</legend>
+<div id="content" class="wrapper">
+    <form method="POST" action="#">
+        <h2>Log in</h2>
+        <?= $message ?>
+        <br><br>
 
-                <?= $message ?>
+        <div class="form-outline mb-4">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="input1">Email:</label>
+                <input type="text" id="input1" name="email" class="form-control" />
+            </div>
 
-                <p>
-                    <label for="input1">E-post:</label> <br>
-                    <input type="text" class="text" name="email">
-                </p>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="input2">Password</label>
+                <input type="password" id="input2" name="password" class="form-control" />
+            </div>
 
-                <p>
-                    <label for="input2">Lösenord:</label> <br>
-                    <input type="password" class="text" name="password">
-                </p>
-
-                <p>
-                    <input type="submit" name="doLogin" value="Login">
-                </p>
-            </fieldset>
-        </form>
-
-        <hr>
-    </article>
+            <!-- Submit button -->
+            <button type="submit" name="doLogin" class="btn btn-primary btn-block mb-4">Sign in</button>
+    </form>
 </div>
 <?php include('../layout/footer.php'); ?>
