@@ -50,7 +50,7 @@
 
    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-   $stmt = $dbconnect->prepare($sql);
+   $stmt = $pdo->prepare($sql);
    $stmt->bindParam(":id", $_POST['userID']);
    $stmt->bindParam(':first_name',   $first_name);
    $stmt->bindParam(':last_name',    $last_name);
@@ -75,7 +75,7 @@
    DELETE FROM users 
    WHERE id = :id";
 
-   $stmt = $dbconnect->prepare($sql);
+   $stmt = $pdo->prepare($sql);
    $stmt->bindParam(":id", $_POST['userID']);
    $stmt->execute();
 
@@ -90,7 +90,7 @@
    SELECT * FROM users
    ";
 
-   $stmt = $dbconnect->query($sql); 
+   $stmt = $pdo->query($sql); 
    $user = $stmt->fetch();
 
 ?>

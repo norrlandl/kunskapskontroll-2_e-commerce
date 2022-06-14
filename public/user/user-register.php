@@ -93,7 +93,7 @@
 
       $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
       // $stmt = $this->$dbconnect->prepare($sql);
-      $stmt = $dbconnect->prepare($sql);
+      $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':first_name',   $first_name);
       $stmt->bindParam(':last_name',    $last_name);
       $stmt->bindParam(':street',       $street);
