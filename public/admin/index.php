@@ -7,6 +7,7 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./admin-login.php?mustLogin");
 }
 
+//Hur kan vi skicka id till UserDbHandler?
 if (isset($_POST["deleteProductBTN"])) {
   $sql = "
             DELETE FROM products
@@ -15,17 +16,18 @@ if (isset($_POST["deleteProductBTN"])) {
   $stmt = $pdo->prepare($sql);
   $stmt->bindParam(":id", $_POST['productID']);
   $stmt->execute();
+
+  /*   $id = $_POST['productID'];
+
+  $userDbHandler->deleteFromDb("products", $id); */
 }
 
 if (isset($_POST["clearAllproducts"])) {
-  $sql = " DELETE FROM products ";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute();
+  $userDbHandler->clearTableInDb("products");
 }
 
+$products = $userDbHandler->fetchAllFromDb("products");
 
-$stmt = $pdo->query("SELECT * FROM products");
-$products = array_reverse($stmt->fetchAll());
 ?>
 
 <div class="wrapper">
@@ -92,12 +94,11 @@ $products = array_reverse($stmt->fetchAll());
     $stmt->execute();
   }
   if (isset($_POST["clearAllUsers"])) {
-    $sql = " DELETE FROM users ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $userDbHandler->clearTableInDb("users");
   }
-  $stmt = $pdo->query("SELECT * FROM users");
-  $users = array_reverse($stmt->fetchAll());
+
+  $users = $userDbHandler->fetchAllFromDb("users");
+
   ?>
 
   <h2>All users</h2>

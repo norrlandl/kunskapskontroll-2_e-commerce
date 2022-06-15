@@ -18,56 +18,26 @@ $country = "";
 
 if (isset($_POST["addNewUser"])) {
 
-    $firstName = trim($_POST["first_name"]);
-    $lastName = trim($_POST["last_name"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-    $confirmPassword = trim($_POST["confirmPassword"]);
-    $phone = trim($_POST["phone"]);
-    $street = trim($_POST["street"]);
-    $postalCode = trim($_POST["postal_code"]);
-    $city = trim($_POST["city"]);
-    $country = trim($_POST["country"]);
-
-    if ($password !== $confirmPassword) {
+    if (trim($_POST["password"]) !== trim($_POST["confirmPassword"])) {
         $message = '
             <div>
                 Confirmed password incorrect!
             </div>
         ';
     } else {
+        $userDbHandler->addUserToDb(
+            trim($_POST["first_name"]),
+            trim($_POST["last_name"]),
+            trim($_POST["email"]),
+            trim($_POST["password"]),
+            trim($_POST["phone"]),
+            trim($_POST["street"]),
+            trim($_POST["postal_code"]),
+            trim($_POST["city"]),
+            trim($_POST["country"]),
+        );
 
-        $sql = "
-        INSERT INTO users (first_name, last_name, email,
-        password, phone, street, postal_code, city, country) 
-        VALUES (:first_name, :last_name, :email, :password,
-        :phone, :street, :postal_code, :city, :country);
-        ";
-
-        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(":first_name", $firstName);
-        $stmt->bindParam(":last_name", $lastName);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $encryptedPassword);
-        $stmt->bindParam(":phone", $phone);
-        $stmt->bindParam(":street", $street);
-        $stmt->bindParam(":postal_code", $postalCode);
-        $stmt->bindParam(":city", $city);
-        $stmt->bindParam(":country", $country);
-        $stmt->execute();
-
-        $firstName = "";
-        $lastName = "";
-        $email = "";
-        $password = "";
-        $confirmPassword = "";
-        $phone = "";
-        $street = "";
-        $postalCode = "";
-        $city = "";
-        $country = "";
+        redirect("../index.php");
     }
 }
 ?>

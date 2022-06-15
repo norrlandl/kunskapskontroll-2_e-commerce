@@ -9,6 +9,16 @@
     <link rel="stylesheet" type="text/css" href="/kunskapskontroll-2_e-commerce/public/admin/css/header.css" />
     <link rel=" stylesheet" type="text/css" href="/kunskapskontroll-2_e-commerce/public/admin/css/admin.css" />
     <title><?= $pageTitle ?></title>
+    <style>
+        a {
+            color: white;
+        }
+
+        .page-wrapper {
+            width: 960px;
+            margin: 4rem auto;
+        }
+    </style>
 </head>
 
 <body>

@@ -3,24 +3,14 @@ require('../../../src/config.php');
 $pageTitle = "Update product";
 
 if (isset($_POST["updateProduct"])) {
-    $title = trim($_POST["title"]);
-    $description = trim($_POST["description"]);
-    $price = trim($_POST["price"]);
-    $stock = trim($_POST["stock"]);
+    $UserDbHandler->updateProduct(
+        $title = trim($_POST["title"]),
+        $description = trim($_POST["description"]),
+        $price = trim($_POST["price"]),
+        $stock = trim($_POST["stock"])
+    );
 
-    $sql = "
-        UPDATE products
-        SET description = :description, title = :title,
-        price = :price, stock = :stock
-        WHERE id = :id;
-        ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $_GET['productID']);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':stock', $stock);
-    $stmt->execute();
+    redirect("../index.php");
 }
 
 $sql = "

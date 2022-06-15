@@ -16,6 +16,8 @@ if (isset($_POST["updateUser"])) {
         $city = trim($_POST["city"]),
         $country = trim($_POST["country"])
     );
+
+    redirect("../index.php");
 }
 
 $sql = "
