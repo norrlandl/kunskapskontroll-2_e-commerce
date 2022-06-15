@@ -1,5 +1,5 @@
 <?php
-  require('../../src/config.php');
+  require('../../src/dbconnect.php');
   $pageTitle = "Registrera användare";
   $pageId    = "user-register";
   // checkLoginSession();
@@ -12,19 +12,20 @@
    /**
      * Create user
      */
-    $validationHandler->$errorMessage = "";
+    $error = "";
+    $message = "";
 
-     $first_name = "";
-     $last_name = "";
-     $street = "";
-     $postal_code = "";
-     $city = "";
-     $country = "";
-     $phone = "";
-     $email = "";
-     $password = "";
+    $first_name = "";
+    $last_name = "";
+    $street = "";
+    $postal_code = "";
+    $city = "";
+    $country = "";
+    $phone = "";
+    $email = "";
+    $password = "";
 
-     if (isset($_POST['createUser'])) {
+    if (isset($_POST['createUser'])) {
       $first_name   = trim($_POST['first_name']);
       $last_name    = trim($_POST['last_name']);
       $street       = trim($_POST['street']);
@@ -36,77 +37,74 @@
       $password     = trim($_POST['password']);
       $confirm      = trim($_POST['confirm']);
 
-      $validationHandler->validateNotEmpty($first_name, "Förnnamn obligatoriskt.");
-      $validationHandler->validateNotEmpty($last_name, "Efternam obligatoriskt.");
-      $validationHandler->validateNotEmpty($street, "Adress obligatoriskt.");
-      $validationHandler->validateNotEmpty($postal_code, "Postkod obligatoriskt.");
-      $validationHandler->validateNotEmpty($city, "Stad obligatoriskt.");
-      $validationHandler->validateNotEmpty($country, "Land obligatoriskt.");
-      $validationHandler->validateNotEmpty($phone, "Telefon obligatoriskt.");
-      $validationHandler->validateNotEmpty($email, "Email obligatoriskt.");
-      $validationHandler->validatePassword($city, "Lösenord måste matcha.");
-      // if (empty($first_name)) {
-      //   $error .= "Förnamn är obligatoriskt <br>";
-      // }
+      if (empty($first_name)) {
+        $error .= "Förnamn är obligatoriskt <br>";
+      }
 
-      // if (empty($last_name)) {
-      //   $error .= "Efternamn är obligatoriskt <br>";
-      // }
+      if (empty($last_name)) {
+        $error .= "Efternamn är obligatoriskt <br>";
+      }
 
-      // if (empty($phone)) {
-      //   $error .= "Mobilnummer är obligatoriskt <br>";
-      // }
+      if (empty($phone)) {
+        $error .= "Mobilnummer är obligatoriskt <br>";
+      }
 
-      // if (empty($email)) {
-      //   $error .= "E-post är obligatoriskt <br>";
-      // }
+      if (empty($email)) {
+        $error .= "E-post är obligatoriskt <br>";
+      }
 
-      // if (empty($password)) {
-      //   $error .= "Du har glömt fylla i lösenord <br>";
-      // }
+      if (empty($password)) {
+        $error .= "Du har glömt fylla i lösenord <br>";
+      }
 
-      // if ($password !== $confirm) {
-      //   $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
-      // }
+      if ($password !== $confirm) {
+        $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
+      }
 
-      // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      //   $error .= "Ogiltig e-post <br>";
-      // }
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error .= "Ogiltig e-post <br>";
+      }
 
-      if (!empty($validationHandler->$errorMessage)) {
-        try {
+      if ($error) {
+        $message = "
+            <div>
+                {$error}
+            </div>
+        ";
+    } else {
+      try {
 
-    // public function addUser(
-    //    $first_name, 
-    //    $last_name, 
-    //    $street, 
-    //    $postal_code,
-    //    $city,
-    //    $country,
-    //    $phone,
-    //    $email, 
-    //    $password
-    //    ){
-       $sql = "
-       INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
-       VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
-    ";
+        // public function addUser(
+        //    $first_name, 
+        //    $last_name, 
+        //    $street, 
+        //    $postal_code,
+        //    $city,
+        //    $country,
+        //    $phone,
+        //    $email, 
+        //    $password
+        //    ){
+        $sql = "
+          INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
+          VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
+        ";
 
-      $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-      // $stmt = $this->$dbconnect->prepare($sql);
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':first_name',   $first_name);
-      $stmt->bindParam(':last_name',    $last_name);
-      $stmt->bindParam(':street',       $street);
-      $stmt->bindParam(':postal_code',  $postal_code);
-      $stmt->bindParam(':city',         $city);
-      $stmt->bindParam(':country',      $country);
-      $stmt->bindParam(':phone',        $phone);
-      $stmt->bindParam(':email',        $email);
-      $stmt->bindParam(':password',     $encryptedPassword);
-      $stmt->execute();
+        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+        // $stmt = $this->$dbconnect->prepare($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':first_name',   $first_name);
+        $stmt->bindParam(':last_name',    $last_name);
+        $stmt->bindParam(':street',       $street);
+        $stmt->bindParam(':postal_code',  $postal_code);
+        $stmt->bindParam(':city',         $city);
+        $stmt->bindParam(':country',      $country);
+        $stmt->bindParam(':phone',        $phone);
+        $stmt->bindParam(':email',        $email);
+        $stmt->bindParam(':password',     $encryptedPassword);
+        $stmt->execute();
 
-      header("Location: user-login.php?email=$email");
+        header("Location: user-login.php?email=$email");
 
         } catch (\PDOException $e) {
           if ((int) $e->getCode() === 23000) {
@@ -115,11 +113,10 @@
                       E-post addressen är redan taget. Var snäll ange en annan E-post
                   </div>
               ";
-          } else {
-              throw new \PDOException($e->getMessage(), (int) $e->getCode());
-          }
+        } else {
+            throw new \PDOException($e->getMessage(), (int) $e->getCode());
+        }
       }
-
     }
   }
 
@@ -128,7 +125,7 @@
 <?php include('../layout/header.php'); ?>
   <div id="content">
     <form method="POST" action="#">
-      <?=$validationHandler->$errorMessage ?>
+      <?=$message ?>
     
       <label for="input">Förnamn:*</label> <br>
       <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name) ?>">   <br>

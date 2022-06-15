@@ -15,7 +15,5 @@ require(SRC_PATH . '/dbconnect.php');
 require(SRC_PATH . '/app/commonFunctions.php');
 
 require(SRC_PATH . '/app/UserDbHandler.php');
-require(SRC_PATH . '/app/ValidationHandler.php');
 
 $userDbHandler = new UserDbHandler($pdo);
-$validationHandler = new ValidationHandler();

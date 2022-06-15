@@ -7,6 +7,7 @@ if (!isset($_SESSION['email'])) {
    header("Location: ./user-login.php?mustLogin");
 }
 
+$error = "";
 $message = "";
 
 /**
@@ -14,24 +15,64 @@ $message = "";
  */
 
 if (isset($_POST["updateUser"])) {
-   if (trim($_POST["password"]) !== trim($_POST["confirm"])) {
-      $message .= '
-          <div>
-              Confirmed password incorrect!
-          </div>
-      ';
+  $firstName = trim($_POST["first_name"]);
+  $lastName = trim($_POST["last_name"]);
+  $email = trim($_POST["email"]);
+  $password = trim($_POST["password"]);
+  $confirm = trim($_POST["confirm"]);
+  $phone = trim($_POST["phone"]);
+  $street = trim($_POST["street"]);
+  $postalCode = trim($_POST["postal_code"]);
+  $city = trim($_POST["city"]);
+  $country = trim($_POST["country"]);
+
+  if (empty($firstName)) {
+    $error .= "Förnamn är obligatoriskt <br>";
+  }
+
+  if (empty($lastName)) {
+    $error .= "Efternamn är obligatoriskt <br>";
+  }
+
+  if (empty($phone)) {
+    $error .= "Mobilnummer är obligatoriskt <br>";
+  }
+
+  if (empty($email)) {
+    $error .= "E-post är obligatoriskt <br>";
+  }
+
+  if (empty($password)) {
+    $error .= "Du har glömt fylla i lösenord <br>";
+  }
+
+  if ($password !== $confirm) {
+    $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
+  }
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $error .= "Ogiltig e-post <br>";
+  }
+
+  if ($error) {
+    $message = "
+      <div>
+          {$error}
+      </div>
+    ";
+
    } else {
-      $userDbHandler->updateUser(
-         $firstName = trim($_POST["first_name"]),
-         $lastName = trim($_POST["last_name"]),
-         $email = trim($_POST["email"]),
-         $password = trim($_POST["password"]),
-         $phone = trim($_POST["phone"]),
-         $street = trim($_POST["street"]),
-         $postalCode = trim($_POST["postal_code"]),
-         $city = trim($_POST["city"]),
-         $country = trim($_POST["country"])
-      );
+    $userDbHandler->updateUser(
+      $firstName,
+      $lastName,
+      $email,
+      $password,
+      $phone,
+      $street,
+      $postalCode,
+      $city,
+      $country
+    );
    }
 }
 
