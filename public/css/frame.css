@@ -27,8 +27,8 @@ body {
 }
 .Frame {
   display: inline-block;
-  padding: 40px;
-  border-width: 20px;
+  padding: 30px;
+  border-width: 10px;
   border-style: solid;
   border-color: #2f2d2d #434040 #4f4c4c #434040;
   background: #f5f5f5;

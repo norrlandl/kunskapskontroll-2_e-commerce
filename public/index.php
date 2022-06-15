@@ -23,7 +23,7 @@
           <ul id="Frames">
             <li class="Frame">
               <a href="">
-                <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="160px" height="200px" style="object-fit: cover" alt="<?= htmlentities($product["title"]) ?>">
+                <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="224px" height="280px" style="object-fit: cover" alt="<?= htmlentities($product["title"]) ?>">
               </a>
             </li>
             <h4 class="product-title"><?=htmlentities($product['title'])?></h4>
