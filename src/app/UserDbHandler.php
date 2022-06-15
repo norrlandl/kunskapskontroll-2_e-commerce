@@ -9,20 +9,21 @@ class UserDbHandler
 
     public function fetchAllFromDb($tableName)
     {
-        $sql = "SELECT * FROM $tableName);";
+        $sql = "SELECT * FROM $tableName";
+
         $stmt = $this->pdo->query($sql);
 
-        return $stmt->fetchAll();
+        return array_reverse($stmt->fetchAll());
     }
 
-    public function deleteFromDb($tableName)
+    public function deleteFromDb($tableName, $id)
     {
         $sql = "
             DELETE FROM $tableName 
             WHERE id = :id;
         ";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $_POST['userId']);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
 
@@ -71,24 +72,13 @@ class UserDbHandler
         $firstName,
         $lastName,
         $email,
-        $encryptedPassword,
+        $password,
         $phone,
         $street,
         $postalCode,
         $city,
-        $country
+        $country,
     ) {
-
-        $firstName = trim($_POST["first_name"]);
-        $lastName = trim($_POST["last_name"]);
-        $email = trim($_POST["email"]);
-        $password = trim($_POST["password"]);
-        $phone = trim($_POST["phone"]);
-        $street = trim($_POST["street"]);
-        $postalCode = trim($_POST["postal_code"]);
-        $city = trim($_POST["city"]);
-        $country = trim($_POST["country"]);
-
 
         $sql = "
         INSERT INTO users (first_name, last_name, email,
@@ -115,6 +105,7 @@ class UserDbHandler
         $lastName = "";
         $email = "";
         $password = "";
+        $confirmPassword = "";
         $phone = "";
         $street = "";
         $postalCode = "";
@@ -134,7 +125,7 @@ class UserDbHandler
         $city,
         $country
     ) {
-        
+
         $sql = "
         UPDATE users
         SET first_name = :first_name, last_name = :last_name,
@@ -158,6 +149,29 @@ class UserDbHandler
         $stmt->bindParam(":city", $city);
         $stmt->bindParam(":country", $country);
 
+        $stmt->execute();
+    }
+
+    public function updateProduct(
+        $description,
+        $title,
+        $price,
+        $stock,
+    ) {
+
+        $sql = "
+        UPDATE products
+        SET description = :description, title = :title,
+        price = :price, stock = :stock
+        WHERE id = :id;
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $_GET['productID']);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':stock', $stock);
         $stmt->execute();
     }
 }
