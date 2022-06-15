@@ -3,7 +3,7 @@ require('../../../src/config.php');
 $pageTitle = "Update product";
 
 if (isset($_POST["updateProduct"])) {
-    $UserDbHandler->updateProduct(
+    $userDbHandler->updateProduct(
         $title = trim($_POST["title"]),
         $description = trim($_POST["description"]),
         $price = trim($_POST["price"]),
