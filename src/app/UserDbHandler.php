@@ -105,7 +105,6 @@ class UserDbHandler
         $lastName = "";
         $email = "";
         $password = "";
-        $confirmPassword = "";
         $phone = "";
         $street = "";
         $postalCode = "";

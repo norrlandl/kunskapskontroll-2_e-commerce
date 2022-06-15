@@ -1,5 +1,5 @@
 <?php
-require('../../src/dbconnect.php');
+require('../../src/config.php');
 $pageTitle = "Logga in användare";
 $pageId    = "user-login";
 
@@ -34,6 +34,7 @@ if (isset($_POST['userLogin'])) {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
+        //funktion eller klass nedan
         $_SESSION['email']    = $user['email'];
         $_SESSION['id']       = $user['id'];
         header("Location: user.php?userID=" . $user['id']);

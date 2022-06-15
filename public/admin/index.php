@@ -9,17 +9,7 @@ if (!isset($_SESSION['email'])) {
 
 //Hur kan vi skicka id till UserDbHandler?
 if (isset($_POST["deleteProductBTN"])) {
-  $sql = "
-            DELETE FROM products
-            WHERE id = :id;
-            ";
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(":id", $_POST['productID']);
-  $stmt->execute();
-
-  /*   $id = $_POST['productID'];
-
-  $userDbHandler->deleteFromDb("products", $id); */
+  $userDbHandler->deleteFromDb("products", $_POST['productID']);
 }
 
 if (isset($_POST["clearAllproducts"])) {
