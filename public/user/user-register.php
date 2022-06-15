@@ -1,5 +1,5 @@
 <?php
-  require('../../src/dbconnect.php');
+  require('../../src/config.php');
   $pageTitle = "Registrera användare";
   $pageId    = "user-register";
   // checkLoginSession();
@@ -12,8 +12,7 @@
    /**
      * Create user
      */
-     $error = "";
-     $message = "";
+    $validationHandler->$errorMessage = "";
 
      $first_name = "";
      $last_name = "";
@@ -37,42 +36,44 @@
       $password     = trim($_POST['password']);
       $confirm      = trim($_POST['confirm']);
 
-      if (empty($first_name)) {
-        $error .= "Förnamn är obligatoriskt <br>";
-      }
+      $validationHandler->validateNotEmpty($first_name, "Förnnamn obligatoriskt.");
+      $validationHandler->validateNotEmpty($last_name, "Efternam obligatoriskt.");
+      $validationHandler->validateNotEmpty($street, "Adress obligatoriskt.");
+      $validationHandler->validateNotEmpty($postal_code, "Postkod obligatoriskt.");
+      $validationHandler->validateNotEmpty($city, "Stad obligatoriskt.");
+      $validationHandler->validateNotEmpty($country, "Land obligatoriskt.");
+      $validationHandler->validateNotEmpty($phone, "Telefon obligatoriskt.");
+      $validationHandler->validateNotEmpty($email, "Email obligatoriskt.");
+      $validationHandler->validatePassword($city, "Lösenord måste matcha.");
+      // if (empty($first_name)) {
+      //   $error .= "Förnamn är obligatoriskt <br>";
+      // }
 
-      if (empty($last_name)) {
-        $error .= "Efternamn är obligatoriskt <br>";
-      }
+      // if (empty($last_name)) {
+      //   $error .= "Efternamn är obligatoriskt <br>";
+      // }
 
-      if (empty($phone)) {
-        $error .= "Mobilnummer är obligatoriskt <br>";
-      }
+      // if (empty($phone)) {
+      //   $error .= "Mobilnummer är obligatoriskt <br>";
+      // }
 
-      if (empty($email)) {
-        $error .= "E-post är obligatoriskt <br>";
-      }
+      // if (empty($email)) {
+      //   $error .= "E-post är obligatoriskt <br>";
+      // }
 
-      if (empty($password)) {
-        $error .= "Du har glömt fylla i lösenord <br>";
-      }
+      // if (empty($password)) {
+      //   $error .= "Du har glömt fylla i lösenord <br>";
+      // }
 
-      if ($password !== $confirm) {
-        $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
-      }
+      // if ($password !== $confirm) {
+      //   $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
+      // }
 
-      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error .= "Ogiltig e-post <br>";
-      }
+      // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      //   $error .= "Ogiltig e-post <br>";
+      // }
 
-      if ($error) {
-        $message = "
-            <div>
-                {$error}
-            </div>
-        ";
-      } else {
-
+      if (!empty($validationHandler->$errorMessage)) {
         try {
 
     // public function addUser(
@@ -127,7 +128,7 @@
 <?php include('../layout/header.php'); ?>
   <div id="content">
     <form method="POST" action="#">
-      <?=$message ?>
+      <?=$validationHandler->$errorMessage ?>
     
       <label for="input">Förnamn:*</label> <br>
       <input type="text" class="text" name="first_name" value="<?=htmlentities($first_name) ?>">   <br>
