@@ -35,19 +35,19 @@ if (isset($_POST["addNewProduct"])) {
 <?php include('../layout/header.php'); ?>
 <div class="page-wrapper">
     <form action="../index.php">
-        <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Go back">
+        <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Tillbaka">
     </form>
 
     </br>
     </br>
     <form action="" method="POST" class="form-group" enctype="multipart/form-data">
-        <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="<?= htmlentities($title) ?>"><br>
-        <textarea rows="6" cols="60" class="form-control" id="description" name="description" placeholder="Description"><?= htmlentities($description) ?></textarea><br>
-        <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="price" name="price" placeholder="Price" value="<?= htmlentities($price) ?>"><br>
-        <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" value="<?= htmlentities($stock) ?>"><br>
-        <label for="image">Add image:</label><br>
-        <input type="file" class="form-control" id="image" name="img_url" placeholder="Add image"><br><br>
-        <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Create new product"><br>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Titel" value="<?= htmlentities($title) ?>"><br>
+        <textarea rows="6" cols="60" class="form-control" id="description" name="description" placeholder="Beskrivning"><?= htmlentities($description) ?></textarea><br>
+        <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="price" name="price" placeholder="Pris" value="<?= htmlentities($price) ?>"><br>
+        <input type="number" class="form-control" id="stock" name="stock" placeholder="Lagerantal" value="<?= htmlentities($stock) ?>"><br>
+        <label for="image">Lägg till bild:</label><br>
+        <input type="file" id="image" name="img_url" placeholder="Add image"><br><br>
+        <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Skapa ny"><br>
     </form>
 </div>
 <? include('../../layout/footer.php'); ?>
