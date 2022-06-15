@@ -19,11 +19,18 @@
     <div class="row wrapping">
       <?php foreach($products as $product) { ?>
         <div class="product">
-          <h4 class="product-title"><?=htmlentities($product['title'])?></h4>
-          <p><?=htmlentities($product['description'])?></p>
-          <p class="title"><?=htmlentities($product['price'])?></p>
-          <p class="content"><?=htmlentities($product['stock'])?></p>
-          <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="180px" height="200px" alt="<?= htmlentities($product["title"]) ?>">
+          <!-- <p class="content"><?=htmlentities($product['stock'])?></p> -->
+          <ul id="Frames">
+            <li class="Frame">
+              <a href="">
+                <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="160px" height="200px" style="object-fit: cover" alt="<?= htmlentities($product["title"]) ?>">
+              </a>
+            </li>
+            <h4 class="product-title"><?=htmlentities($product['title'])?></h4>
+            <p><?=htmlentities($product['description'])?></p>
+            <p class="title"><?=htmlentities($product['price'])?></p>
+          </ul>
+         
           <form action="product.php" method="GET">
               <input type="hidden" name="productId" value="<?=htmlentities($product['id']) ?>">
               <input type="submit" value="Read more">
