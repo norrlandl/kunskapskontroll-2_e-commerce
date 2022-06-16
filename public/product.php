@@ -2,18 +2,23 @@
   require('../src/config.php');
   $pageTitle = "Product";
   
-  if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {
-      header('Location: index.php?invalidproduct');
-      exit;
-  }
+  // if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {
+  //     header('Location: index.php?invalidproduct');
+  //     exit;
+  // }
+
+  // echo "<pre>";
+  // print_r($_GET);
+  // echo "</pre>";
+
 
   $sql = "
       SELECT * FROM products
-      WHERE id = :id
+      WHERE id = {$_GET['id']}
   ";
 
   $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(':id', $_GET['productId']);
+  // $stmt->bindParam(':id', $_GET['productId']);
   $stmt->execute();
   $product = $stmt->fetch();
 ?>
@@ -41,7 +46,7 @@
       <h5><?=htmlentities($product['title'])?></h5>
       <p><?=htmlentities($product['description'])?></p>
       <p class="stock">Lager: <?=htmlentities($product['stock'])?> st</p>
-      <button type="submit" name="doLogin" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button>
+      <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button>
       <p class="price"><b><?=htmlentities($product['price'])?> KR</b></p>
       </div>
     </div>

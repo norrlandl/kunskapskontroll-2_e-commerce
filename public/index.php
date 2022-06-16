@@ -28,25 +28,27 @@
         ?>
 
         <div class="product">
-          <!-- <p class="content"><?=htmlentities($product['stock'])?></p> -->
 
+        <a href="product.php?id=<?=$product['id'] ?>" name="productId">
           <ul id="Frames">
             <li class="Frame">
-              <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">
-              
+              <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">     
             </li>
           </ul>
-          
+          </a>
       
           <p class="product-title"><?=htmlentities($product['title'])?></p> 
           <p><i><?=htmlentities($info)?></i></p>
           <p><b><?=htmlentities($product['price'])?> kr</b></p>
 
-          <form action="product.php" method="GET">
+
+          <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
+          
+          <!-- <form action="product.php" method="GET">
               <input type="hidden" name="productId" value="<?=htmlentities($product['id']) ?>">
               <input type="submit" value="Read more">
           </form>
-      
+       -->
 
         </div>
       <?php } ?>
