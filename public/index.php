@@ -32,20 +32,22 @@
 
           <ul id="Frames">
             <li class="Frame">
-
-                <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">
-   
+              <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">
+              
             </li>
           </ul>
-
+          
+      
           <p class="product-title"><?=htmlentities($product['title'])?></p> 
           <p><i><?=htmlentities($info)?></i></p>
-          <p><b><?=htmlentities($product['price'])?> KR</b></p>
-          
+          <p><b><?=htmlentities($product['price'])?> kr</b></p>
+
           <form action="product.php" method="GET">
               <input type="hidden" name="productId" value="<?=htmlentities($product['id']) ?>">
               <input type="submit" value="Read more">
           </form>
+      
+
         </div>
       <?php } ?>
     </div>

@@ -171,7 +171,7 @@ line-height: normal;
 }
 
 .product-text {
-  padding: 100px 50px 0 50px;
+  padding: 100px 60px 0 60px;
 }
 
 .product-image img {
