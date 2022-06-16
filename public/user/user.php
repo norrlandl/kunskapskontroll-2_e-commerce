@@ -3,10 +3,11 @@ require('../../src/config.php');
 $pageTitle = "Användare";
 $pageId    = "user";
 
-/* if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])) {
    header("Location: ./user-login.php?mustLogin");
-} */
+}
 
+$error = "";
 $message = "";
 
 /**
@@ -14,66 +15,66 @@ $message = "";
  */
 
 if (isset($_POST["updateUser"])) {
-   if (trim($_POST["password"]) !== trim($_POST["confirm"])) {
-      $message .= '
-          <div>
-              Confirmed password incorrect!
-          </div>
-      ';
+  $firstName = trim($_POST["first_name"]);
+  $lastName = trim($_POST["last_name"]);
+  $email = trim($_POST["email"]);
+  $password = trim($_POST["password"]);
+  $confirm = trim($_POST["confirm"]);
+  $phone = trim($_POST["phone"]);
+  $street = trim($_POST["street"]);
+  $postalCode = trim($_POST["postal_code"]);
+  $city = trim($_POST["city"]);
+  $country = trim($_POST["country"]);
+
+  if (empty($firstName)) {
+    $error .= "Förnamn är obligatoriskt <br>";
+  }
+
+  if (empty($lastName)) {
+    $error .= "Efternamn är obligatoriskt <br>";
+  }
+
+  if (empty($phone)) {
+    $error .= "Mobilnummer är obligatoriskt <br>";
+  }
+
+  if (empty($email)) {
+    $error .= "E-post är obligatoriskt <br>";
+  }
+
+  if (empty($password)) {
+    $error .= "Du har glömt fylla i lösenord <br>";
+  }
+
+  if ($password !== $confirm) {
+    $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
+  }
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $error .= "Ogiltig e-post <br>";
+  }
+
+  if ($error) {
+    $message = "
+      <div>
+          {$error}
+      </div>
+    ";
+
    } else {
-      $userDbHandler->updateUser(
-         $firstName = trim($_POST["first_name"]),
-         $lastName = trim($_POST["last_name"]),
-         $email = trim($_POST["email"]),
-         $password = trim($_POST["password"]),
-         $phone = trim($_POST["phone"]),
-         $street = trim($_POST["street"]),
-         $postalCode = trim($_POST["postal_code"]),
-         $city = trim($_POST["city"]),
-         $country = trim($_POST["country"])
-      );
+    $userDbHandler->updateUser(
+      $firstName,
+      $lastName,
+      $email,
+      $password,
+      $phone,
+      $street,
+      $postalCode,
+      $city,
+      $country
+    );
    }
 }
-
-   // if ($password !== $confirm) {
-   //    $message .= '
-   //        <div>
-   //            Confirmed password incorrect!
-   //        </div>
-   //    ';
-   // } else {
-
-   //    $sql = "
-   // UPDATE users 
-   // SET 
-   // first_name  = :first_name, 
-   // last_name   = :last_name, 
-   // street      = :street, 
-   // postal_code = :postal_code, 
-   // city        = :city, 
-   // country     = :country, 
-   // phone       = :phone, 
-   // email       = :email, 
-   // password    = :password,
-   // WHERE id = :id";
-
-
-   //    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-
-   //    $stmt = $pdo->prepare($sql);
-   //    $stmt->bindParam(":id", $_POST['userID']);
-   //    $stmt->bindParam(':first_name',   $first_name);
-   //    $stmt->bindParam(':last_name',    $last_name);
-   //    $stmt->bindParam(':street',       $street);
-   //    $stmt->bindParam(':postal_code',  $postal_code);
-   //    $stmt->bindParam(':city',         $city);
-   //    $stmt->bindParam(':country',      $country);
-   //    $stmt->bindParam(':phone',        $phone);
-   //    $stmt->bindParam(':email',        $email);
-   //    $stmt->bindParam(':password',     $encryptedPassword);
-   //    // $stmt->execute();
-   // }
-
 
 /**
  * DELETE 
@@ -99,7 +100,7 @@ $sql = "
     SELECT * FROM users
     WHERE id = :id
     ";
-   
+
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id', $_GET['userID']);
 $stmt->execute();

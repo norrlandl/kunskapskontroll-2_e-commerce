@@ -12,20 +12,20 @@
    /**
      * Create user
      */
-     $error = "";
-     $message = "";
+    $error = "";
+    $message = "";
 
-     $first_name = "";
-     $last_name = "";
-     $street = "";
-     $postal_code = "";
-     $city = "";
-     $country = "";
-     $phone = "";
-     $email = "";
-     $password = "";
+    $first_name = "";
+    $last_name = "";
+    $street = "";
+    $postal_code = "";
+    $city = "";
+    $country = "";
+    $phone = "";
+    $email = "";
+    $password = "";
 
-     if (isset($_POST['createUser'])) {
+    if (isset($_POST['createUser'])) {
       $first_name   = trim($_POST['first_name']);
       $last_name    = trim($_POST['last_name']);
       $street       = trim($_POST['street']);
@@ -71,41 +71,40 @@
                 {$error}
             </div>
         ";
-      } else {
+    } else {
+      try {
 
-        try {
+        // public function addUser(
+        //    $first_name, 
+        //    $last_name, 
+        //    $street, 
+        //    $postal_code,
+        //    $city,
+        //    $country,
+        //    $phone,
+        //    $email, 
+        //    $password
+        //    ){
+        $sql = "
+          INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
+          VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
+        ";
 
-    // public function addUser(
-    //    $first_name, 
-    //    $last_name, 
-    //    $street, 
-    //    $postal_code,
-    //    $city,
-    //    $country,
-    //    $phone,
-    //    $email, 
-    //    $password
-    //    ){
-       $sql = "
-       INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
-       VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
-    ";
+        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+        // $stmt = $this->$dbconnect->prepare($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':first_name',   $first_name);
+        $stmt->bindParam(':last_name',    $last_name);
+        $stmt->bindParam(':street',       $street);
+        $stmt->bindParam(':postal_code',  $postal_code);
+        $stmt->bindParam(':city',         $city);
+        $stmt->bindParam(':country',      $country);
+        $stmt->bindParam(':phone',        $phone);
+        $stmt->bindParam(':email',        $email);
+        $stmt->bindParam(':password',     $encryptedPassword);
+        $stmt->execute();
 
-      $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-      // $stmt = $this->$dbconnect->prepare($sql);
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':first_name',   $first_name);
-      $stmt->bindParam(':last_name',    $last_name);
-      $stmt->bindParam(':street',       $street);
-      $stmt->bindParam(':postal_code',  $postal_code);
-      $stmt->bindParam(':city',         $city);
-      $stmt->bindParam(':country',      $country);
-      $stmt->bindParam(':phone',        $phone);
-      $stmt->bindParam(':email',        $email);
-      $stmt->bindParam(':password',     $encryptedPassword);
-      $stmt->execute();
-
-      header("Location: user-login.php?email=$email");
+        header("Location: user-login.php?email=$email");
 
         } catch (\PDOException $e) {
           if ((int) $e->getCode() === 23000) {
@@ -114,11 +113,10 @@
                       E-post addressen är redan taget. Var snäll ange en annan E-post
                   </div>
               ";
-          } else {
-              throw new \PDOException($e->getMessage(), (int) $e->getCode());
-          }
+        } else {
+            throw new \PDOException($e->getMessage(), (int) $e->getCode());
+        }
       }
-
     }
   }
 

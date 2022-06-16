@@ -7,36 +7,28 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./admin-login.php?mustLogin");
 }
 
+//Hur kan vi skicka id till UserDbHandler?
 if (isset($_POST["deleteProductBTN"])) {
-  $sql = "
-            DELETE FROM products
-            WHERE id = :id;
-            ";
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(":id", $_POST['productID']);
-  $stmt->execute();
+  $userDbHandler->deleteFromDb("products", $_POST['productID']);
 }
 
 if (isset($_POST["clearAllproducts"])) {
-  $sql = " DELETE FROM products ";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute();
+  $userDbHandler->clearTableInDb("products");
 }
 
+$products = $userDbHandler->fetchAllFromDb("products");
 
-$stmt = $pdo->query("SELECT * FROM products");
-$products = array_reverse($stmt->fetchAll());
 ?>
 
 <div class="wrapper">
-  <h1>Welcome (admin)!</h1>
-  <h2>All products</h2>
+  <h1>Välkommen (admin)!</h1>
+  <h2>Alla produkter</h2>
   <div class="top-buttons">
     <form action="./products/create-new-product.php">
-      <input type="submit" class="btn btn-outline-primary" value="Create new product" />
+      <input type="submit" class="btn btn-outline-primary" value="Skapa ny" />
     </form>
     <form action="" method="POST">
-      <input type="submit" name="clearAllproducts" class="btn btn-outline-secondary" value="Clear all" />
+      <input type="submit" name="clearAllproducts" class="btn btn-outline-secondary" value="Rensa alla" />
     </form>
   </div>
 
@@ -44,12 +36,12 @@ $products = array_reverse($stmt->fetchAll());
     <thead class="thead-dark">
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Stock</th>
-        <th scope="col">Image</th>
-        <th scope="col">Manage</th>
+        <th scope="col">Titel</th>
+        <th scope="col">Beskrivning</th>
+        <th scope="col">Pris</th>
+        <th scope="col">Lagerantal</th>
+        <th scope="col">Bild</th>
+        <th scope="col">Hantera</th>
       </tr>
     </thead>
     <br />
@@ -68,11 +60,11 @@ $products = array_reverse($stmt->fetchAll());
           <td class="action">
             <form action="./products/update-product.php" method="GET">
               <input type="hidden" name="productID" value="<?= htmlentities($product["id"]) ?>">
-              <input type="submit" class="btn btn-dark" value="Update" />
+              <input type="submit" class="btn btn-outline-dark" value="Uppdatera" />
             </form>
             <form action="" method="POST">
               <input type="hidden" name="productID" value="<?= $product['id'] ?>" />
-              <input type="submit" name="deleteProductBTN" class="btn btn-dark" value="Delete" />
+              <input type="submit" name="deleteProductBTN" class="btn btn-outline-dark" value="Radera" />
             </form>
           </td>
         </tr>
@@ -92,21 +84,22 @@ $products = array_reverse($stmt->fetchAll());
     $stmt->execute();
   }
   if (isset($_POST["clearAllUsers"])) {
-    $sql = " DELETE FROM users ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $userDbHandler->clearTableInDb("users");
   }
-  $stmt = $pdo->query("SELECT * FROM users");
-  $users = array_reverse($stmt->fetchAll());
-  ?>
 
-  <h2>All users</h2>
+  $users = $userDbHandler->fetchAllFromDb("users");
+
+  ?>
+  <br>
+  <br>
+  <br>
+  <h2>Alla användare</h2>
   <div class="top-buttons">
     <form action="./users/create-new-user.php">
-      <input type="submit" class="btn btn-outline-primary" value="Create new user" />
+      <input type="submit" class="btn btn-outline-primary" value="Skapa ny" />
     </form>
     <form action="" method="POST">
-      <input type="submit" name="clearAllUsers" class="btn btn-outline-secondary" value="Clear all" />
+      <input type="submit" name="clearAllUsers" class="btn btn-outline-secondary" value="Rensa alla" />
     </form>
   </div>
 
@@ -114,10 +107,10 @@ $products = array_reverse($stmt->fetchAll());
     <thead class="thead-dark">
       <tr>
         <th>ID</th>
-        <th>First Name</th>
-        <th>Second Name</th>
+        <th>Förnamn</th>
+        <th>Efternan</th>
         <th>Email</th>
-        <th>Manage</th>
+        <th>Hantera</th>
       </tr>
     </thead>
     <br />
@@ -131,11 +124,11 @@ $products = array_reverse($stmt->fetchAll());
           <td class="action">
             <form action="./users/update-user.php" method="GET">
               <input type="hidden" name="userID" value="<?= htmlentities($user["id"]) ?>">
-              <input type="submit" class="btn btn-dark" value="Update" />
+              <input type="submit" class="btn btn-outline-dark" value="Uppdatera" />
             </form>
             <form action="" method="POST">
               <input type="hidden" name="userID" value="<?= $user['id'] ?>" />
-              <input type="submit" name="deleteUserBTN" class="btn btn-dark" value="Delete" />
+              <input type="submit" name="deleteUserBTN" class="btn btn-outline-dark" value="Radera" />
             </form>
           </td>
         </tr>

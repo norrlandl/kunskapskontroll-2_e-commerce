@@ -1,4 +1,4 @@
-<?
+<?php
 
 function debug($value)
 {
@@ -12,10 +12,10 @@ function debug($value)
     if (!isset($_SESSION["$loginParameter"])) {
         redirect($path);
     }
-}
+*/
 
 function redirect($path)
 {
     header("Location: {$path}");
     exit;
-} */
+}
