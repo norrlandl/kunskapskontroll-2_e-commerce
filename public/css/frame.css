@@ -89,4 +89,12 @@ body {
   border-color: #bbbab4 #c7c7bf #e5e4df #c7c7bf;
   box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1),
     0 1px 1px 1px rgba(255, 255, 255, 0.7);
+
+  width: 224px;
+  height: 280px;
+  object-fit: cover;
+}
+
+.hej {
+  color: #c6c6c6;
 }

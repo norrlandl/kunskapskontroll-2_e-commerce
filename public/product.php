@@ -20,20 +20,34 @@
 
 <?php include('layout/header.php'); ?>
   <div class="container">
-    <!-- <div class="row">
-      <h2>Product</h2>
-      <a class="link" href="posts.php">Posts</a>
-    </div> -->
-    <div class="product">
-      <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="180px" height="200px" alt="<?= htmlentities($product["title"]) ?>">
-      <h4 class="product-title"><?=htmlentities($product['title'])?></h4>
-      <p><?=htmlentities($product['description'])?></p>
-      <p class="title"><?=htmlentities($product['price'])?></p>
-      <p class="content"><?=htmlentities($product['stock'])?></p>
-      <p>
-        <a href="index.php">Back</a>
-      </p>
+  <div class="row">
+    <div class="info">
+      <p><b>POSTERS FRÅN  NORGE</b><p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at senectus erat. Pretium sem tincidunt.<p>
     </div>
+    </div>
+    <div class="product-singel">
+
+    <div class="product-image">
+
+     <ul id="Frames">
+        <li class="Frame">
+          <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">
+        </li>
+     </ul>
+    </div>
+    <div class="product-text">
+      <h5><?=htmlentities($product['title'])?></h5>
+      <p><?=htmlentities($product['description'])?></p>
+      <p class="stock">Lager: <?=htmlentities($product['stock'])?> st</p>
+      <button type="submit" name="doLogin" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button>
+      <p class="price"><b><?=htmlentities($product['price'])?> KR</b></p>
+      </div>
+    </div>
+    <p>
+      <a href="index.php">Back</a>
+    </p>
   </div>
   <?php include('layout/footer.php'); ?>
 

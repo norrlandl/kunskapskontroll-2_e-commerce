@@ -14,23 +14,34 @@
 
   <div class="container">
     <div class="row">
-      <h2>Shop products</h2>
+    <div class="info">
+      <p><b>POSTERS FRÅN  NORGE</b><p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at senectus erat. Pretium sem tincidunt.<p>
     </div>
-    <div class="row wrapping">
-      <?php foreach($products as $product) { ?>
+    </div>
+    <div class="wrapping">
+      <?php foreach($products as $product) { 
+        
+        $info = preg_replace('/\s+?(\S+)?$/', '', substr($product['description'], 0, 55));
+        
+        ?>
+
         <div class="product">
           <!-- <p class="content"><?=htmlentities($product['stock'])?></p> -->
+
           <ul id="Frames">
             <li class="Frame">
-              <a href="">
-                <img src="./img/<?= htmlentities($product["img_url"]) ?>" width="224px" height="280px" style="object-fit: cover" alt="<?= htmlentities($product["title"]) ?>">
-              </a>
+
+                <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">
+   
             </li>
-            <h4 class="product-title"><?=htmlentities($product['title'])?></h4>
-            <p><?=htmlentities($product['description'])?></p>
-            <p class="title"><?=htmlentities($product['price'])?></p>
           </ul>
-         
+
+          <p class="product-title"><?=htmlentities($product['title'])?></p> 
+          <p><i><?=htmlentities($info)?></i></p>
+          <p><b><?=htmlentities($product['price'])?> KR</b></p>
+          
           <form action="product.php" method="GET">
               <input type="hidden" name="productId" value="<?=htmlentities($product['id']) ?>">
               <input type="submit" value="Read more">
