@@ -189,6 +189,10 @@
       padding: 0 2rem;
     }
 
+    .admin-container span {
+      color: #4A4A4A;
+    }
+
     .search-bar {
       min-height: 8vh;
       background-color: #EBEBEB;
@@ -210,6 +214,13 @@
 
     .admin-nav {
       display: flex;
+      min-height: 4vh;
+      align-items: center;
+    }
+
+    .admin-nav a {
+      padding: 0 0.3rem;
+      color: #A5A5A5;
     }
 
     .navbar-brand::before {
@@ -236,18 +247,22 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      margin-left: 1rem;
+      margin-left: 2rem;
     }
   </style>
 </head>
 
 <body>
   <header class="user-header">
+
     <div class="admin-container">
-      <a>Fri frakt över 599kr!</a>
+      <span>
+        <i>Fri frakt över 599kr!</i>
+      </span>
       <div class="admin-nav">
-        <a>Admin</a> /
-        <a>Logga ut</a>
+        <a href="/kunskapskontroll-2_e-commerce/public/admin/index.php">Admin</a>
+        <span>/</span>
+        <a href="./user/admin-logout.php/">Logga ut</a>
       </div>
     </div>
     <nav id="main-nav" class="navbar navbar-expand-md navbar-dark main-nav">
@@ -266,10 +281,10 @@
         <div class="collapse navbar-collapse w-100">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">MINA SIDOR</a>
+              <a class="nav-link" href="#">Mina sidor</a>
             </li>
             <li class="nav-item cart-icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-shopping-cart fa-lg"></i>
             </li>
           </ul>
         </div>
@@ -278,7 +293,7 @@
     <div class="search-bar">
       <form id="search-form" action="#">
         <div class="input-group mb-4 p-1">
-          <input type="search" placeholder="SÖK MOTIV..." aria-describedby="button-addon3" class="form-control bg-none border-0  rounded-pill">
+          <input type="search" placeholder="Sök motiv..." aria-describedby="button-addon3" class="form-control bg-none border-0  rounded-pill">
           <div class="input-group-append border-0">
             <button id="button-addon3" type="button" class="btn btn-links"><i class="fa fa-search"></i></button>
           </div>
