@@ -260,9 +260,13 @@
         <i>Fri frakt över 599kr!</i>
       </span>
       <div class="admin-nav">
-        <a href="/kunskapskontroll-2_e-commerce/public/admin/index.php">Admin</a>
+        <a href="/kunskapskontroll-2_e-commerce/public/index.php">Admin</a>
         <span>/</span>
-        <a href="./user/admin-logout.php/">Logga ut</a>
+        <?php if (isset($_SESSION["email"])) { ?>
+          <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
+        <?php } else { ?>
+          <a href="/kunskapskontroll-2_e-commerce/public/user/user-login.php">Logga in</a>
+        <?php } ?>
       </div>
     </div>
     <nav id="main-nav" class="navbar navbar-expand-md navbar-dark main-nav">
@@ -277,10 +281,12 @@
             </li>
           </ul>
         </div> -->
-        <a class="navbar-brand order-first order-md-0 mx-0" href="#"><img class="logo" src="../public/img/logo.png" width="50px" height="50px" alt="logga"></a>
+        <a class="navbar-brand order-first order-md-0 mx-0" href="#"><img class="logo" src="/kunskapskontroll-2_e-commerce/public/img/logo.png" width="50px" height="50px" alt="logga"></a>
         <div class="collapse navbar-collapse w-100">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
+              <!--               Vad exakt vill vi visa här i inloggat läge? Dropdown under "Mina sidor"
+              till våra sidor? Eller lägga allt i nav:en? -->
               <a class="nav-link" href="#">Mina sidor</a>
             </li>
             <li class="nav-item cart-icon">

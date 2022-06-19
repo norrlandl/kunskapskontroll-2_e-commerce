@@ -7,14 +7,14 @@ function debug($value)
     echo "</pre>";
 }
 
-/* function destroySession($path)
+function destroySession($path)
 {
     session_destroy();
     redirect($path);
     exit;
 }
 
- */
+
 function redirect($path)
 {
     header("Location: {$path}");

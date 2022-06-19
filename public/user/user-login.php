@@ -18,6 +18,14 @@ if (isset($_GET['mustLogin'])) {
     ';
 }
 
+if (isset($_GET['logout'])) {
+    $message = '
+            <div class="success_msg">
+                Du är nu utloggad.
+            </div>
+        ';
+}
+
 if (isset($_POST['userLogin'])) {
     $email      = trim($_POST['email']);
     $password   = trim($_POST['password']);
@@ -32,6 +40,11 @@ if (isset($_POST['userLogin'])) {
     $stmt->execute();
 
     $user = $stmt->fetch();
+
+    debug($user);
+    debug($email);
+    debug($password);
+    debug($sql);
 
     if ($user && password_verify($password, $user['password'])) {
         //funktion eller klass nedan
