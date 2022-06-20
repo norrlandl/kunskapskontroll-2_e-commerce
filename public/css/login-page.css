@@ -1,0 +1,21 @@
+.wrapper {
+  width: 1200px;
+  margin: 4rem auto;
+}
+
+.page-wrapper {
+  width: 840px;
+  margin: 4rem auto;
+}
+
+.main-login-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-wrapper-login {
+  width: 540px;
+  margin: 4rem auto;
+}

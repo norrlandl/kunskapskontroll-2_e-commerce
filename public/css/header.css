@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.mb-4 {
+.search-absolute {
   width: 40%;
   margin: 0 auto;
   position: absolute;
@@ -40,6 +40,14 @@
 .admin-nav a {
   padding: 0 0.3rem;
   color: #a5a5a5;
+}
+
+nav a {
+  color: white;
+}
+
+nav a:hover {
+  color: white;
 }
 
 .navbar-brand::before {

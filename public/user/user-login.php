@@ -3,10 +3,6 @@ require('../../src/config.php');
 $pageTitle = "Logga in användare";
 $pageId    = "user-login";
 
-// echo "<pre>";
-// print_r($_GET);
-// echo "</pre>";
-
 $message = "";
 $email = "";
 
@@ -41,11 +37,6 @@ if (isset($_POST['userLogin'])) {
 
     $user = $stmt->fetch();
 
-    debug($user);
-    debug($email);
-    debug($password);
-    debug($sql);
-
     if ($user && password_verify($password, $user['password'])) {
         //funktion eller klass nedan
         $_SESSION['email']    = $user['email'];
@@ -54,9 +45,9 @@ if (isset($_POST['userLogin'])) {
         exit;
     } else {
         $message = '
-                <div>
-                    Fel inloggningsuppgifter...
-                </div>
+        <div class="error_msg">
+            Fel inloggningsuppgifter. Försök igen!
+        </div>
             ';
     }
 }
@@ -64,75 +55,36 @@ if (isset($_POST['userLogin'])) {
 
 
 <?php include('../layout/header.php'); ?>
-<!-- <div id="">
-    <form method="POST" action="#">
-        <?= $message ?>
+<main class="main-login-page">
+    <div class="page-wrapper-login">
+        <div id="content">
+            <form method="POST" action="#">
+                <h2>Logga in</h2>
+                <?= $message ?>
+                <br><br>
 
-        <h1>Logga in användare</h1>
+                <div class="form-outline mb-4">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="input1">Email:</label>
+                        <input type="text" id="input1" name="email" class="form-control" />
+                    </div>
 
-        <label for="input1">E-post:</label> <br>
-        <input type="text" class="text" name="email" value="<?= htmlentities($email) ?>"> <br>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="input2">Lösenord:</label>
+                        <input type="password" id="input2" name="password" class="form-control" />
+                    </div>
 
-        <label for="input2">Lösenord:</label> <br>
-        <input type="password" class="text" name="password"> <br>
-
-        <input type="submit" name="userLogin" value="login">
-    </form>
-    <a href="user-register.php">
-        <p>REGISTERA</p>
-    </a>
-</div> -->
-<form>
-  <!-- Email input -->
-  <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="form-label" for="form2Example1">Email address</label>
-  </div>
-
-  <!-- Password input -->
-  <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="form-label" for="form2Example2">Password</label>
-  </div>
-
-  <!-- 2 column grid layout for inline styling -->
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      <!-- Checkbox -->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
-      </div>
+                    <!-- Submit button -->
+                    <button type="submit" name="userLogin" value="login" class="btn btn-primary btn-block mb-4">Logga in</button>
+                    
+                    <!-- Register -->
+                    <div class="form-outline mb-4">
+                        <p>Inget konto? <a href="user-register.php">Registrera dig</a>.</p>
+                    </div> 
+            </form>
+        </div>
     </div>
-
-    <div class="col">
-      <!-- Simple link -->
-      <a href="#!">Forgot password?</a>
-    </div>
-  </div>
-
-  <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-  <!-- Register buttons -->
-  <div class="text-center">
-    <p>Not a member? <a href="#!">Register</a></p>
-    <p>or sign up with:</p>
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-facebook-f"></i>
-    </button>
-
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-google"></i>
-    </button>
-
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-twitter"></i>
-    </button>
-
-    <button type="button" class="btn btn-link btn-floating mx-1">
-      <i class="fab fa-github"></i>
-    </button>
-  </div>
-</form>
+</main>
 <?php include('../layout/footer.php'); ?>

@@ -1,0 +1,33 @@
+/* PRODUCT */
+
+.product-singel {
+  display: flex;
+  flex-direction: row;
+  /* background-color: green; */
+}
+
+.product-image {
+  flex-basis: 45%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  /* background-color: red;  */
+}
+
+.product-text {
+  padding: 100px 60px 0 60px;
+}
+
+.product-image img {
+  width: 330px;
+  height: 450px;
+}
+
+.product-image .Frame {
+  padding: 28px;
+  border-width: 10px;
+}
+
+.stock {
+  color: #c6c6c6;
+  margin-bottom: 80px;
+}
