@@ -50,10 +50,9 @@ $products = $userDbHandler->fetchAllFromDb("products");
         <tr>
           <td><?= htmlentities($product["id"]) ?></td>
           <td><?= htmlentities($product["title"]) ?></td>
-          <td><?= htmlentities($product["description"]) ?></td>
+          <td><?= htmlentities(substr($product["description"], 0, 32)) ?>...</td>
           <td>
-            <?= htmlentities($product["price"]) ?>
-            €
+            <?= htmlentities($product["price"]) ?> :-
           </td>
           <td><?= htmlentities($product["stock"]) ?></td>
           <td><img src="../img/<?= htmlentities($product["img_url"]) ?>" width="60px" height="60px" alt="<?= htmlentities($product["title"]) ?>"></td>

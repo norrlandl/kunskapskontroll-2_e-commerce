@@ -108,7 +108,7 @@ $user = $stmt->fetch();
 ?>
 
 <?php include('../layout/header.php'); ?>
-<h1>Välkommen <?= htmlentities($user['first_name']) ?></h1>
+<h1>Välkommen "<?= htmlentities($user['first_name']) ?>"!</h1>
 
 <?php ?>
 

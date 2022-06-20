@@ -3,16 +3,12 @@ require('../../src/config.php');
 $pageTitle = "Logga in användare";
 $pageId    = "user-login";
 
-// echo "<pre>";
-// print_r($_GET);
-// echo "</pre>";
-
 $message = "";
 $email = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-        <div class="error_msg">
+        <div class="alert alert-danger">
             Sidan är inloggningsskyddad. Var snäll och logga in.
         </div>
     ';
@@ -41,11 +37,6 @@ if (isset($_POST['userLogin'])) {
 
     $user = $stmt->fetch();
 
-    debug($user);
-    debug($email);
-    debug($password);
-    debug($sql);
-
     if ($user && password_verify($password, $user['password'])) {
         //funktion eller klass nedan
         $_SESSION['email']    = $user['email'];
@@ -54,9 +45,9 @@ if (isset($_POST['userLogin'])) {
         exit;
     } else {
         $message = '
-                <div>
-                    Fel inloggningsuppgifter...
-                </div>
+        <div class="error_msg">
+            Fel inloggningsuppgifter. Försök igen!
+        </div>
             ';
     }
 }
@@ -64,22 +55,37 @@ if (isset($_POST['userLogin'])) {
 
 
 <?php include('../layout/header.php'); ?>
-<div id="">
-    <form method="POST" action="#">
-        <?= $message ?>
+<main class="main-login-page">
+    <div class="page-wrapper-login">
+        <div id="content">
+            <form method="POST" action="#">
+                <h2>Logga in</h2>
+                <br>
+                <?= $message ?>
+                <br><br>
 
-        <h1>Logga in användare</h1>
+                <div class="form-outline mb-4">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="input1">Email:</label>
+                        <input type="text" id="input1" name="email" class="form-control" />
+                    </div>
 
-        <label for="input1">E-post:</label> <br>
-        <input type="text" class="text" name="email" value="<?= htmlentities($email) ?>"> <br>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="input2">Lösenord:</label>
+                        <input type="password" id="input2" name="password" class="form-control" />
+                    </div>
 
-        <label for="input2">Lösenord:</label> <br>
-        <input type="password" class="text" name="password"> <br>
+                    <!-- Submit button -->
+                    <button type="submit" name="userLogin" value="login" class="btn btn-primary btn-block mb-4">Logga in</button>
 
-        <input type="submit" name="userLogin" value="login">
-    </form>
-    <a href="user-register.php">
-        <p>REGISTERA</p>
-    </a>
-</div>
+                    <!-- Register -->
+                    <div class="form-outline mb-4">
+                        <p>Inget konto? <a href="user-register.php">Registrera dig</a>.</p>
+                    </div>
+            </form>
+        </div>
+    </div>
+</main>
 <?php include('../layout/footer.php'); ?>

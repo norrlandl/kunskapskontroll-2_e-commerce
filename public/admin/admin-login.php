@@ -1,9 +1,10 @@
 <?php
 require('../../src/config.php');
 
-$pageTitle = "Admin login";
+$pageTitle = "Logga in admin";
 
 $message = "";
+
 if (isset($_GET['mustLogin'])) {
     $message = '
         <div class="error_msg">
