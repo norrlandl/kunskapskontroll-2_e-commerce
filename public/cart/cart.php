@@ -32,7 +32,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
   <p><?=$cartItem['title']?></p>
   <p><?=$cartItem['price']?></p>
   <p><?=$cartItem['quantity']?></p>
-  <p>otalsumman: <?=$cartTotalSum ?></p>
+  <p>Totalsumman: <?=$cartTotalSum ?></p>
   <p>Totalt antal items: <?=$cartTotalItems  ?></p>
 </div>
 

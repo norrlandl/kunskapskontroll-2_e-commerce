@@ -18,7 +18,6 @@ require('../../src/config.php');
 <?php include('cart.php') ?>
 
 
-
 <?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
 
 <table>
@@ -51,7 +50,44 @@ require('../../src/config.php');
 </table>
 
 
-<?php endforeach; ?>
+<?php endforeach; ?> 
+
+<h4>Fakturaadress</h4>
+
+<form action="create-order.php" method="POST">
+
+  <input type="hidden" name="cartTotalSum" value="<?=$cartTotalSum ?>">
+
+  <label for="input">Förnamn:</label> <br>
+  <input type="text" class="text" name="first_name" id="cart_first_name">   <br>
+
+  <label for="input">Efternamn:</label> <br>
+  <input type="text" class="text" name="last_name" id="cart_last_name">  <br>
+  
+  <label for="input">Adress:</label> <br>
+  <input type="text" class="text" name="street" id="cart_street">  <br>
+  
+  <label for="input">Postkod:</label> <br>
+  <input type="text" class="text" name="postal_code" id="cart_postal_code">  <br>
+  
+  <label for="input">Stad:</label> <br>
+  <input type="text" class="text" name="city" id="cart_city">  <br>
+  
+  <label for="input">Land:</label> <br>
+  <input type="text" class="text" name="country" id="cart_country">  <br>
+
+  <label for="input">Telefon:</label> <br>
+  <input type="text" class="text" name="phone" id="cart_phone">  <br>
+    
+  <label for="input">E-post:</label> <br>
+  <input type="text" class="text" name="email" id="cart_email">  <br>
+
+  <label for="input">Lösenord:</label> <br>
+  <input type="password" class="text" name="password" id="cart_passord">  <br>
+
+  <button type="submit" name="createOrderBtn">Genomför köp</button>
+
+</form>
 
 
 <!-- Byt ut jQuery // skickar formuläret när man ändra kvantiteten -->
