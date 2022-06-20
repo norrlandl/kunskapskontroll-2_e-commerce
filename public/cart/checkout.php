@@ -18,7 +18,6 @@ require('../../src/config.php');
 <?php include('cart.php') ?>
 
 
-
 <?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
 
 <table>
