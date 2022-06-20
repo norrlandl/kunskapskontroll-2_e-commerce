@@ -1,0 +1,63 @@
+/* Global */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+header {
+  min-height: 5vh;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 4rem auto;
+}
+
+.page-wrapper {
+  width: 840px;
+  margin: 4rem auto;
+}
+
+.main-login-page {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-wrapper-login {
+  width: 540px;
+  margin: 4rem auto;
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin: 1.5rem 0;
+}
+
+.action {
+  display: flex;
+}
+
+.action form {
+  margin-right: 1rem;
+}
