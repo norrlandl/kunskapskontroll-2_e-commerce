@@ -1,4 +1,4 @@
-<!-- Kod ska in i products.php -->
+<!-- Kod ska in i product.php -->
 
 
 <?php
