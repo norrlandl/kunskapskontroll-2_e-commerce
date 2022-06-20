@@ -260,7 +260,7 @@
         <i>Fri frakt över 599kr!</i>
       </span>
       <div class="admin-nav">
-        <a href="/kunskapskontroll-2_e-commerce/public/index.php">Admin</a>
+        <a href="/kunskapskontroll-2_e-commerce/public/admin/index.php">Admin</a>
         <span>/</span>
         <?php if (isset($_SESSION["email"])) { ?>
           <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
