@@ -15,6 +15,7 @@
 
 .Frame {
   display: inline-block;
+  background-color: red !important;
   padding: 18px;
   border-width: 7px;
   border-style: solid;
@@ -74,7 +75,7 @@
 }
 
 .Frame img {
-  border-width: 2px;
+  border-width: 200px !important;
   border-style: solid;
   border-color: #bbbab4 #c7c7bf #e5e4df #c7c7bf;
   box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1),

@@ -1,7 +1,6 @@
-/* @import url("http://localhost/kunskapskontroll-2_e-commerce/public/css/header.css");
-@import url("http://localhost/kunskapskontroll-2_e-commerce/public/css/frame.css");
-@import url("http://localhost/kunskapskontroll-2_e-commerce/public/css/products.css");
- */
+@import "header.css";
+@import "frame.css";
+@import "products.css";
 
 /* Global */
 
@@ -33,7 +32,7 @@
   position: relative;
 }
 
-.mb-4 {
+.search-absolute {
   width: 40%;
   margin: 0 auto;
   position: absolute;
