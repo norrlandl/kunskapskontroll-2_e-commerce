@@ -8,7 +8,7 @@ $email = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-        <div class="error_msg">
+        <div class="alert alert-danger">
             Sidan är inloggningsskyddad. Var snäll och logga in.
         </div>
     ';
@@ -60,6 +60,7 @@ if (isset($_POST['userLogin'])) {
         <div id="content">
             <form method="POST" action="#">
                 <h2>Logga in</h2>
+                <br>
                 <?= $message ?>
                 <br><br>
 
@@ -78,11 +79,11 @@ if (isset($_POST['userLogin'])) {
 
                     <!-- Submit button -->
                     <button type="submit" name="userLogin" value="login" class="btn btn-primary btn-block mb-4">Logga in</button>
-                    
+
                     <!-- Register -->
                     <div class="form-outline mb-4">
                         <p>Inget konto? <a href="user-register.php">Registrera dig</a>.</p>
-                    </div> 
+                    </div>
             </form>
         </div>
     </div>
