@@ -1,20 +1,32 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .row {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .wrapping {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  /* justify-content: space-between; */
 }
 
 .product {
   display: flex;
   flex-direction: column;
 
-  margin: 24px 16px 0px;
+  flex-basis: 215px;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  margin: 0px 30px 90px;
+  /* background-color: red; */
+  text-align: center;
+  font-size: 12px;
+}
+
+.product-title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: normal;
 }
