@@ -51,6 +51,7 @@
           <div class="input-group-append border-0">
             <button id="button-addon3" type="button" class="btn btn-links"><i class="fa fa-search"></i></button>
           </div>
+          <div id="searchResults" class="search-results-container"></div>
         </div>
       </form>
     </div>

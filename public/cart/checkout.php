@@ -166,16 +166,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
 <!-- skickar formuläret när man ändra kvantitet -->
 <script type="text/javascript">
-  const quantity = document.querySelector('#update-cart-form input[name="quantity');
-
-  quantity.addEventListener('change', (e) => {
-    e.target.parentNode.submit();
-  });
+$('.update-cart-form input[name="quantity"]').on('change', function(){
+    $(this).parent().submit();
+});
 </script>
-
-<?php include('../layout/footer.php'); ?>
-
-
-<!-- $('.update-cart-form input[name="quantity"]').on('change', function() {
-      $(this).parent().submit();
-    }); -->
