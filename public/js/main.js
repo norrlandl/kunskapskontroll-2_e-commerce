@@ -17,10 +17,10 @@ searchInput.addEventListener("focus", async (event) => {
   }
 });
 
-searchInput.addEventListener("blur", (event) => {
-  document.getElementById("searchResults").innerHTML = "";
-  searchInput.value = "";
-});
+// searchInput.addEventListener("blur", (event) => {
+//   document.getElementById("searchResults").innerHTML = "";
+//   searchInput.value = "";
+// });
 
 searchInput.addEventListener("keyup", (event) => {
   const inputText = event.target.value;
