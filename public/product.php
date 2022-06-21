@@ -24,10 +24,7 @@ $product = $stmt->fetch();
 
 ?>
 
-<?php include('layout/header.php'); ?>
-
-
-
+<?php include('layout/header.php');
 
 $sorted_array = $userDbHandler->fetchAllFromDb("products");
 
