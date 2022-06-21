@@ -24,9 +24,6 @@
 }
 
 .panel {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   height: 45vh;
   color: #fff;
   cursor: pointer;
@@ -35,6 +32,12 @@
   position: relative;
   transition: all 700ms ease-in;
   -webkit-transition: all 700ms ease-in;
+}
+
+.panel img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .panel h3 {
@@ -59,18 +62,18 @@
   transition: opacity 0.3s ease-in 0.4s;
 }
 
-.panel1 {
-  background-image: url("../img/norge-5.jpg");
-}
+/*Media Queries*/
 
-.panel2 {
-  background-image: url("../img/norge-6.jpg");
-}
+@media (max-width: 680px) {
+  .slider-container {
+    width: 100vw;
+  }
 
-.panel3 {
-  background-image: url("../img/norge-7.jpg");
-}
+  .panel h3 {
+    font-size: 16px;
+  }
 
-.panel4 {
-  background-image: url("../img/norge-8.jpg");
+  .panel:nth-of-type(4) {
+    display: none;
+  }
 }
