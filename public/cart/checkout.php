@@ -10,89 +10,172 @@ $cartTotalItems
 <?php
 require('../../src/config.php');
 
+$cartTotalSum = 0;
+$cartTotalItems = 0;
+
+foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
+  $cartTotalSum += $cartItem['price'] * $cartItem['quantity'];
+  $cartTotalItems += $cartItem['quantity'];
+}
+
 ?>
 
-</head>
-<body>
+<?php include('../layout/header.php'); ?>
+
 <div class="container">
-<?php include('cart.php') ?>
+  <div class="row">
+    <div class="info">
+      <p><b>KASSAN</b></p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at senectus erat. Pretium sem tincidunt.
+      </p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <h5>Pris</h5>
+        </td>
+        <td>
+          <h5>Antal</h5>
+        </td>
+        <td>
+          <h5>Total</h5>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php $counter = 0 ?>
+
+      <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
+
+        $counter++;
+        $divclass = "";
+        if ($counter % 2 == 0) {
+          $divclass = "cart-background";
+        }
+
+      ?>
+        <tr class="<?php echo $divclass; ?>">
+
+          <td>
+            <div class="cart-img">
+              <img src="../img/<?= $cartItem['img_url'] ?>">
+            </div>
+          </td>
+          <td>
+            <p><?= $cartItem['title'] ?></p>
+            <!-- <p><?= $cartItem['description'] ?></p> -->
+
+          </td>
+          <td>
+            <p><?= $cartItem['price'] ?>kr</p>
+          </td>
+          <td>
+            <!-- <p><?= $cartItem['quantity'] ?></p> -->
+            <form id="update-cart-form" action="update-cart-item.php" method="POST">
+              <input type="hidden" name="cartId" value="<?= $cartId ?>">
+              <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
+            </form>
+          </td>
+          <td>
+            <p><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
+          </td>
+          <td>
+            <!-- DELETE -->
+            <form action="delete-cart-item.php" method="POST">
+              <input type="hidden" name="cartId" value="<?= $cartId ?>">
+              <button type="submit" class="DÖLJS_MED_CSS" value=""> TA BORT
+              </button>
+            </form>
+          </td>
+
+        </tr>
+    </tbody>
+
+  <?php endforeach; ?>
+
+  <tfoot>
+    <tr>
+      <td>
+        <p>Totalt antal items: <?= $cartTotalItems  ?></p>
+      </td>
+      <td>
+        <p>Totalsumman: <?= $cartTotalSum ?></p>
+      </td>
+      <td></td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  </tfoot>
+  </table>
 
 
-<?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
-
-<table>
 
 
-  <img src="img/<?=$cartItem['img_url']?>">
-  <p><?=$cartItem['title']?></p>
-  <p><?=$cartItem['description']?></p>
-  <p><?=$cartItem['price']?></p>
-  <p><?=$cartItem['quantity']?></p>
-  <p>Totalt antal items: <?=$cartTotalItems  ?></p>
+  <h4>Fakturaadress</h4>
 
-<!-- DELETE -->
-<form action="delete-cart-item.php" method="POST">
-  <input type="hidden" name="cartId" value="<?=$cartId?>">
-  <button type="submit" class="DOLD GENOM CSS" value=""> SVG_FIL SOPTUNNA
-  </button>
-</form>
+  <form action="create-order.php" method="POST">
 
-<!-- UPDATE -->
-<form class="update-cart-form" action="update-cart-item.php" method="POST">
-  <input type="hidden" name="cartId" value="<?=$cartId?>">
-  <input type="number" name="quantity" value="<?=$cartItem['quantity']?>" min="0">
-  <button type="submit" name="quantity" value="1" min="0">
-  </button>
-</form>
+    <input type="hidden" name="cartTotalSum" value="<?= $cartTotalSum ?>">
 
-<p>Totalsumman: <?=$cartTotalSum ?></p>
+    <label for="input">Förnamn:</label> <br>
+    <input type="text" class="text" name="first_name" id="cart_first_name"> <br>
 
-</table>
+    <label for="input">Efternamn:</label> <br>
+    <input type="text" class="text" name="last_name" id="cart_last_name"> <br>
 
+    <label for="input">Adress:</label> <br>
+    <input type="text" class="text" name="street" id="cart_street"> <br>
 
-<?php endforeach; ?> 
+    <label for="input">Postkod:</label> <br>
+    <input type="text" class="text" name="postal_code" id="cart_postal_code"> <br>
 
-<h4>Fakturaadress</h4>
+    <label for="input">Stad:</label> <br>
+    <input type="text" class="text" name="city" id="cart_city"> <br>
 
-<form action="create-order.php" method="POST">
+    <label for="input">Land:</label> <br>
+    <input type="text" class="text" name="country" id="cart_country"> <br>
 
-  <input type="hidden" name="cartTotalSum" value="<?=$cartTotalSum ?>">
+    <label for="input">Telefon:</label> <br>
+    <input type="text" class="text" name="phone" id="cart_phone"> <br>
 
-  <label for="input">Förnamn:</label> <br>
-  <input type="text" class="text" name="first_name" id="cart_first_name">   <br>
+    <label for="input">E-post:</label> <br>
+    <input type="text" class="text" name="email" id="cart_email"> <br>
 
-  <label for="input">Efternamn:</label> <br>
-  <input type="text" class="text" name="last_name" id="cart_last_name">  <br>
-  
-  <label for="input">Adress:</label> <br>
-  <input type="text" class="text" name="street" id="cart_street">  <br>
-  
-  <label for="input">Postkod:</label> <br>
-  <input type="text" class="text" name="postal_code" id="cart_postal_code">  <br>
-  
-  <label for="input">Stad:</label> <br>
-  <input type="text" class="text" name="city" id="cart_city">  <br>
-  
-  <label for="input">Land:</label> <br>
-  <input type="text" class="text" name="country" id="cart_country">  <br>
+    <label for="input">Lösenord:</label> <br>
+    <input type="password" class="text" name="password" id="cart_passord"> <br>
 
-  <label for="input">Telefon:</label> <br>
-  <input type="text" class="text" name="phone" id="cart_phone">  <br>
-    
-  <label for="input">E-post:</label> <br>
-  <input type="text" class="text" name="email" id="cart_email">  <br>
+    <button type="submit" name="createOrderBtn">Genomför köp</button>
 
-  <label for="input">Lösenord:</label> <br>
-  <input type="password" class="text" name="password" id="cart_passord">  <br>
+  </form>
+</div>
 
-  <button type="submit" name="createOrderBtn">Genomför köp</button>
-
-</form>
-
-
-<!-- Byt ut jQuery // skickar formuläret när man ändra kvantiteten -->
+<!-- skickar formuläret när man ändra kvantitet -->
 <script type="text/javascript">
-$('.update-cart-form input[name="quantity"]').on('change', function(){
-    $(this.).parent().submit();
-});
+  const quantity = document.querySelector('#update-cart-form input[name="quantity');
+
+  quantity.addEventListener('change', (e) => {
+    e.target.parentNode.submit();
+  });
 </script>
+
+<?php include('../layout/footer.php'); ?>
+
+
+<!-- $('.update-cart-form input[name="quantity"]').on('change', function() {
+      $(this).parent().submit();
+    }); -->

@@ -13,7 +13,6 @@ if (isset($_POST['cartId']) && isset($_SESSION['cartItems'][$_POST['cartId']])) 
 }
 
 // Hoppar tillbaka till senaste sidan
-header('Locatiton: ' . $_SERVER['HTTP_REFERER']);
-exit;
-
-
+if (!empty($_SERVER['HTTP_REFERER'])) {
+  header("Location: " . $_SERVER['HTTP_REFERER']);
+}

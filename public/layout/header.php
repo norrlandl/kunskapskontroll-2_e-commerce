@@ -29,16 +29,18 @@
         <div class="collapse navbar-collapse w-100">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
-            <?php if (isset($_SESSION["email"])) { ?>
-          <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
-        <?php } else { ?>
-          <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">Mina sidor</a>
-        <?php } ?>
+              <?php if (isset($_SESSION["email"])) { ?>
+                <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
+              <?php } else { ?>
+                <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">Mina sidor</a>
+              <?php } ?>
             </li>
-            <li class="nav-item cart-icon">
+            <?php include('cart/cart.php'); ?>
+            <!-- <li class="nav-item cart-icon">
               <i class="fa fa-shopping-cart fa-lg"></i>
-            </li>
+            </li> -->
           </ul>
+
         </div>
       </div>
     </nav>

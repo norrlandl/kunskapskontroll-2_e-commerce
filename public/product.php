@@ -22,6 +22,12 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $product = $stmt->fetch();
 
+?>
+
+<?php include('layout/header.php'); ?>
+
+
+
 
 $sorted_array = $userDbHandler->fetchAllFromDb("products");
 
@@ -44,6 +50,7 @@ $filter_marks = array_filter(
 ?>
 
 <?php include('layout/header.php'); ?>
+
 <div class="container">
   <div class="row">
     <div class="info">
@@ -68,10 +75,20 @@ $filter_marks = array_filter(
       <h5><?= htmlentities($product['title']) ?></h5>
       <p><?= htmlentities($product['description']) ?></p>
       <p class="stock">Lager: <?= htmlentities($product['stock']) ?> st</p>
-      <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button>
+
+      <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
+      <form action="cart/add-cart-item.php" method="POST">
+        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+        <input type="number" name="quantity" value="1" min="0">
+        <input type="submit" name="addToCart" value="KÖP">
+      </form>
       <p class="price"><b><?= htmlentities($product['price']) ?> KR</b></p>
+
     </div>
   </div>
+  <p>
+    <a href="index.php">Back</a>
+  </p>
   <section class="slider-products">
     <div class="slider-title">
       <h1 class="title__main">Du kanske också gillar?</h1>
