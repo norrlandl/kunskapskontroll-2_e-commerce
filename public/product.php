@@ -21,6 +21,26 @@ $stmt = $pdo->prepare($sql);
 // $stmt->bindParam(':id', $_GET['productId']);
 $stmt->execute();
 $product = $stmt->fetch();
+
+
+$sorted_array = $userDbHandler->fetchAllFromDb("products");
+
+$shuffled_array = array();
+
+$keys = array_keys($sorted_array);
+shuffle($keys);
+
+foreach ($keys as $key) {
+  $shuffled_array[$key] = $sorted_array[$key];
+}
+
+$filter_marks = array_filter(
+  $shuffled_array,
+  function ($shuffled_array) {
+    return $shuffled_array["id"] <= 4;
+  }
+);
+
 ?>
 
 <?php include('layout/header.php'); ?>
@@ -60,18 +80,12 @@ $product = $stmt->fetch();
     <br>
     <div class="slider-gallery">
       <div class="slider-container">
-        <div class="panel active panel1">
-          <h3><?= htmlentities($product['title']) ?></h3>
-        </div>
-        <div class="panel panel2">
-          <h3>Titel 2</h3>
-        </div>
-        <div class="panel panel3">
-          <h3>Titel 3</h3>
-        </div>
-        <div class="panel panel4">
-          <h3>Titel 4</h3>
-        </div>
+        <?php foreach ($filter_marks as $item) : ?>
+          <div class="panel">
+            <h3><?= $item["title"] ?></h3>
+            <img src="./img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
