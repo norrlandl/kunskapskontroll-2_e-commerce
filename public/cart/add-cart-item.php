@@ -9,8 +9,8 @@ require('../../src/config.php');
 
 if (!empty($_POST['quantity'])) {
 
-  $productId  = (int) $_POST['productId']
-  $quantity   = (int) $_POST['quantity']
+  $productId  = (int) $_POST['productId'];
+  $quantity   = (int) $_POST['quantity'];
 
   $sql = "
     SELECT * FROM products
@@ -22,32 +22,26 @@ if (!empty($_POST['quantity'])) {
   $stmt->execute();
   $product = $stmt->fetch();
 
-  echo "<pre>";
-  print_r($product)
-  echo "<pre>";
 
-  if ($product) { 
+  if ($product) {
 
     $product = array_merge($product, ['quantity' => $quantity]);
 
     // ändrar om så den unika nyckeln ligger innan arrayen
-    $cartItem = [$productId => $product]; 
+    $cartItem = [$productId => $product];
 
-    // echo "<pre>";
-    // print_r($product)
-    // echo "<pre>";
 
     if (empty($_SESSION['cartItems'])) {
-        $_SESSION['cartItems'] = $cartItem;
+      $_SESSION['cartItems'] = $cartItem;
     } else {
-          // checka om varan redan finns i varukorgen
-        if(isset($_SESSION['cartItems'][$productId])) {
-          // om varan redan finns i varukorgen, uppdatera endast kvantiteten
-          $_SESSION['cartItems'][$productId]['quantity'] += $quantity;  
-        } else {
-          // om varan inte finns i varukorgen, lägg till den
-          $_SESSION['cartItems'] += $cartItem;
-        }
+      // checka om varan redan finns i varukorgen
+      if (isset($_SESSION['cartItems'][$productId])) {
+        // om varan redan finns i varukorgen, uppdatera endast kvantiteten
+        $_SESSION['cartItems'][$productId]['quantity'] += $quantity;
+      } else {
+        // om varan inte finns i varukorgen, lägg till den
+        $_SESSION['cartItems'] += $cartItem;
+      }
     }
 
     // echo "<pre>";
@@ -55,15 +49,16 @@ if (!empty($_POST['quantity'])) {
     // echo "<pre>";
 
   }
-
 }
 
 
 // Hoppar tillbaka till senaste sidan
-header('Locatiton: ' . $_SERVER['HTTP_REFERER']);
-exit;
+if (!empty($_SERVER['HTTP_REFERER'])) {
+  header("Location: " . $_SERVER['HTTP_REFERER']);
+} 
+// else
+// print "<br> referpage:" . $_SERVER['HTTP_REFERER'];
 
-
-
-
-?>
+// Funkar ej
+// header('Locatiton: ' . $_SERVER['HTTP_REFERER']);
+// exit;

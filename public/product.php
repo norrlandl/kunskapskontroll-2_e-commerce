@@ -1,58 +1,66 @@
 <?php
-  require('../src/config.php');
-  $pageTitle = "Product";
-  
-  // if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {
-  //     header('Location: index.php?invalidproduct');
-  //     exit;
-  // }
+require('../src/config.php');
+$pageTitle = "Product";
 
-  // echo "<pre>";
-  // print_r($_GET);
-  // echo "</pre>";
+// if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {
+//     header('Location: index.php?invalidproduct');
+//     exit;
+// }
+
+// echo "<pre>";
+// print_r($_GET);
+// echo "</pre>";
 
 
-  $sql = "
+$sql = "
       SELECT * FROM products
       WHERE id = {$_GET['id']}
   ";
 
-  $stmt = $pdo->prepare($sql);
-  // $stmt->bindParam(':id', $_GET['productId']);
-  $stmt->execute();
-  $product = $stmt->fetch();
+$stmt = $pdo->prepare($sql);
+// $stmt->bindParam(':id', $_GET['productId']);
+$stmt->execute();
+$product = $stmt->fetch();
 ?>
 
 <?php include('layout/header.php'); ?>
-  <div class="container">
+
+<div class="container">
   <div class="row">
     <div class="info">
-      <p><b>POSTERS FRÅN  NORGE</b><p>
+      <p><b>POSTERS FRÅN NORGE</b>
+      <p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at senectus erat. Pretium sem tincidunt.<p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at senectus erat. Pretium sem tincidunt.
+      <p>
     </div>
-    </div>
-    <div class="product-singel">
+  </div>
+  <div class="product-singel">
 
     <div class="product-image">
 
-     <ul id="Frames">
+      <ul id="Frames">
         <li class="Frame">
-          <img src="./img/<?= htmlentities($product["img_url"]) ?>"  alt="<?= htmlentities($product["title"]) ?>">
+          <img src="./img/<?= htmlentities($product["img_url"]) ?>" alt="<?= htmlentities($product["title"]) ?>">
         </li>
-     </ul>
+      </ul>
     </div>
     <div class="product-text">
-      <h5><?=htmlentities($product['title'])?></h5>
-      <p><?=htmlentities($product['description'])?></p>
-      <p class="stock">Lager: <?=htmlentities($product['stock'])?> st</p>
-      <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button>
-      <p class="price"><b><?=htmlentities($product['price'])?> KR</b></p>
-      </div>
-    </div>
-    <p>
-      <a href="index.php">Back</a>
-    </p>
-  </div>
-  <?php include('layout/footer.php'); ?>
+      <h5><?= htmlentities($product['title']) ?></h5>
+      <p><?= htmlentities($product['description']) ?></p>
+      <p class="stock">Lager: <?= htmlentities($product['stock']) ?> st</p>
+      <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
+      <form action="cart/add-cart-item.php" method="POST">
+        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+        <input type="number" name="quantity" value="1" min="0">
+        <input type="submit" name="addToCart" value="KÖP">
+      </form>
+      <p class="price"><b><?= htmlentities($product['price']) ?> KR</b></p>
 
+    </div>
+  </div>
+  <p>
+    <a href="index.php">Back</a>
+  </p>
+</div>
+<?php include('layout/footer.php'); ?>

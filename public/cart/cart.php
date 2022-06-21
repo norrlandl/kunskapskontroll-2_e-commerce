@@ -1,6 +1,7 @@
-<!-- Är importerad i products.php & checkout.php så behöver ej config -->
+<!-- Ska importerad i header.php & checkout.php så behöver ej config -->
 
 <?php
+
 
 
 // echo "<pre>";
@@ -25,16 +26,54 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 ?>
 
 
-<?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
 
-<div>
-  <img src="img/<?=$cartItem['img_url']?>">
-  <p><?=$cartItem['title']?></p>
-  <p><?=$cartItem['price']?></p>
-  <p><?=$cartItem['quantity']?></p>
-  <p>Totalsumman: <?=$cartTotalSum ?></p>
-  <p>Totalt antal items: <?=$cartTotalItems  ?></p>
+
+<div class="cart">
+  <div class="dropdown">
+
+    <button type="button" class="btn btn-secondary " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <?= $cartTotalItems  ?> VARUKORG
+    </button>
+
+    <?php $counter = 0 ?>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
+
+        $counter++;
+        $divclass = "";
+        if ($counter % 2 == 0) {
+          $divclass = "cart-background";
+        }
+
+      ?>
+
+        <div class="cart-grid-container <?php echo $divclass; ?>">
+          <div class="cart-img">
+            <img src="img/<?= $cartItem['img_url'] ?>">
+          </div>
+          <div class="cart-title">
+            <p><?= $cartItem['title'] ?></p>
+          </div>
+          <div class="cart-price">
+            <p><?= $cartItem['price'] ?> kr</p>
+          </div>
+          <div class="cart-quantity">
+            <p><?= $cartItem['quantity'] ?> st
+              <?= $cartItem['price'] * $cartItem['quantity'] ?> kr </p>
+
+          </div>
+        </div>
+
+      <?php endforeach; ?>
+      <div class="cart-total">
+        <p>Totalsumman: <?= $cartTotalSum ?> kr</p>
+        <p>Totalt antal posters: <?= $cartTotalItems  ?> st</p>
+      </div>
+      <form action="cart/checkout.php" method="">
+        <button class="btn btn-primary btn-block mb-4">KASSAN</button>
+      </form>
+
+
+    </div>
+  </div>
 </div>
-
-
-<?php endforeach; ?>
