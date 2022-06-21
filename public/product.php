@@ -21,6 +21,32 @@ $stmt = $pdo->prepare($sql);
 // $stmt->bindParam(':id', $_GET['productId']);
 $stmt->execute();
 $product = $stmt->fetch();
+
+?>
+
+<?php include('layout/header.php'); ?>
+
+
+
+
+$sorted_array = $userDbHandler->fetchAllFromDb("products");
+
+$shuffled_array = array();
+
+$keys = array_keys($sorted_array);
+shuffle($keys);
+
+foreach ($keys as $key) {
+  $shuffled_array[$key] = $sorted_array[$key];
+}
+
+$filter_marks = array_filter(
+  $shuffled_array,
+  function ($shuffled_array) {
+    return $shuffled_array["id"] <= 4;
+  }
+);
+
 ?>
 
 <?php include('layout/header.php'); ?>
@@ -49,6 +75,7 @@ $product = $stmt->fetch();
       <h5><?= htmlentities($product['title']) ?></h5>
       <p><?= htmlentities($product['description']) ?></p>
       <p class="stock">Lager: <?= htmlentities($product['stock']) ?> st</p>
+
       <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
       <form action="cart/add-cart-item.php" method="POST">
         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
@@ -62,5 +89,23 @@ $product = $stmt->fetch();
   <p>
     <a href="index.php">Back</a>
   </p>
+  <section class="slider-products">
+    <div class="slider-title">
+      <h1 class="title__main">Du kanske också gillar?</h1>
+    </div>
+    <br>
+    <br>
+    <div class="slider-gallery">
+      <div class="slider-container">
+        <?php foreach ($filter_marks as $item) : ?>
+          <div class="panel">
+            <h3><?= $item["title"] ?></h3>
+            <img src="./img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
 </div>
+<script src="../public/js/slider-products.js"></script>
 <?php include('layout/footer.php'); ?>
