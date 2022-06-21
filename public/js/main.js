@@ -30,7 +30,7 @@ searchInput.addEventListener("keyup", (event) => {
     productsArray.map((product) => {
       if (product.title.toLowerCase().startsWith(inputText.toLowerCase())) {
         html += `
-          <a class="search-result" href="product.php?id=${product.id}" name="productId">
+          <a class="search-result" href="/kunskapskontroll-2_e-commerce/public/product.php?id=${product.id}" name="productId">
             ${product.title}
           </a>
         `;
