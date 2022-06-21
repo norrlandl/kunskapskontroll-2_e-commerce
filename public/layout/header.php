@@ -299,10 +299,11 @@
     <div class="search-bar">
       <form id="search-form" action="#">
         <div class="input-group mb-4 p-1">
-          <input type="search" placeholder="Sök motiv..." aria-describedby="button-addon3" class="form-control bg-none border-0  rounded-pill">
+          <input id="searchInput" type="search" placeholder="Sök motiv..." aria-describedby="button-addon3" class="searchbar form-control bg-none border-0 rounded-pill" autocomplete="off">
           <div class="input-group-append border-0">
             <button id="button-addon3" type="button" class="btn btn-links"><i class="fa fa-search"></i></button>
           </div>
+          <div id="searchResults" class="search-results-container"></div>
         </div>
       </form>
     </div>

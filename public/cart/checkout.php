@@ -57,6 +57,6 @@ require('../../src/config.php');
 <!-- Byt ut jQuery // skickar formuläret när man ändra kvantiteten -->
 <script type="text/javascript">
 $('.update-cart-form input[name="quantity"]').on('change', function(){
-    $(this.).parent().submit();
+    $(this).parent().submit();
 });
 </script>
