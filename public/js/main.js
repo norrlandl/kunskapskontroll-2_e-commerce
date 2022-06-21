@@ -12,8 +12,6 @@ searchInput.addEventListener("focus", async (event) => {
 
     const data = await response.json();
     productsArray = data["products"];
-
-    console.log(productsArray);
   } catch (error) {
     console.log(error);
   }
@@ -31,7 +29,6 @@ searchInput.addEventListener("keyup", (event) => {
   if (inputText) {
     productsArray.map((product) => {
       if (product.title.toLowerCase().startsWith(inputText.toLowerCase())) {
-        console.log(product.title);
         html += `
           <a class="search-result" href="product.php?id=${product.id}" name="productId">
             ${product.title}
