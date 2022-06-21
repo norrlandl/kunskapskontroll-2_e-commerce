@@ -164,7 +164,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
   </form>
 </div>
 
-<!-- Byt ut jQuery // skickar formuläret när man ändra kvantiteten -->
+<!-- skickar formuläret när man ändra kvantitet -->
 <script type="text/javascript">
   const quantity = document.querySelector('#update-cart-form input[name="quantity');
 
