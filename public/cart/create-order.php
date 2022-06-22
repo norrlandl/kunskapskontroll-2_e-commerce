@@ -82,7 +82,7 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   $stmt = $pdo->prepare($sql);
   $stmt->bindParam(':user_id',              $userId);
   $stmt->bindParam(':total_price',          $cartTotalSum);
-  $stmt->bindValue(':billing_full_name,',   $first_name . " " . $last_name);
+  $stmt->bindValue(':billing_full_name',    $first_name . " " . $last_name);
   $stmt->bindParam(':billing_street',       $street);
   $stmt->bindParam(':billing_postal_code',  $postal_code);
   $stmt->bindParam(':billing_city',         $city);
