@@ -108,7 +108,7 @@ $filter_marks = array_filter(
         <?php foreach ($filter_marks as $item) : ?>
           <div class="panel">
             <h3><?= $item["title"] ?></h3>
-            <img src="./img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
+            <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
           </div>
         <?php endforeach; ?>
       </div>
