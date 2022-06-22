@@ -36,6 +36,11 @@ searchInput.addEventListener("keyup", (event) => {
         `;
       }
     });
+    if (html === "") {
+      html += `
+        <p class="search-result">Sökningen gav ingen träff</p>
+      `;
+    }
     return (document.getElementById("searchResults").innerHTML = html);
   }
   document.getElementById("searchResults").innerHTML = html;
