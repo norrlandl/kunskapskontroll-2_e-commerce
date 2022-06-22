@@ -30,9 +30,11 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
               <?php if (isset($_SESSION["email"])) { ?>
-                <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
+                <span class="log-out-link"><a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a></span>
               <?php } else { ?>
-                <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">Mina sidor</a>
+                <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">
+                  <i class="fa fa-user fa-lg user-icon"></i>
+                </a>
               <?php } ?>
             </li>
             <?php include(ROOT_PATH . 'public/cart/cart.php'); ?>

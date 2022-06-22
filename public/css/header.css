@@ -104,9 +104,20 @@ nav a:hover {
 
 .shopping-icon {
   color: white;
-  margin-left: 0.8rem;
+  line-height: 2rem;
+  padding: 10px;
 }
 
 .shopping-icon:hover {
   cursor: pointer;
+}
+
+.user-icon {
+  line-height: 2rem;
+  padding: 10px;
+}
+
+.log-out-link {
+  padding: 10px;
+  line-height: 3.2rem;
 }
