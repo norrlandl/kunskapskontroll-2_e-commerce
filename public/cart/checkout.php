@@ -18,6 +18,8 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
   $cartTotalItems += $cartItem['quantity'];
 }
 
+$message = "";
+
 ?>
 
 <?php include('../layout/header.php'); ?>
@@ -93,8 +95,6 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
             <form action="delete-cart-item.php" method="POST">
               <input type="hidden" name="cartId" value="<?= $cartId ?>">
               <button type="submit" class="btn btn-danger" value="">Ta bort
-                <img src="../img/trash.svg" alt="icon name">
-
               </button>
 
 
@@ -125,7 +125,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
   <h4>Fakturaadress</h4>
 
-
+  <?= $message ?>
 
   <form action="create-order.php" method="POST">
 
@@ -157,7 +157,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
       </div>
       <div class="form-group col-md-4">
         <label for="cart_country">Land</label>
-        <select id="cart_country" class="form-control">
+        <select id="cart_country" class="form-control" name="country">
           <option selected>Välj land...</option>
           <option>Sverige
           </option>
