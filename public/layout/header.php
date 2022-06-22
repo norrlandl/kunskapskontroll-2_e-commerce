@@ -30,7 +30,7 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
               <?php if (isset($_SESSION["email"])) { ?>
-                <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga in</a>
+                <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
               <?php } else { ?>
                 <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">Mina sidor</a>
               <?php } ?>

@@ -31,11 +31,11 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 <div class="cart">
   <div class="dropdown">
 
-    <button type="button" class="btn btn-secondary " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <?= $cartTotalItems  ?> VARUKORG
-    </button>
+    <i class="fa fa-shopping-bag shopping-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <?= $cartTotalItems  ?>
+    </i>
 
-    <?php $counter = 0 ?>
+    <span><?php $counter = 0 ?></span>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
       <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
 

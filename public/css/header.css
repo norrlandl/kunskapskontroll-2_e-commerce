@@ -101,3 +101,8 @@ nav a:hover {
 .search-result:last-child {
   margin-bottom: 16px;
 }
+
+.shopping-icon {
+  color: white;
+  margin-left: 0.8rem;
+}
