@@ -18,6 +18,8 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
   $cartTotalItems += $cartItem['quantity'];
 }
 
+$message = "";
+
 ?>
 
 <?php include('../layout/header.php'); ?>
@@ -32,56 +34,54 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
     </div>
   </div>
 
-  <table>
+
+
+  <table class="table table-hover">
+
     <thead>
       <tr>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-          <h5>Pris</h5>
-        </td>
-        <td>
-          <h5>Antal</h5>
-        </td>
-        <td>
-          <h5>Total</h5>
-        </td>
-        <td>
-        </td>
+        <th scope="col" width="120"></th>
+        <th scope="col" width="450"></th>
+        <th scope="col">Pris</th>
+        <th scope="col">Antal</th>
+        <th scope="col">Total</th>
+        <th scope="col"></th>
       </tr>
     </thead>
+
     <tbody>
 
-      <?php $counter = 0 ?>
+      <!-- <?php $counter = 0 ?> -->
 
       <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
 
-        $counter++;
-        $divclass = "";
-        if ($counter % 2 == 0) {
-          $divclass = "cart-background";
-        }
+        // $counter++;
+        // $divclass = "";
+        // if ($counter % 2 == 0) {
+        //   $divclass = "cart-background";
+        // }
+
+        $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 100));
+
 
       ?>
-        <tr class="<?php echo $divclass; ?>">
 
+        <tr>
+          <!-- <tr class="<?php echo $divclass; ?>"> -->
           <td>
-            <div class="cart-img">
+            <div class="checkout-img">
               <img src="../img/<?= $cartItem['img_url'] ?>">
             </div>
           </td>
           <td>
-            <p><?= $cartItem['title'] ?></p>
-            <!-- <p><?= $cartItem['description'] ?></p> -->
-
+            <p class="cart-title"><?= $cartItem['title'] ?></p>
+            <p><?= htmlentities($string) ?>...</p>
           </td>
           <td>
             <p><?= $cartItem['price'] ?>kr</p>
           </td>
           <td>
-            <!-- <p><?= $cartItem['quantity'] ?></p> -->
+            <!-- UPDATE -->
             <form id="update-cart-form" action="update-cart-item.php" method="POST">
               <input type="hidden" name="cartId" value="<?= $cartId ?>">
               <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
@@ -94,11 +94,12 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
             <!-- DELETE -->
             <form action="delete-cart-item.php" method="POST">
               <input type="hidden" name="cartId" value="<?= $cartId ?>">
-              <button type="submit" class="DÖLJS_MED_CSS" value=""> TA BORT
+              <button type="submit" class="btn btn-danger" value="">Ta bort
               </button>
+
+
             </form>
           </td>
-
         </tr>
     </tbody>
 
@@ -106,67 +107,112 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
   <tfoot>
     <tr>
-      <td>
-        <p>Totalt antal items: <?= $cartTotalItems  ?></p>
-      </td>
-      <td>
-        <p>Totalsumman: <?= $cartTotalSum ?></p>
-      </td>
+      <td></td>
+      <td></td>
       <td></td>
       <td>
-
+        <p>Antal: <?= $cartTotalItems  ?></p>
       </td>
       <td>
-
+        <p>Totalpris: <?= $cartTotalSum ?>kr</p>
       </td>
+      <td></td>
     </tr>
   </tfoot>
+
   </table>
 
 
-
-
   <h4>Fakturaadress</h4>
+
+  <?= $message ?>
 
   <form action="create-order.php" method="POST">
 
     <input type="hidden" name="cartTotalSum" value="<?= $cartTotalSum ?>">
 
-    <label for="input">Förnamn:</label> <br>
-    <input type="text" class="text" name="first_name" id="cart_first_name"> <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="cart_first_name">Förnamn</label>
+        <input type="text" class="form-control" name="first_name" id="cart_first_name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cart_last_name">Efternamn</label>
+        <input type="text" class="form-control" name="last_name" id="cart_last_name">
+      </div>
+    </div>
 
-    <label for="input">Efternamn:</label> <br>
-    <input type="text" class="text" name="last_name" id="cart_last_name"> <br>
+    <div class="form-group">
+      <label for="cart_street">Adress</label>
+      <input type="text" class="form-control" name="street" id="cart_street">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="cart_city">Stad</label>
+        <input type="text" class="form-control" name="city" id="cart_city">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="cart_postal_code">Zip</label>
+        <input type="text" class="form-control" name="postal_code" id="cart_postal_code">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="cart_country">Land</label>
+        <select id="cart_country" class="form-control" name="country">
+          <option selected>Välj land...</option>
+          <option>Sverige
+          </option>
+        </select>
+      </div>
+    </div>
 
-    <label for="input">Adress:</label> <br>
-    <input type="text" class="text" name="street" id="cart_street"> <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="cart_email">E-post</label>
+        <input type="text" class="form-control" name="email" id="cart_email">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cart_phone">Telefon</label>
+        <input type="text" class="form-control" name="phone" id="cart_phone">
+      </div>
+    </div>
 
-    <label for="input">Postkod:</label> <br>
-    <input type="text" class="text" name="postal_code" id="cart_postal_code"> <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="cart_passord">Lösenord</label>
+        <input type="password" class="form-control" name="password" id="cart_passord">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cart_confirm">Bekräfta lösenord</label>
+        <input type="password" class="form-control" name="confirm" id="cart_confirm">
+      </div>
+    </div>
 
-    <label for="input">Stad:</label> <br>
-    <input type="text" class="text" name="city" id="cart_city"> <br>
-
-    <label for="input">Land:</label> <br>
-    <input type="text" class="text" name="country" id="cart_country"> <br>
-
-    <label for="input">Telefon:</label> <br>
-    <input type="text" class="text" name="phone" id="cart_phone"> <br>
-
-    <label for="input">E-post:</label> <br>
-    <input type="text" class="text" name="email" id="cart_email"> <br>
-
-    <label for="input">Lösenord:</label> <br>
-    <input type="password" class="text" name="password" id="cart_passord"> <br>
-
-    <button type="submit" name="createOrderBtn">Genomför köp</button>
-
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Bekräfta
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" name="createOrderBtn">Genomför köp</button>
   </form>
 </div>
 
+<?php include('../layout/footer.php'); ?>
+
+
 <!-- skickar formuläret när man ändra kvantitet -->
+<!-- <script type="text/javascript">
+  const quantity = document.querySelector('#update-cart-form input[name="quantity"]');
+
+  quantity.addEventListener('change', function(e) {
+    e.target.parentNode().submit();
+  });
+</script> -->
+
 <script type="text/javascript">
-$('.update-cart-form input[name="quantity"]').on('change', function(){
+  $('#update-cart-form input[name="quantity"]').on('change', function() {
     $(this).parent().submit();
-});
+  });
 </script>

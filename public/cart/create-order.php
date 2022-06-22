@@ -21,7 +21,9 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   $phone        = trim($_POST['phone']);
   $email        = trim($_POST['email']);
   $password     = trim($_POST['password']);
+  $confirm      = trim($_POST['confirm']);
   $cartTotalSum = $_POST['cartTotalSum'];
+
 
   $sql = "
     SELECT * FROM users
@@ -45,7 +47,7 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
       VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
       ";
 
-    // $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':first_name',   $first_name);
@@ -56,8 +58,7 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
     $stmt->bindParam(':country',      $country);
     $stmt->bindParam(':phone',        $phone);
     $stmt->bindParam(':email',        $email);
-    $stmt->bindParam(':password',     $password);
-    // $stmt->bindParam(':password',     $encryptedPassword);
+    $stmt->bindParam(':password',     $encryptedPassword);
     $stmt->execute();
     $userId = $pdo->lastInsertId();
   }
