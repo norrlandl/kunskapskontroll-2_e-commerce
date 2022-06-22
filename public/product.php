@@ -76,8 +76,19 @@ $filter_marks = array_filter(
       <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
       <form action="cart/add-cart-item.php" method="POST">
         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-        <input type="number" name="quantity" value="1" min="0">
-        <input type="submit" class="btn btn-primary" name="addToCart" value="KÖP">
+        <div class="input-group mb-3">
+          <select class="custom-select" id="quantity" name="quantity">
+
+            <?php
+
+            for ($i = 1; $i <= $product['stock']; $i++) {
+              echo "<option value=" . $i . ">" . $i . "</option>";
+            }
+            ?>
+          </select>
+
+        </div>
+        <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
       </form>
       <p class="price"><b><?= htmlentities($product['price']) ?> KR</b></p>
 
