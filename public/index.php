@@ -38,25 +38,30 @@ $products = $stmt->fetchAll();
             </li>
           </ul>
         </a>
+        <div class="product-info">
+          <p class="product-title"><?= htmlentities($product['title']) ?></p>
+          <p><i><?= htmlentities($info) ?></i></p>
+          <p><b><?= htmlentities($product['price']) ?> kr</b></p>
 
-        <p class="product-title"><?= htmlentities($product['title']) ?></p>
-        <p><i><?= htmlentities($info) ?></i></p>
-        <p><b><?= htmlentities($product['price']) ?> kr</b></p>
+          <form action="cart/add-cart-item.php" method="POST">
+            <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+            <div class="input-group mb-3">
+              <select class="custom-select" id="quantity" name="quantity">
 
-        <form action="cart/add-cart-item.php" method="POST">
-          <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-          <input type="number" name="quantity" value="1" min="0">
-          <input type="submit" class="btn btn-primary" name="addToCart" value="KÖP">
+                <?php
 
-        </form>
-        <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
+                for ($i = 1; $i <= $product['stock']; $i++) {
+                  echo "<option value=" . $i . ">" . $i . "</option>";
+                }
+                ?>
+              </select>
 
-        <!-- <form action="product.php" method="GET">
-              <input type="hidden" name="productId" value="<?= htmlentities($product['id']) ?>">
-              <input type="submit" value="Read more">
+            </div>
+            <!-- <input type="number" class="btn btn-2" name="quantity" value="1" min="0"> -->
+            <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
+
           </form>
-       -->
-
+        </div>
       </div>
     <?php } ?>
   </div>
