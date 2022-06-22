@@ -77,7 +77,7 @@ $filter_marks = array_filter(
       <form action="cart/add-cart-item.php" method="POST">
         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
         <input type="number" name="quantity" value="1" min="0">
-        <input type="submit" name="addToCart" value="KÖP">
+        <input type="submit" class="btn btn-primary" name="addToCart" value="KÖP">
       </form>
       <p class="price"><b><?= htmlentities($product['price']) ?> KR</b></p>
 

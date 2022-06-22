@@ -46,7 +46,8 @@ $products = $stmt->fetchAll();
         <form action="cart/add-cart-item.php" method="POST">
           <input type="hidden" name="productId" value="<?= $product['id'] ?>">
           <input type="number" name="quantity" value="1" min="0">
-          <input type="submit" name="addToCart" value="KÖP">
+          <input type="submit" class="btn btn-primary" name="addToCart" value="KÖP">
+
         </form>
         <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
 

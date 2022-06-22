@@ -1,7 +1,12 @@
-td {
-  margin-right: 25px;
-  padding: 10px 20px 10px 0px;
+
+.container-small {
+  margin-bottom: 150px;
 }
+
+.container-small h4 {
+  margin-bottom: 50px;
+}
+
 
 .update-quantity {
   width: 60px;

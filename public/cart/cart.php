@@ -49,7 +49,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
         <div class="cart-grid-container <?php echo $divclass; ?>">
           <div class="cart-img">
-            <img src="img/<?= $cartItem['img_url'] ?>">
+            <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $cartItem['img_url'] ?>">
           </div>
           <div class="cart-title">
             <p><?= $cartItem['title'] ?></p>
