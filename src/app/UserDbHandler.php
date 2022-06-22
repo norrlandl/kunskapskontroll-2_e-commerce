@@ -152,23 +152,23 @@ class UserDbHandler
   }
 
   public function updateProduct(
-      $description,
       $title,
+      $description,
       $price,
       $stock,
   ) {
 
       $sql = "
       UPDATE products
-      SET description = :description, title = :title,
+      SET title = :title, description = :description,
       price = :price, stock = :stock
       WHERE id = :id;
       ";
 
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindParam(':id', $_GET['productID']);
-      $stmt->bindParam(':description', $description);
       $stmt->bindParam(':title', $title);
+      $stmt->bindParam(':description', $description);
       $stmt->bindParam(':price', $price);
       $stmt->bindParam(':stock', $stock);
       $stmt->execute();
