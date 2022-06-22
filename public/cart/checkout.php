@@ -95,7 +95,7 @@ $message = "";
               <!-- DELETE -->
               <form action="delete-cart-item.php" method="POST">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
-                <button type="submit" class="btn btn-danger" value="">Ta bort
+                <button type="submit" class="btn btn-outline-danger" value="">Ta bort
                 </button>
 
 
