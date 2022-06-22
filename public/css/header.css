@@ -106,3 +106,7 @@ nav a:hover {
   color: white;
   margin-left: 0.8rem;
 }
+
+.shopping-icon:hover {
+  cursor: pointer;
+}
