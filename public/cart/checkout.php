@@ -41,11 +41,11 @@ $message = "";
 
       <thead>
         <tr>
-          <th scope="col" width="120"></th>
-          <th scope="col" width="450"></th>
+          <th scope="col" width="140"></th>
+          <th scope="col" width="300"></th>
           <th scope="col">Pris</th>
           <th scope="col">Antal</th>
-          <th scope="col">Total</th>
+          <th scope="col">Summa</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -62,7 +62,7 @@ $message = "";
           //   $divclass = "cart-background";
           // }
 
-          $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 100));
+          $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 50));
 
 
         ?>
@@ -76,7 +76,7 @@ $message = "";
             </td>
             <td>
               <p class="cart-title"><?= $cartItem['title'] ?></p>
-              <p><?= htmlentities($string) ?>...</p>
+              <p><?= htmlentities($string) ?>.</p>
             </td>
             <td>
               <p><?= $cartItem['price'] ?>kr</p>
@@ -114,10 +114,9 @@ $message = "";
         <td>
           <p>Antal: <?= $cartTotalItems  ?></p>
         </td>
-        <td>
+        <td colspan="2">
           <p>Totalpris: <?= $cartTotalSum ?>kr</p>
         </td>
-        <td></td>
       </tr>
     </tfoot>
 
