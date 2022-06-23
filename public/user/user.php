@@ -135,7 +135,7 @@ $user = $stmt->fetch();
 
   <div class="container-small">
     <h4>Tidigare ordrar</h4>
-    <table class="table table-hover table-user">
+    <table class="table table-user">
 
       <thead>
         <tr>
@@ -227,53 +227,137 @@ $user = $stmt->fetch();
       </div>
     </div>
 
-    <button class="btn btn-outline-success">Uppdatera</button>
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">Uppdatera</button>
+
   </div>
 
+</div>
 
-  <div class="container-small">
-    <h4>UPPDATERA - Mina uppgifter</h4>
 
-    <form method="POST" action="">
-      <label for="input">Förnamn:</label> <br>
-      <input type="text" class="text" name="first_name" value="<?= htmlentities($user['first_name']) ?>"> <br>
+<!-- MODAL -->
+<div id="updateModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
-      <label for="input">Efternamn:</label> <br>
-      <input type="text" class="text" name="last_name" value="<?= htmlentities($user['last_name']) ?>"> <br>
+  <h4>UPPDATERA - Mina uppgifter</h4>
 
-      <label for="input">Adress:</label> <br>
-      <input type="text" class="text" name="street" value="<?= htmlentities($user['street']) ?>"> <br>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Uppdatera min uppgifter</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-      <label for="input">Postkod:</label> <br>
-      <input type="text" class="text" name="postal_code" value="<?= htmlentities($user['postal_code']) ?>"> <br>
+      <div class="modal-body">
+        <form action="" method="POST">
 
-      <label for="input">Stad:</label> <br>
-      <input type="text" class="text" name="city" value="<?= htmlentities($user['city']) ?>"> <br>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="cart_first_name">Förnamn</label>
+              <input type="text" class="form-control" name="first_name" value="<?= htmlentities($user['first_name']) ?>">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cart_last_name">Efternamn</label>
+              <input type="text" class="form-control" name="last_name" value="<?= htmlentities($user['last_name']) ?>">
+            </div>
+          </div>
 
-      <label for="input">Land:</label> <br>
-      <input type="text" class="text" name="country" value="<?= htmlentities($user['country']) ?>"> <br>
+          <div class="form-group">
+            <label for="cart_street">Adress</label>
+            <input type="text" class="form-control" name="street" value="<?= htmlentities($user['street']) ?>">
+          </div>
 
-      <label for="input">Telefon:</label> <br>
-      <input type="text" class="text" name="phone" value="<?= htmlentities($user['phone']) ?>"> <br>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="cart_city">Stad</label>
+              <input type="text" class="form-control" name="city" value="<?= htmlentities($user['city']) ?>">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="cart_postal_code">Zip</label>
+              <input type="text" class="form-control" name="postal_code" value="<?= htmlentities($user['postal_code']) ?>">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="cart_country">Land</label>
+              <input type="text" class="form-control" name="country" value="<?= htmlentities($user['country']) ?>">
+            </div>
+          </div>
 
-      <label for="input">Email:</label> <br>
-      <input type="text" class="text" name="email" value="<?= htmlentities($user['email']) ?>"> <br>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="cart_email">E-post</label>
+              <input type="text" class="form-control" name="email" value="<?= htmlentities($user['email']) ?>">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cart_phone">Telefon</label>
+              <input type="text" class="form-control" name="phone" value="<?= htmlentities($user['phone']) ?>">
+            </div>
+          </div>
 
-      <label for="input">Lösenord:</label> <br>
-      <input type="password" class="text" name="password"> <br>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="cart_passord">Lösenord</label>
+              <input type="password" class="form-control" name="password" value="***">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cart_confirm">Bekräfta lösenord</label>
+              <input type="password" class="form-control" name="confirm" value="***">
+            </div>
+          </div>
 
-      <label for="input">Upprepa lösenord:</label> <br>
-      <input type="password" class="text" name="confirm"> <br> <br>
+          <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
+          <input type="submit" name="updateUser" value="Uppdatera konto" class="btn btn-success">
 
-      <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
-      <input type="submit" name="updateUser" value="Uppdatera konto">
-    </form>
+          <div class="modal-footer">
+            <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
 
-    <!-- <h4>Tidigare ordrar</h4> -->
-    <form method="POST" action="">
-      <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
-      <input type="submit" name="deleteUser" value="Radera konto">
-    </form>
+        </form>
+      </div>
+
+
+    </div>
   </div>
 </div>
+
+
+<!-- jQuery Modal -->
+<script>
+  $('#updateModal').on('show.bs.modal', function(event) {
+
+    var button = $(event.relatedTarget)
+    var first_name = button.data('first_name');
+    var last_name = button.data('last_name');
+    var street = button.data('street');
+    var postal_code = button.data('postal_code');
+    var city = button.data('city');
+    var country = button.data('country');
+    var phone = button.data('phone');
+    var email = button.data('email');
+    var password = button.data('password');
+    var confirm = button.data('confirm');
+    var id = button.data('id');
+
+    var modal = $(this)
+    modal.find('.modal-body input[name="first_name"]').val(first_name);
+    modal.find('.modal-body input[name="last_name"]').val(last_name);
+    modal.find('.modal-body input[name="street"]').val(street);
+    modal.find('.modal-body input[name="postal_code"]').val(postal_code);
+    modal.find('.modal-body input[name="city"]').val(city);
+    modal.find('.modal-body input[name="country"]').val(country);
+    modal.find('.modal-body input[name="phone"]').val(phone);
+    modal.find('.modal-body input[name="password"]').val(password);
+    modal.find('.modal-body input[name="confirm"]').val(confirm);
+    modal.find('.modal-body input[name="id"]').val(id);
+  })
+</script>
+
+<!-- Prevent +1(form) on reload page -->
+<script>
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+</script>
+
+
 <?php include('../layout/footer.php'); ?>

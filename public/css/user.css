@@ -11,3 +11,18 @@
 .table-user thead tr th:nth-child(2) {
   width: 55%;
 }
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.modal-content {
+  padding: 25px;
+}
+
+.modal-header {
+  /* border: none; */
+  margin-bottom: 40px;
+}
