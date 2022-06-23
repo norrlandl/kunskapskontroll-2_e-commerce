@@ -12,9 +12,9 @@
 }
 
 
-.table thead td, 
-.table th,
-.table tfoot td {
+.table-cart thead td, 
+.table-cart th,
+.table-cart tfoot td {
   border-top: none;
 }
 

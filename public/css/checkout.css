@@ -15,3 +15,9 @@
 .checkout-img img {
   height: 120px;
 }
+
+.table-checkout  thead td,
+.table-checkout  thead th
+ {
+  border-top: none;
+}

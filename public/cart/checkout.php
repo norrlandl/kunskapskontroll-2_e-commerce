@@ -37,7 +37,7 @@ $message = "";
 
   <div class="container-small">
     <h4>Din varukorg</h4>
-    <table class="table table-hover">
+    <table class="table table-hover table-checkout">
 
       <thead>
         <tr>

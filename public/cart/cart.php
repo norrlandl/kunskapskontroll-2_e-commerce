@@ -39,7 +39,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
       <h5>Produkter (<?= $cartTotalItems  ?>)</h5>
 
-      <table class="table table-hover">
+      <table class="table table-hover table-cart">
 
         <thead>
           <tr>
