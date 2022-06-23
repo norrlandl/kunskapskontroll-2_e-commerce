@@ -7,6 +7,24 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./user-login.php?mustLogin");
 }
 
+/* if (!isset($_SESSION['email'])) {
+  $sql = "
+  SELECT * FROM users
+  WHERE id = :id
+  ";
+
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':id', $_SESSION['id']);
+  $stmt->execute();
+  $user = $stmt->fetch();
+  debug($_SESSION['id']);
+} */
+
+debug($_SESSION['id']);
+debug($_SESSION['email']);
+debug($_SESSION['first_name']);
+
+
 $error = "";
 $message = "";
 
@@ -111,7 +129,7 @@ $sql = "
     ";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_GET['userID']);
+$stmt->bindParam(':id', $_SESSION['id']);
 $stmt->execute();
 $user = $stmt->fetch();
 

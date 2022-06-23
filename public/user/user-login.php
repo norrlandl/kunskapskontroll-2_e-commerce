@@ -27,7 +27,7 @@ if (isset($_POST['userLogin'])) {
     $password   = trim($_POST['password']);
 
     $sql = "
-        SELECT id, email, password FROM users
+        SELECT id, first_name, email, password FROM users
         WHERE email = :email
         ";
 
@@ -39,9 +39,10 @@ if (isset($_POST['userLogin'])) {
 
     if ($user && password_verify($password, $user['password'])) {
         //funktion eller klass nedan
-        $_SESSION['email']    = $user['email'];
-        $_SESSION['id']       = $user['id'];
-        header("Location: user.php?userID=" . $user['id']);
+        $_SESSION['email']            = $user['email'];
+        $_SESSION['id']               = $user['id'];
+        $_SESSION['first_name']       = $user['first_name'];
+        header("Location: user.php");
         exit;
     } else {
         $message = '

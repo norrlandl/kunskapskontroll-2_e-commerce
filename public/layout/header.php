@@ -1,3 +1,11 @@
+<?
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +43,7 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
               <?php if (isset($_SESSION["email"])) { ?>
-                <span class="log-out-link"><a href="/kunskapskontroll-2_e-commerce/public/user/user.php">[username]</a></span>
+                <span class="log-out-link"><a href="/kunskapskontroll-2_e-commerce/public/user/user.php"><?= $_SESSION['first_name'] ?></a></span>
               <?php } else { ?>
                 <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">
                   <i class="fa fa-user fa-lg user-icon"></i>
