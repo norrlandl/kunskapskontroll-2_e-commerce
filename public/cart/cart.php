@@ -2,6 +2,8 @@
 
 <?php
 
+
+
 // echo "<pre>";
 // print_r($_SESSION['cartItems'])   
 // echo "<pre>";
@@ -9,6 +11,8 @@
 if (!isset($_SESSION['cartItems'])) {
   $_SESSION['cartItems'] = [];
 }
+
+// räkna ut totalsumman
 
 $cartTotalSum = 0;
 $cartTotalItems = 0;
@@ -21,15 +25,16 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
 ?>
 
+
+
+
 <div class="cart">
   <div class="dropdown">
-
     <i class="fa fa-shopping-bag shopping-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <?= $cartTotalItems  ?>
+      (<?= $cartTotalItems  ?>)
     </i>
 
     <span><?php $counter = 0 ?></span>
-
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
       <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
 
