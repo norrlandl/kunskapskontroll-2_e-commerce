@@ -124,7 +124,7 @@ $user = $stmt->fetch();
 
   <div class="container-small">
     <h4>Tidigare ordrar</h4>
-    <table class="table table-hover">
+    <table class="table table-hover table-user">
 
       <thead>
         <tr>
@@ -155,7 +155,9 @@ $user = $stmt->fetch();
 
     <tfoot>
       <tr>
-        <td colespan="5"></td>
+        <th scope="col"></th>
+        <th scope="col" colspan="3"></th>
+        <th scope="col"></th>
       </tr>
     </tfoot>
 

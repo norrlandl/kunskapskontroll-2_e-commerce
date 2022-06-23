@@ -1,0 +1,13 @@
+.table-user  thead td,
+.table-user  thead th
+ {
+  border-top: none;
+}
+
+.table-user thead tr th:nth-child(1) {
+  width: 25%;
+}
+
+.table-user thead tr th:nth-child(2) {
+  width: 55%;
+}
