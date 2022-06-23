@@ -18,6 +18,11 @@
       </span>
       <div class="admin-nav">
         <a href="/kunskapskontroll-2_e-commerce/public/admin/index.php">Admin</a>
+        <?php if (isset($_SESSION["email"])) { ?>
+          <a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a>
+        <?php } else { ?>
+          <div></div>
+        <?php } ?>
       </div>
     </div>
     <nav id="main-nav" class="navbar navbar-expand-md navbar-dark main-nav">
@@ -30,7 +35,7 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
               <?php if (isset($_SESSION["email"])) { ?>
-                <span class="log-out-link"><a href="/kunskapskontroll-2_e-commerce/public/user/user-logout.php">Logga ut</a></span>
+                <span class="log-out-link"><a href="">[username]</a></span>
               <?php } else { ?>
                 <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">
                   <i class="fa fa-user fa-lg user-icon"></i>
@@ -38,9 +43,6 @@
               <?php } ?>
             </li>
             <?php include(ROOT_PATH . 'public/cart/cart.php'); ?>
-            <!-- <li class="nav-item cart-icon">
-              <i class="fa fa-shopping-cart fa-lg"></i>
-            </li> -->
           </ul>
 
         </div>
