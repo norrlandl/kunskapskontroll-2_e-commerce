@@ -8,7 +8,7 @@ $email = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-        <div class="alert alert-danger">
+        <div class="alert alert-info">
             Sidan är inloggningsskyddad. Var snäll och logga in.
         </div>
     ';
@@ -82,7 +82,7 @@ if (isset($_POST['userLogin'])) {
 
                     <!-- Register -->
                     <div class="form-outline mb-4">
-                        <p>Inget konto? <a href="user-register.php">Registrera dig</a>.</p>
+                        <p>Inget konto? <a href="user-register.php">Registrera dig</a></p>
                     </div>
             </form>
         </div>

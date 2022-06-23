@@ -149,7 +149,7 @@ if (isset($_POST['createUser'])) {
       <input type="text" class="form-control" id="country" name="country" placeholder="Land" value="<?= htmlentities($country) ?>"><br>
       <input type="password" class="form-control" id="password" name="password" placeholder="Lösenord"><br>
       <input type="password" class="form-control" id="confirmPassword" name="confirm" placeholder="Bekräfta lösenord"><br>
-      <input type="submit" name="createUser" class="btn btn-outline-primary" value="Registrera konto"><br>
+      <input type="submit" name="createUser" class="btn btn-outline-success" value="Registrera konto"><br>
     </form>
   </div>
 </main>
