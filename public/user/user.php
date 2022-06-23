@@ -7,24 +7,6 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./user-login.php?mustLogin");
 }
 
-/* if (!isset($_SESSION['email'])) {
-  $sql = "
-  SELECT * FROM users
-  WHERE id = :id
-  ";
-
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(':id', $_SESSION['id']);
-  $stmt->execute();
-  $user = $stmt->fetch();
-  debug($_SESSION['id']);
-} */
-
-debug($_SESSION['id']);
-debug($_SESSION['email']);
-debug($_SESSION['first_name']);
-
-
 $error = "";
 $message = "";
 
@@ -37,17 +19,29 @@ $message = "";
 //   WHERE id = :id
 // ";
 
+/**
+ * FETCH 
+ */
+$sql = "
+    SELECT * FROM users
+    WHERE id = :id
+    ";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id', $_SESSION['id']);
+$stmt->execute();
+$user = $stmt->fetch();
 
 /**
  * UPDATE 
  */
 
 if (isset($_POST["updateUser"])) {
+
   $firstName = trim($_POST["first_name"]);
   $lastName = trim($_POST["last_name"]);
   $email = trim($_POST["email"]);
   $password = trim($_POST["password"]);
-  $confirm = trim($_POST["confirm"]);
   $phone = trim($_POST["phone"]);
   $street = trim($_POST["street"]);
   $postalCode = trim($_POST["postal_code"]);
@@ -70,14 +64,6 @@ if (isset($_POST["updateUser"])) {
     $error .= "E-post är obligatoriskt <br>";
   }
 
-  if (empty($password)) {
-    $error .= "Du har glömt fylla i lösenord <br>";
-  }
-
-  if ($password !== $confirm) {
-    $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
-  }
-
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $error .= "Ogiltig e-post <br>";
   }
@@ -88,8 +74,24 @@ if (isset($_POST["updateUser"])) {
           {$error}
       </div>
     ";
+  }
+
+  if (empty($password)) {
+    $userDbHandler->updateUser(
+      $_POST['userID'],
+      $firstName,
+      $lastName,
+      $email,
+      $user["password"],
+      $phone,
+      $street,
+      $postalCode,
+      $city,
+      $country
+    );
   } else {
     $userDbHandler->updateUser(
+      $_POST['userID'],
       $firstName,
       $lastName,
       $email,
@@ -119,19 +121,6 @@ if (isset($_POST['deleteUser'])) {
   header("Location: user-login.php ");
 }
 
-
-/**
- * FETCH 
- */
-$sql = "
-    SELECT * FROM users
-    WHERE id = :id
-    ";
-
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_SESSION['id']);
-$stmt->execute();
-$user = $stmt->fetch();
 
 ?>
 
@@ -239,10 +228,10 @@ $user = $stmt->fetch();
         <label for="cart_passord">Lösenord</label>
         <input type="password" readonly class="form-control" name="password" value="***">
       </div>
-      <div class="form-group col-md-6">
+      <!--       <div class="form-group col-md-6">
         <label for="cart_confirm">Bekräfta lösenord</label>
         <input type="password" readonly class="form-control" name="confirm" value="***">
-      </div>
+      </div> -->
     </div>
 
     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">Uppdatera</button>
@@ -314,11 +303,7 @@ $user = $stmt->fetch();
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="cart_passord">Lösenord</label>
-              <input type="password" class="form-control" name="password" value="***">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="cart_confirm">Bekräfta lösenord</label>
-              <input type="password" class="form-control" name="confirm" value="***">
+              <input type="password" class="form-control" name="password" placeholder="***">
             </div>
           </div>
 

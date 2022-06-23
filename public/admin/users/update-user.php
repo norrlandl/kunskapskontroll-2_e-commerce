@@ -4,30 +4,59 @@ $pageTitle = "Uppdatera användare";
 
 $message = "";
 
-if (isset($_POST["updateUser"])) {
-    $userDbHandler->updateUser(
-        $firstName = trim($_POST["first_name"]),
-        $lastName = trim($_POST["last_name"]),
-        $email = trim($_POST["email"]),
-        $password = trim($_POST["password"]),
-        $phone = trim($_POST["phone"]),
-        $street = trim($_POST["street"]),
-        $postalCode = trim($_POST["postal_code"]),
-        $city = trim($_POST["city"]),
-        $country = trim($_POST["country"])
-    );
-
-    redirect("../index.php");
-}
-
 $sql = "
-    SELECT * FROM users
-    WHERE id = :id
-    ";
+        SELECT * FROM users
+        WHERE id = :id
+        ";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id', $_GET['userID']);
 $stmt->execute();
 $singleUser = $stmt->fetch();
+
+
+if (isset($_POST["updateUser"])) {
+
+    $firstName = trim($_POST["first_name"]);
+    $lastName = trim($_POST["last_name"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $phone = trim($_POST["phone"]);
+    $street = trim($_POST["street"]);
+    $postalCode = trim($_POST["postal_code"]);
+    $city = trim($_POST["city"]);
+    $country = trim($_POST["country"]);
+
+
+    if (empty($password)) {
+        $userDbHandler->updateUser(
+            $_GET['userID'],
+            $firstName,
+            $lastName,
+            $email,
+            $singleUser["password"],
+            $phone,
+            $street,
+            $postalCode,
+            $city,
+            $country
+        );
+    } else {
+        $userDbHandler->updateUser(
+            $_GET['userID'],
+            $firstName,
+            $lastName,
+            $email,
+            $password,
+            $phone,
+            $street,
+            $postalCode,
+            $city,
+            $country
+        );
+    }
+    redirect("../index.php");
+}
+
 ?>
 
 
@@ -47,9 +76,7 @@ $singleUser = $stmt->fetch();
         <label for="email">Email:</label><br>
         <input type="text" class="form-control" name="email" value="<?= htmlentities($singleUser["email"]) ?>"><br>
         <label for="password">Lösenord:</label><br>
-        <input type="password" class="form-control" name="password" value="<?= htmlentities($singleUser["password"]) ?>"><br>
-        <label for="confirmPassword">Bekräfta lösenord:</label><br>
-        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" value="<?= htmlentities($singleUser["password"]) ?>"><br>
+        <input type="password" class="form-control" name="password" placeholder="Lämna tom för samma lösenord"><br>
         <label for="phone">Telefon:</label><br>
         <input type="text" class="form-control" name="phone" value="<?= htmlentities($singleUser["phone"]) ?>"><br>
         <label for="street">Address:</label><br>

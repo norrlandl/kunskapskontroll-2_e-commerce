@@ -2,130 +2,131 @@
 
 class UserDbHandler
 {
-  public function __construct($pdo)
-  {
-      $this->pdo = $pdo;
-  }
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
 
-  public function fetchAllFromDb($tableName)
-  {
-      $sql = "SELECT * FROM $tableName";
+    public function fetchAllFromDb($tableName)
+    {
+        $sql = "SELECT * FROM $tableName";
 
-      $stmt = $this->pdo->query($sql);
+        $stmt = $this->pdo->query($sql);
 
-      return array_reverse($stmt->fetchAll());
-  }
+        return array_reverse($stmt->fetchAll());
+    }
 
-  public function deleteFromDb($tableName, $id)
-  {
-      $sql = "
+    public function deleteFromDb($tableName, $id)
+    {
+        $sql = "
           DELETE FROM $tableName 
           WHERE id = :id;
       ";
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(':id', $id);
-      $stmt->execute();
-  }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
 
-  public function clearTableInDb($tableName)
-  {
-      $sql = " DELETE FROM $tableName ";
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->execute();
-  }
+    public function clearTableInDb($tableName)
+    {
+        $sql = " DELETE FROM $tableName ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    }
 
-  public function fetchUserByEmail($email)
-  {
-      $sql = "
+    public function fetchUserByEmail($email)
+    {
+        $sql = "
           SELECT id, username, password FROM users
           WHERE email = :email
       ";
 
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(':email', $email);
-      $stmt->execute();
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
 
-      return $stmt->fetch();
-  }
+        return $stmt->fetch();
+    }
 
-  //Bygga separata klasser för validering och kalla på de i dessa klasser?
-  //Eller bygga de här direkt i klasserna?
-  public function addProductToDb($title, $description, $price, $stock, $img)
-  {
-      $sql =
-          "
+    //Bygga separata klasser för validering och kalla på de i dessa klasser?
+    //Eller bygga de här direkt i klasserna?
+    public function addProductToDb($title, $description, $price, $stock, $img)
+    {
+        $sql =
+            "
       INSERT INTO products (title, description, price, stock, img_url) 
       VALUES (:title, :description, :price, :stock, :img_url);
       ";
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(":title", $title);
-      $stmt->bindParam(":description", $description);
-      $stmt->bindParam(":price", $price);
-      $stmt->bindParam(":stock", $stock);
-      $stmt->bindParam(":img_url", $img);
-      $stmt->execute();
-  }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":stock", $stock);
+        $stmt->bindParam(":img_url", $img);
+        $stmt->execute();
+    }
 
-  //Bygga separata klasser för validering och kalla på de i dessa klasser?
-  //Eller bygga de här direkt i klasserna?
-  public function addUserToDb(
-      $firstName,
-      $lastName,
-      $email,
-      $password,
-      $phone,
-      $street,
-      $postalCode,
-      $city,
-      $country,
-  ) {
+    //Bygga separata klasser för validering och kalla på de i dessa klasser?
+    //Eller bygga de här direkt i klasserna?
+    public function addUserToDb(
+        $firstName,
+        $lastName,
+        $email,
+        $password,
+        $phone,
+        $street,
+        $postalCode,
+        $city,
+        $country,
+    ) {
 
-      $sql = "
+        $sql = "
       INSERT INTO users (first_name, last_name, email,
       password, phone, street, postal_code, city, country) 
       VALUES (:first_name, :last_name, :email, :password,
       :phone, :street, :postal_code, :city, :country);
       ";
 
-      $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
+        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
 
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(":first_name", $firstName);
-      $stmt->bindParam(":last_name", $lastName);
-      $stmt->bindParam(":email", $email);
-      $stmt->bindParam(":password", $encryptedPassword);
-      $stmt->bindParam(":phone", $phone);
-      $stmt->bindParam(":street", $street);
-      $stmt->bindParam(":postal_code", $postalCode);
-      $stmt->bindParam(":city", $city);
-      $stmt->bindParam(":country", $country);
-      $stmt->execute();
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":first_name", $firstName);
+        $stmt->bindParam(":last_name", $lastName);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":password", $encryptedPassword);
+        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":street", $street);
+        $stmt->bindParam(":postal_code", $postalCode);
+        $stmt->bindParam(":city", $city);
+        $stmt->bindParam(":country", $country);
+        $stmt->execute();
 
-      $firstName = "";
-      $lastName = "";
-      $email = "";
-      $password = "";
-      $phone = "";
-      $street = "";
-      $postalCode = "";
-      $city = "";
-      $country = "";
-  }
+        $firstName = "";
+        $lastName = "";
+        $email = "";
+        $password = "";
+        $phone = "";
+        $street = "";
+        $postalCode = "";
+        $city = "";
+        $country = "";
+    }
 
 
-  public function updateUser(
-      $firstName,
-      $lastName,
-      $email,
-      $password,
-      $phone,
-      $street,
-      $postalCode,
-      $city,
-      $country
-  ) {
+    public function updateUser(
+        $id,
+        $firstName,
+        $lastName,
+        $email,
+        $password,
+        $phone,
+        $street,
+        $postalCode,
+        $city,
+        $country
+    ) {
 
-      $sql = "
+        $sql = "
       UPDATE users
       SET first_name = :first_name, last_name = :last_name,
       email = :email, password = :password, phone = :phone,
@@ -134,43 +135,47 @@ class UserDbHandler
       WHERE id = :id;
       ";
 
-      $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
+        $stmt = $this->pdo->prepare($sql);
+        if (str_starts_with($password, "$2y$12$")) {
+            $stmt->bindParam(":password", $password);
+        } else {
+            $encryptPW = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
+            $stmt->bindParam(":password", $encryptPW);
+        }
 
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(':id', $_GET['userID']);
-      $stmt->bindParam(":first_name", $firstName);
-      $stmt->bindParam(":last_name", $lastName);
-      $stmt->bindParam(":email", $email);
-      $stmt->bindParam(":password", $encryptedPassword);
-      $stmt->bindParam(":phone", $phone);
-      $stmt->bindParam(":street", $street);
-      $stmt->bindParam(":postal_code", $postalCode);
-      $stmt->bindParam(":city", $city);
-      $stmt->bindParam(":country", $country);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(":first_name", $firstName);
+        $stmt->bindParam(":last_name", $lastName);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":street", $street);
+        $stmt->bindParam(":postal_code", $postalCode);
+        $stmt->bindParam(":city", $city);
+        $stmt->bindParam(":country", $country);
 
-      $stmt->execute();
-  }
+        $stmt->execute();
+    }
 
-  public function updateProduct(
-      $title,
-      $description,
-      $price,
-      $stock,
-  ) {
+    public function updateProduct(
+        $title,
+        $description,
+        $price,
+        $stock,
+    ) {
 
-      $sql = "
+        $sql = "
       UPDATE products
       SET title = :title, description = :description,
       price = :price, stock = :stock
       WHERE id = :id;
       ";
 
-      $stmt = $this->pdo->prepare($sql);
-      $stmt->bindParam(':id', $_GET['productID']);
-      $stmt->bindParam(':title', $title);
-      $stmt->bindParam(':description', $description);
-      $stmt->bindParam(':price', $price);
-      $stmt->bindParam(':stock', $stock);
-      $stmt->execute();
-  }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $_GET['productID']);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':stock', $stock);
+        $stmt->execute();
+    }
 }
