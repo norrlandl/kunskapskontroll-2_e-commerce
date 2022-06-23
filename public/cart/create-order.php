@@ -106,11 +106,8 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
     $stmt->bindValue(':unit_price',     $item['price']);
     $stmt->execute();
   }
-
-  header('Location: order-confirmation.php');
-  exit;
+  redirect('order-confirmation.php');
 }
 
 // Om inget finns i varukorgen, hoppa tillbaka
-header('Location: checkout.php');
-exit;
+redirect('checkout.php');
