@@ -62,7 +62,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
             <tr>
               <td>
                 <div class="checkout-img">
-                  <img src="../img/<?= $cartItem['img_url'] ?>">
+                  <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $cartItem['img_url'] ?>">
                 </div>
               </td>
               <td>
