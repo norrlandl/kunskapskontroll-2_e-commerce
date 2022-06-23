@@ -11,6 +11,16 @@ $error = "";
 $message = "";
 
 /**
+ * FETCH ORDERS 
+ */
+
+// $sql = "
+//   SELECT * FROM users
+//   WHERE id = :id
+// ";
+
+
+/**
  * UPDATE 
  */
 
@@ -104,6 +114,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id', $_GET['userID']);
 $stmt->execute();
 $user = $stmt->fetch();
+
 ?>
 
 <?php include('../layout/header.php'); ?>
@@ -136,30 +147,26 @@ $user = $stmt->fetch();
 
       <tbody>
 
-        <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
-
-        ?>
-
-          <tr>
-            <th scope="row">#1</th>
-            <td colspan="3">
-              <p>2022-02-02</p>
-            </td>
-            <td>
-              <button class="btn btn-outline-info">Se detaljer</button>
-            </td>
-          </tr>
+        <tr>
+          <th scope="row">#1</th>
+          <td colspan="3">
+            <p>2022-02-02</p>
+          </td>
+          <td>
+            <button class="btn btn-outline-info">Se detaljer</button>
+          </td>
+        </tr>
       </tbody>
 
-    <?php endforeach; ?>
 
-    <tfoot>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col" colspan="3"></th>
-        <th scope="col"></th>
-      </tr>
-    </tfoot>
+
+      <tfoot>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col" colspan="3"></th>
+          <th scope="col"></th>
+        </tr>
+      </tfoot>
 
     </table>
   </div>
