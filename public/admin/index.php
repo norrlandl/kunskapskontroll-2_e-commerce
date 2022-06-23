@@ -21,7 +21,7 @@ $products = $userDbHandler->fetchAllFromDb("products");
 ?>
 
 <div class="wrapper">
-  <h1>Välkommen (admin)!</h1>
+  <h1>Hej, <?= $_SESSION['first_name'] ?>!</h1>
   <h2>Alla produkter</h2>
   <div class="top-buttons">
     <form action="./products/create-new-product.php">
@@ -107,7 +107,7 @@ $products = $userDbHandler->fetchAllFromDb("products");
       <tr>
         <th>ID</th>
         <th>Förnamn</th>
-        <th>Efternan</th>
+        <th>Efternamn</th>
         <th>Email</th>
         <th>Hantera</th>
       </tr>

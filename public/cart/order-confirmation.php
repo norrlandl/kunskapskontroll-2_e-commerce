@@ -2,8 +2,7 @@
 require('../../src/config.php');
 
 if (empty($_SESSION['cartItems'])) {
-  header('Location: checkout.php')
-  exit;
+  header('Location: checkout.php');
 }
 
 $cartItems = $_SESSION['cartItems'];
@@ -18,22 +17,23 @@ unset($_SESSION['cartItems'])
 
 
 </head>
+
 <body>
-<div class="container">
-<?php include('cart.php') ?>
+  <div class="container">
+    <?php include('cart.php') ?>
 
 
-<h4>Confirm</h4>
+    <h4>Confirm</h4>
 
 
-<?php foreach ($cartItems as $item): ?>
+    <?php foreach ($cartItems as $item) : ?>
 
-  <img src="img/<?=$item['img_url']?>">
-  <p><?=$item['title']?></p>
-  <p><?=$item['description']?></p>
-  <p><?=$item['quantity']?></p>
-  <p><?=$item['price']?></p>
-  <p>Totalsumman: <?=$totalSum ?></p>
+      <img src="img/<?= $item['img_url'] ?>">
+      <p><?= $item['title'] ?></p>
+      <p><?= $item['description'] ?></p>
+      <p><?= $item['quantity'] ?></p>
+      <p><?= $item['price'] ?></p>
+      <p>Totalsumman: <?= $totalSum ?></p>
 
 
-<?php endforeach; ?>
+    <?php endforeach; ?>

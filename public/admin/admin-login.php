@@ -39,6 +39,7 @@ if (isset($_POST['doLogin'])) {
     if ($user && password_verify($password, $user["password"])) {
         $_SESSION['email']    = $user['email'];
         $_SESSION['id']       = $user['id'];
+        $_SESSION['first_name']       = $user['first_name'];
         header("Location: index.php");
         exit;
     } else {
