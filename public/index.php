@@ -2,7 +2,7 @@
 require('../src/config.php');
 $pageTitle = "Våra produkter";
 
-$products = $userDbHandler->fetchAllFromDb("products");
+$products = $globalDbHandler->fetchAllFromDb("products");
 ?>
 
 <?php include('layout/header.php'); ?>

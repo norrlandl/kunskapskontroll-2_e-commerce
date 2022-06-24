@@ -7,11 +7,11 @@ $pageTitle = "Product";
 //     exit;
 // }
 
-$product = $userDbHandler->fetchById($_GET['id'], "products");
+$product = $globalDbHandler->fetchById($_GET['id'], "products");
 
 // Slider 
 
-$sorted_array = $userDbHandler->fetchAllFromDb("products");
+$sorted_array = $globalDbHandler->fetchAllFromDb("products");
 $shuffled_array = array();
 
 $keys = array_keys($sorted_array);

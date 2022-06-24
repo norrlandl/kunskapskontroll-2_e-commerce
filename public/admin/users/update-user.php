@@ -5,7 +5,7 @@ $pageTitle = "Uppdatera användare";
 
 $message = "";
 
-$singleUser = $userDbHandler->fetchById($_GET['productID'], "users");
+$singleUser = $globalDbHandler->fetchById($_GET['userID'], "users");
 
 if (isset($_POST["updateUser"])) {
 

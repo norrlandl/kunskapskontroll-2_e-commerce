@@ -4,7 +4,7 @@ require('../../../src/config.php');
 $pageTitle = "Uppdatera produkt";
 
 if (isset($_POST["updateProduct"])) {
-    $userDbHandler->updateProduct(
+    $productDbHandler->updateProduct(
         $_GET['productID'],
         trim($_POST["title"]),
         trim($_POST["description"]),
@@ -15,7 +15,7 @@ if (isset($_POST["updateProduct"])) {
     redirect("../index.php");
 }
 
-$singleProduct = $userDbHandler->fetchById($_GET['productID'], "products");
+$singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
 
 ?>
 

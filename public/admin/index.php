@@ -11,33 +11,33 @@ if (!isset($_SESSION['email'])) {
 /* Products */
 
 if (isset($_POST["deleteProductBTN"])) {
-  $userDbHandler->deleteFromDb("products", $_POST['productID']);
+  $globalDbHandler->deleteFromDb("products", $_POST['productID']);
 }
 
 if (isset($_POST["clearAllproducts"])) {
-  $userDbHandler->clearTableInDb("products");
+  $globalDbHandler->clearTableInDb("products");
 }
 
-$products = $userDbHandler->fetchAllFromDb("products");
+$products = $globalDbHandler->fetchAllFromDb("products");
 
 /* Users */
 
 if (isset($_POST["deleteUserBTN"])) {
 
   if ($_SESSION['id'] == $_POST['userID']) {
-    $userDbHandler->deleteFromDb("users", $_POST['userID']);
+    $globalDbHandler->deleteFromDb("users", $_POST['userID']);
     redirect("admin-login.php?userDeleted");
   } else {
-    $userDbHandler->deleteFromDb("users", $_POST['userID']);
+    $globalDbHandler->deleteFromDb("users", $_POST['userID']);
   }
 }
 
 if (isset($_POST["clearAllUsers"])) {
-  $userDbHandler->clearTableInDb("users");
+  $globalDbHandler->clearTableInDb("users");
   redirect("admin-login.php?tableDeleted");
 }
 
-$users = $userDbHandler->fetchAllFromDb("users");
+$users = $globalDbHandler->fetchAllFromDb("users");
 
 ?>
 

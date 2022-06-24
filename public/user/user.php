@@ -12,7 +12,7 @@ $message = "";
 
 // Lägg till FETCH ORDERS!
 
-$user = $userDbHandler->fetchById($_SESSION['id'], "users");
+$user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 if (isset($_POST["updateUser"])) {
 
@@ -85,7 +85,7 @@ if (isset($_POST["updateUser"])) {
 
 if (isset($_POST['deleteUser'])) {
 
-  $userDbHandler->deleteFromDb("users", $_POST['userID']);
+  $globalDbHandler->deleteFromDb("users", $_POST['userID']);
   redirect("Location: user-login.php?userDeleted");
 }
 

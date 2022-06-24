@@ -56,7 +56,7 @@ if (isset($_POST["addNewProduct"])) {
     move_uploaded_file($fileTempPath, $newFilePath);
     $img = $fileName;
 
-    $userDbHandler->addProductToDb(
+    $productDbHandler->addProductToDb(
       $title,
       $description,
       $price,
