@@ -1,19 +1,37 @@
 <?php
 
 class UserDbHandler
+// Note: ev. optimera en del querys och bara välja specifikt de vi behöver hämta.
+
 {
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
     }
 
+
+    //Global
+
     public function fetchAllFromDb($tableName)
     {
-        $sql = "SELECT * FROM $tableName";
-
+        $sql = "
+        SELECT * FROM $tableName
+        ";
         $stmt = $this->pdo->query($sql);
 
         return array_reverse($stmt->fetchAll());
+    }
+
+    public function fetchById($id, $tableName)
+    {
+        $sql = "
+        SELECT * FROM $tableName
+        WHERE id = :id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     public function deleteFromDb($tableName, $id)
@@ -34,12 +52,26 @@ class UserDbHandler
         $stmt->execute();
     }
 
+    //User
+
+    public function fetchUserById($id)
+    {
+        $sql = "
+        SELECT * FROM users
+        WHERE id = :id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
     public function fetchUserByEmail($email)
     {
         $sql = "
-          SELECT id, username, password FROM users
-          WHERE email = :email
-      ";
+        SELECT * FROM users
+        WHERE email = :email
+        ";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
@@ -48,36 +80,16 @@ class UserDbHandler
         return $stmt->fetch();
     }
 
-    //Bygga separata klasser för validering och kalla på de i dessa klasser?
-    //Eller bygga de här direkt i klasserna?
-    public function addProductToDb($title, $description, $price, $stock, $img)
-    {
-        $sql =
-            "
-      INSERT INTO products (title, description, price, stock, img_url) 
-      VALUES (:title, :description, :price, :stock, :img_url);
-      ";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(":title", $title);
-        $stmt->bindParam(":description", $description);
-        $stmt->bindParam(":price", $price);
-        $stmt->bindParam(":stock", $stock);
-        $stmt->bindParam(":img_url", $img);
-        $stmt->execute();
-    }
-
-    //Bygga separata klasser för validering och kalla på de i dessa klasser?
-    //Eller bygga de här direkt i klasserna?
     public function addUserToDb(
         $firstName,
         $lastName,
         $email,
-        $password,
         $phone,
         $street,
         $postalCode,
         $city,
         $country,
+        $password,
     ) {
 
         $sql = "
@@ -156,7 +168,26 @@ class UserDbHandler
         $stmt->execute();
     }
 
+    //Product
+
+    public function addProductToDb($title, $description, $price, $stock, $img)
+    {
+        $sql =
+            "
+      INSERT INTO products (title, description, price, stock, img_url) 
+      VALUES (:title, :description, :price, :stock, :img_url);
+      ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":stock", $stock);
+        $stmt->bindParam(":img_url", $img);
+        $stmt->execute();
+    }
+
     public function updateProduct(
+        $id,
         $title,
         $description,
         $price,
@@ -171,7 +202,7 @@ class UserDbHandler
       ";
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $_GET['productID']);
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);

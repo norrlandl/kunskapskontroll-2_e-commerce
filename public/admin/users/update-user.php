@@ -1,18 +1,11 @@
 <?php
+
 require('../../../src/config.php');
 $pageTitle = "Uppdatera användare";
 
 $message = "";
 
-$sql = "
-        SELECT * FROM users
-        WHERE id = :id
-        ";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_GET['userID']);
-$stmt->execute();
-$singleUser = $stmt->fetch();
-
+$singleUser = $userDbHandler->fetchById($_GET['productID'], "users");
 
 if (isset($_POST["updateUser"])) {
 
@@ -25,7 +18,6 @@ if (isset($_POST["updateUser"])) {
     $postalCode = trim($_POST["postal_code"]);
     $city = trim($_POST["city"]);
     $country = trim($_POST["country"]);
-
 
     if (empty($password)) {
         $userDbHandler->updateUser(
@@ -58,7 +50,6 @@ if (isset($_POST["updateUser"])) {
 }
 
 ?>
-
 
 <?php include('../layout/header.php'); ?>
 <div class="page-wrapper">

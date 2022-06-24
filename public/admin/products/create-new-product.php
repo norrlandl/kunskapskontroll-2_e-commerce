@@ -1,6 +1,6 @@
 <?php
 require('../../../src/config.php');
-$pageTitle = "Create new product";
+$pageTitle = "Skapa ny produkt";
 
 $error = "";
 $message = "";
@@ -57,10 +57,10 @@ if (isset($_POST["addNewProduct"])) {
     $img = $fileName;
 
     $userDbHandler->addProductToDb(
-      trim($_POST["title"]),
-      trim($_POST["description"]),
-      trim($_POST["price"]),
-      $stock = trim($_POST["stock"]),
+      $title,
+      $description,
+      $price,
+      $stock,
       $img
     );
 

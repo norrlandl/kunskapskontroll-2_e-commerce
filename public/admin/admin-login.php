@@ -47,22 +47,13 @@ if (isset($_POST['doLogin'])) {
     $email    = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    $sql = "
-            SELECT * FROM users
-            WHERE email = :email
-        ";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-
-    $user = $stmt->fetch();
+    $user = $userDbHandler->fetchUserByEmail($email);
 
     if ($user && password_verify($password, $user["password"])) {
         $_SESSION['email']    = $user['email'];
         $_SESSION['id']       = $user['id'];
         $_SESSION['first_name']       = $user['first_name'];
-        header("Location: index.php");
+        redirect("index.php");
         exit;
     } else {
         $message = '

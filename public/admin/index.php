@@ -10,7 +10,6 @@ if (!isset($_SESSION['email'])) {
 
 /* Products */
 
-
 if (isset($_POST["deleteProductBTN"])) {
   $userDbHandler->deleteFromDb("products", $_POST['productID']);
 }

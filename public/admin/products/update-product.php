@@ -1,26 +1,22 @@
 <?php
+
 require('../../../src/config.php');
-$pageTitle = "Update product";
+$pageTitle = "Uppdatera produkt";
 
 if (isset($_POST["updateProduct"])) {
     $userDbHandler->updateProduct(
-        $title = trim($_POST["title"]),
-        $description = trim($_POST["description"]),
-        $price = trim($_POST["price"]),
-        $stock = trim($_POST["stock"])
+        $_GET['productID'],
+        trim($_POST["title"]),
+        trim($_POST["description"]),
+        trim($_POST["price"]),
+        trim($_POST["stock"])
     );
 
     redirect("../index.php");
 }
 
-$sql = "
-    SELECT * FROM products
-    WHERE id = :id
-    ";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_GET['productID']);
-$stmt->execute();
-$singleProduct = $stmt->fetch();
+$singleProduct = $userDbHandler->fetchById($_GET['productID'], "products");
+
 ?>
 
 <?php include('../layout/header.php'); ?>

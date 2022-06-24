@@ -10,31 +10,9 @@ if (!isset($_SESSION['email'])) {
 $error = "";
 $message = "";
 
-/**
- * FETCH ORDERS 
- */
+// Lägg till FETCH ORDERS!
 
-// $sql = "
-//   SELECT * FROM users
-//   WHERE id = :id
-// ";
-
-/**
- * FETCH 
- */
-$sql = "
-    SELECT * FROM users
-    WHERE id = :id
-    ";
-
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_SESSION['id']);
-$stmt->execute();
-$user = $stmt->fetch();
-
-/**
- * UPDATE 
- */
+$user = $userDbHandler->fetchById($_SESSION['id'], "users");
 
 if (isset($_POST["updateUser"])) {
 
@@ -105,22 +83,11 @@ if (isset($_POST["updateUser"])) {
   }
 }
 
-/**
- * DELETE 
- */
-
 if (isset($_POST['deleteUser'])) {
-  $sql = "
-   DELETE FROM users 
-   WHERE id = :id";
 
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(":id", $_POST['userID']);
-  $stmt->execute();
-
+  $userDbHandler->deleteFromDb("users", $_POST['userID']);
   redirect("Location: user-login.php?userDeleted");
 }
-
 
 ?>
 

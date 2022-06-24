@@ -84,37 +84,19 @@ if (isset($_POST['createUser'])) {
   } else {
     try {
 
-      // public function addUser(
-      //    $first_name, 
-      //    $last_name, 
-      //    $street, 
-      //    $postal_code,
-      //    $city,
-      //    $country,
-      //    $phone,
-      //    $email, 
-      //    $password
-      //    ){
-      $sql = "
-          INSERT INTO users (first_name, last_name, street, postal_code, city, country, phone, email, password)
-          VALUES (:first_name, :last_name, :street, :postal_code, :city, :country, :phone, :email, :password);
-        ";
+      $userDbHandler->addUserToDb(
+        $first_name,
+        $last_name,
+        $email,
+        $phone,
+        $street,
+        $postal_code,
+        $city,
+        $country,
+        $password
+      );
 
-      $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-      // $stmt = $this->$dbconnect->prepare($sql);
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':first_name',   $first_name);
-      $stmt->bindParam(':last_name',    $last_name);
-      $stmt->bindParam(':street',       $street);
-      $stmt->bindParam(':postal_code',  $postal_code);
-      $stmt->bindParam(':city',         $city);
-      $stmt->bindParam(':country',      $country);
-      $stmt->bindParam(':phone',        $phone);
-      $stmt->bindParam(':email',        $email);
-      $stmt->bindParam(':password',     $encryptedPassword);
-      $stmt->execute();
-
-      header("Location: user-login.php?email=$email");
+      redirect("user-login.php?email=$email");
     } catch (\PDOException $e) {
       if ((int) $e->getCode() === 23000) {
         $message = "

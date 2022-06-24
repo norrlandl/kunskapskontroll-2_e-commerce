@@ -29,12 +29,12 @@ if (isset($_POST["addNewUser"])) {
             trim($_POST["first_name"]),
             trim($_POST["last_name"]),
             trim($_POST["email"]),
-            trim($_POST["password"]),
             trim($_POST["phone"]),
             trim($_POST["street"]),
             trim($_POST["postal_code"]),
             trim($_POST["city"]),
             trim($_POST["country"]),
+            trim($_POST["password"]),
         );
 
         redirect("../index.php");
