@@ -32,6 +32,17 @@ if (isset($_GET["userDeleted"])) {
     ';
 }
 
+if (isset($_GET["tableDeleted"])) {
+    $_SESSION = [];
+    session_destroy();
+
+    $message = '
+    <div class="success_msg">
+        Du har nu raderat alla användare.
+    </div>
+    ';
+}
+
 if (isset($_POST['doLogin'])) {
     $email    = trim($_POST['email']);
     $password = trim($_POST['password']);

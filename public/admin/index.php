@@ -35,6 +35,7 @@ if (isset($_POST["deleteUserBTN"])) {
 
 if (isset($_POST["clearAllUsers"])) {
   $userDbHandler->clearTableInDb("users");
+  redirect("admin-login.php?tableDeleted");
 }
 
 $users = $userDbHandler->fetchAllFromDb("users");
