@@ -10,6 +10,7 @@ if (!isset($_SESSION['email'])) {
 
 /* Products */
 
+
 if (isset($_POST["deleteProductBTN"])) {
   $userDbHandler->deleteFromDb("products", $_POST['productID']);
 }
@@ -23,8 +24,13 @@ $products = $userDbHandler->fetchAllFromDb("products");
 /* Users */
 
 if (isset($_POST["deleteUserBTN"])) {
-  $userDbHandler->deleteFromDb("users", $_POST['userID']);
-  redirect("admin-login.php?userDeleted");
+
+  if ($_SESSION['id'] == $_POST['userID']) {
+    $userDbHandler->deleteFromDb("users", $_POST['userID']);
+    redirect("admin-login.php?userDeleted");
+  } else {
+    $userDbHandler->deleteFromDb("users", $_POST['userID']);
+  }
 }
 
 if (isset($_POST["clearAllUsers"])) {
