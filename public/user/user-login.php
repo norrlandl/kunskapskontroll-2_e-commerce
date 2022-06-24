@@ -8,18 +8,26 @@ $email = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-        <div class="alert alert-info">
-            Sidan är inloggningsskyddad. Var snäll och logga in.
-        </div>
+    <div class="alert alert-info">
+       Sidan är inloggningsskyddad. Var snäll och logga in.
+    </div>
     ';
 }
 
 if (isset($_GET['logout'])) {
     $message = '
-            <div class="success_msg">
-                Du är nu utloggad.
-            </div>
+    <div class="success_msg">
+        Du är nu utloggad.
+    </div>
         ';
+}
+
+if (isset($_GET["userDeleted"])) {
+    $message = '
+    <div class="success_msg">
+        Du har nu raderat ditt konto.
+    </div>
+    ';
 }
 
 if (isset($_POST['userLogin'])) {
