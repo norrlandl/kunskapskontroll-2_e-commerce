@@ -24,21 +24,9 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   $confirm      = trim($_POST['confirm']);
   $cartTotalSum = $_POST['cartTotalSum'];
 
-
-  $sql = "
-    SELECT * FROM users
-    WHERE email = :email;
-  ";
-
   // FETCH USER IF EXIST
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(':email', $email);
-  $stmt->execute();
-  $user = $stmt->fetch();
+  $user = $userDbHandler->fetchUserByEmail($email);
   $userId = isset($user['id']) ? $user['id'] : null;
-
-
-
 
   // CREATE USER IF $user DOESN'T EXIST
   if (empty($user)) {

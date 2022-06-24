@@ -12,15 +12,7 @@ if (!empty($_POST['quantity'])) {
   $productId  = (int) $_POST['productId'];
   $quantity   = (int) $_POST['quantity'];
 
-  $sql = "
-    SELECT * FROM products
-    WHERE id = :id;
-  ";
-
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindparam(':id', $productId);
-  $stmt->execute();
-  $product = $stmt->fetch();
+  $product = $globalDbHandler->fetchById($productId, "products");
 
 
   if ($product) {
