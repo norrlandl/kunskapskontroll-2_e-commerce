@@ -23,6 +23,9 @@ if (isset($_GET['logout'])) {
 }
 
 if (isset($_GET["userDeleted"])) {
+    $_SESSION = [];
+    session_destroy();
+
     $message = '
     <div class="success_msg">
         Du har nu raderat ditt konto.

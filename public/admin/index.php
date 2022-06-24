@@ -1,4 +1,5 @@
-<?php
+<?
+
 require('../../src/config.php');
 $pageTitle = "Admin";
 include('./layout/header.php');
@@ -7,7 +8,8 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./admin-login.php?mustLogin");
 }
 
-//Hur kan vi skicka id till UserDbHandler?
+/* Products */
+
 if (isset($_POST["deleteProductBTN"])) {
   $userDbHandler->deleteFromDb("products", $_POST['productID']);
 }
@@ -18,7 +20,22 @@ if (isset($_POST["clearAllproducts"])) {
 
 $products = $userDbHandler->fetchAllFromDb("products");
 
+/* Users */
+
+if (isset($_POST["deleteUserBTN"])) {
+  $userDbHandler->deleteFromDb("users", $_POST['userID']);
+  redirect("admin-login.php?userDeleted");
+}
+
+if (isset($_POST["clearAllUsers"])) {
+  $userDbHandler->clearTableInDb("users");
+}
+
+$users = $userDbHandler->fetchAllFromDb("users");
+
 ?>
+
+<!-- ALL PRODUCTS -->
 
 <div class="wrapper">
   <h1>Hej, <?= $_SESSION['first_name'] ?>!</h1>
@@ -71,27 +88,8 @@ $products = $userDbHandler->fetchAllFromDb("products");
     </tbody>
   </table>
 
-  <?php
+  <!-- ALL USERS -->
 
-  if (isset($_POST["deleteUserBTN"])) {
-    $sql = "
-      DELETE FROM users
-      WHERE id = :id;
-      ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":id", $_POST['userID']);
-    $stmt->execute();
-  }
-  if (isset($_POST["clearAllUsers"])) {
-    $userDbHandler->clearTableInDb("users");
-  }
-
-  $users = $userDbHandler->fetchAllFromDb("users");
-
-  ?>
-  <br>
-  <br>
-  <br>
   <h2>Alla användare</h2>
   <div class="top-buttons">
     <form action="./users/create-new-user.php">

@@ -7,18 +7,29 @@ $message = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-        <div class="error_msg">
-            Sidan är inloggningsskyddad. Var snäll och logga in.
-        </div>
+    <div class="error_msg">
+        Sidan är inloggningsskyddad. Var snäll och logga in.
+    </div>
     ';
 }
 
 if (isset($_GET['logout'])) {
     $message = '
-            <div class="success_msg">
-                Du är nu utloggad.
-            </div>
+    <div class="success_msg">
+        Du är nu utloggad.
+    </div>
         ';
+}
+
+if (isset($_GET["userDeleted"])) {
+    $_SESSION = [];
+    session_destroy();
+
+    $message = '
+    <div class="success_msg">
+        Du har nu raderat ditt konto.
+    </div>
+    ';
 }
 
 if (isset($_POST['doLogin'])) {
