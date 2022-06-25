@@ -85,7 +85,7 @@ if (isset($_POST["updateUser"])) {
 
 if (isset($_POST['deleteUser'])) {
 
-  $globalDbHandler->deleteFromDb("users", $_POST['userID']);
+  $globalDbHandler->deleteFromDb($_POST['userID'], "users");
   redirect("Location: user-login.php?userDeleted");
 }
 

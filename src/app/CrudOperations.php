@@ -32,7 +32,7 @@ class GlobalDbHandler
         return $stmt->fetch();
     }
 
-    public function deleteFromDb($tableName, $id)
+    public function deleteFromDb($id, $tableName)
     {
         $sql = "
         DELETE FROM $tableName 

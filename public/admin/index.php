@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
 /* Products */
 
 if (isset($_POST["deleteProductBTN"])) {
-  $globalDbHandler->deleteFromDb("products", $_POST['productID']);
+  $globalDbHandler->deleteFromDb($_POST['productID'], "products");
 }
 
 if (isset($_POST["clearAllproducts"])) {
@@ -25,10 +25,10 @@ $products = $globalDbHandler->fetchAllFromDb("products");
 if (isset($_POST["deleteUserBTN"])) {
 
   if ($_SESSION['id'] == $_POST['userID']) {
-    $globalDbHandler->deleteFromDb("users", $_POST['userID']);
+    $globalDbHandler->deleteFromDb($_POST['userID'], "users");
     redirect("admin-login.php?userDeleted");
   } else {
-    $globalDbHandler->deleteFromDb("users", $_POST['userID']);
+    $globalDbHandler->deleteFromDb($_POST['userID'], "users");
   }
 }
 
