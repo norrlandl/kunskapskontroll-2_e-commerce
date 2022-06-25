@@ -251,4 +251,20 @@ class OrderdbHandler
         $stmt->bindParam(':billing_country',      $country);
         $stmt->execute();
     }
+
+    public function createOrderDetails($orderId, $productId, $title, $qty, $price)
+    {
+        $sql = "
+        INSERT INTO order_items (order_id, product_id, product_title, quantity, unit_price)
+        VALUES (:order_id, :product_id, :product_title, :quantity, :unit_price);
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':order_id',       $orderId);
+        $stmt->bindValue(':product_id',     $productId);
+        $stmt->bindValue(':product_title',  $title);
+        $stmt->bindValue(':quantity',       $qty);
+        $stmt->bindValue(':unit_price',     $price);
+        $stmt->execute();
+    }
 }

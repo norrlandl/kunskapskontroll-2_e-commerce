@@ -69,6 +69,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               </td>
               <td>
                 <!-- UPDATE -->
+                <!-- Hur skall denna fungera är det tänkt? -->
                 <form id="update-cart-form" action="update-cart-item.php" method="POST">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
@@ -79,7 +80,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               </td>
               <td>
                 <!-- DELETE -->
-                <form action="delete-cart-item.php" method="POST">
+                <form action="./cart/delete-cart-item.php" method="POST">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <button type="submit" class="btn btn-outline-danger" value="">Ta bort
                   </button>
