@@ -216,20 +216,16 @@ $message = "";
       <? } ?>
 
 
+      <? if (!isset($_SESSION['email'])) { ?>
+        <p><i>Ett nytt konto skapas vid genomförande av köp</i></p>
+      <? } ?>
       <div class="form-group">
         <div class="form-check">
-          <? if (!isset($_SESSION['email'])) { ?>
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Jag vill INTE skapa <a href="#">ett konto</a>
-            </label>
-            <br>
-          <? } ?>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="gridCheck">
           <label class="form-check-label" for="gridCheck">
-            Bekräfta köpvillkoren
+            Bekräfta villkoren
           </label>
         </div>
       </div>
