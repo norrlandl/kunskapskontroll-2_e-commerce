@@ -1,3 +1,5 @@
+// AJAX 1
+
 let productsArray = [];
 
 const searchInput = document.getElementById("searchInput");
@@ -7,7 +9,7 @@ searchInput.addEventListener("focus", async (event) => {
 
   try {
     const response = await fetch(
-      "/kunskapskontroll-2_e-commerce/public/data/queryProducts.php"
+      "/kunskapskontroll-2_e-commerce/public/API/queryProducts.php"
     );
 
     const data = await response.json();
@@ -16,11 +18,6 @@ searchInput.addEventListener("focus", async (event) => {
     console.log(error);
   }
 });
-
-// searchInput.addEventListener("blur", (event) => {
-//   document.getElementById("searchResults").innerHTML = "";
-//   searchInput.value = "";
-// });
 
 searchInput.addEventListener("keyup", (event) => {
   const inputText = event.target.value;
