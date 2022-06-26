@@ -201,18 +201,31 @@ $message = "";
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="cart_passord">Lösenord</label>
-          <input type="password" class="form-control" name="password" id="cart_passord">
+      <? if (!isset($_SESSION['email'])) { ?>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="cart_passord">Lösenord</label>
+            <input type="password" class="form-control" name="password" id="cart_passord">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cart_confirm">Bekräfta lösenord</label>
+            <input type="password" class="form-control" name="confirm" id="cart_confirm">
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="cart_confirm">Bekräfta lösenord</label>
-          <input type="password" class="form-control" name="confirm" id="cart_confirm">
-        </div>
-      </div>
+
+      <? } ?>
+
 
       <div class="form-group">
+        <div class="form-check">
+          <? if (!isset($_SESSION['email'])) { ?>
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Jag vill INTE skapa <a href="#">ett konto</a>
+            </label>
+            <br>
+          <? } ?>
+        </div>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="gridCheck">
           <label class="form-check-label" for="gridCheck">
