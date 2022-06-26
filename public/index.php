@@ -1,13 +1,8 @@
 <?php
 require('../src/config.php');
-$pageTitle = "Products";
+$pageTitle = "Våra produkter";
 
-$sql = "
-    SELECT * 
-    FROM products
-		";
-$stmt = $pdo->query($sql);
-$products = $stmt->fetchAll();
+$products = $globalDbHandler->fetchAllFromDb("products");
 ?>
 
 <?php include('layout/header.php'); ?>

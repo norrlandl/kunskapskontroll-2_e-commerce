@@ -35,7 +35,7 @@
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
               <?php if (isset($_SESSION["email"])) { ?>
-                <span class="log-out-link"><a href="/kunskapskontroll-2_e-commerce/public/user/user.php"><?= $_SESSION['first_name'] ?></a></span>
+                <span class="log-out-link"><a href="/kunskapskontroll-2_e-commerce/public/user/user.php"><?= ucfirst($_SESSION['first_name']) ?></a></span>
               <?php } else { ?>
                 <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">
                   <i class="fa fa-user fa-lg user-icon"></i>
@@ -52,9 +52,6 @@
       <form id="search-form" action="#">
         <div class="input-group search-absolute mb-4 p-1">
           <input id="searchInput" type="search" placeholder="Sök motiv..." aria-describedby="button-addon3" class="form-control bg-none border-0  rounded-pill" autocomplete="off">
-          <!-- <div class="input-group-append border-0">
-            <button id="button-addon3" type="button" class="btn btn-links"><i class="fa fa-search"></i></button>
-          </div> -->
           <div id="searchResults" class="search-results-container"></div>
         </div>
       </form>

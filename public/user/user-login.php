@@ -8,34 +8,36 @@ $email = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-        <div class="alert alert-info">
-            Sidan är inloggningsskyddad. Var snäll och logga in.
-        </div>
+    <div class="alert alert-info">
+       Sidan är inloggningsskyddad. Var snäll och logga in.
+    </div>
     ';
 }
 
 if (isset($_GET['logout'])) {
     $message = '
-            <div class="success_msg">
-                Du är nu utloggad.
-            </div>
+    <div class="success_msg">
+        Du är nu utloggad.
+    </div>
         ';
+}
+
+if (isset($_GET["userDeleted"])) {
+    $_SESSION = [];
+    session_destroy();
+
+    $message = '
+    <div class="success_msg">
+        Du har nu raderat ditt konto.
+    </div>
+    ';
 }
 
 if (isset($_POST['userLogin'])) {
     $email      = trim($_POST['email']);
     $password   = trim($_POST['password']);
 
-    $sql = "
-        SELECT id, first_name, email, password FROM users
-        WHERE email = :email
-        ";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-
-    $user = $stmt->fetch();
+    $user = $userDbHandler->fetchUserByEmail($email);
 
     if ($user && password_verify($password, $user['password'])) {
         //funktion eller klass nedan

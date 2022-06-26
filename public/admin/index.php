@@ -1,4 +1,5 @@
-<?php
+<?
+
 require('../../src/config.php');
 $pageTitle = "Admin";
 include('./layout/header.php');
@@ -7,21 +8,43 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./admin-login.php?mustLogin");
 }
 
-//Hur kan vi skicka id till UserDbHandler?
+/* Products */
+
 if (isset($_POST["deleteProductBTN"])) {
-  $userDbHandler->deleteFromDb("products", $_POST['productID']);
+  $globalDbHandler->deleteFromDb($_POST['productID'], "products");
 }
 
 if (isset($_POST["clearAllproducts"])) {
-  $userDbHandler->clearTableInDb("products");
+  $globalDbHandler->clearTableInDb("products");
 }
 
-$products = $userDbHandler->fetchAllFromDb("products");
+$products = $globalDbHandler->fetchAllFromDb("products");
+
+/* Users */
+
+if (isset($_POST["deleteUserBTN"])) {
+
+  if ($_SESSION['id'] == $_POST['userID']) {
+    $globalDbHandler->deleteFromDb($_POST['userID'], "users");
+    redirect("admin-login.php?userDeleted");
+  } else {
+    $globalDbHandler->deleteFromDb($_POST['userID'], "users");
+  }
+}
+
+if (isset($_POST["clearAllUsers"])) {
+  $globalDbHandler->clearTableInDb("users");
+  redirect("admin-login.php?tableDeleted");
+}
+
+$users = $globalDbHandler->fetchAllFromDb("users");
 
 ?>
 
+<!-- ALL PRODUCTS -->
+
 <div class="wrapper">
-  <h1>Hej, <?= $_SESSION['first_name'] ?>!</h1>
+  <h1>Hej, <?= ucfirst($_SESSION['first_name']) ?>!</h1>
   <h2>Alla produkter</h2>
   <div class="top-buttons">
     <form action="./products/create-new-product.php">
@@ -71,27 +94,8 @@ $products = $userDbHandler->fetchAllFromDb("products");
     </tbody>
   </table>
 
-  <?php
+  <!-- ALL USERS -->
 
-  if (isset($_POST["deleteUserBTN"])) {
-    $sql = "
-      DELETE FROM users
-      WHERE id = :id;
-      ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":id", $_POST['userID']);
-    $stmt->execute();
-  }
-  if (isset($_POST["clearAllUsers"])) {
-    $userDbHandler->clearTableInDb("users");
-  }
-
-  $users = $userDbHandler->fetchAllFromDb("users");
-
-  ?>
-  <br>
-  <br>
-  <br>
   <h2>Alla användare</h2>
   <div class="top-buttons">
     <form action="./users/create-new-user.php">

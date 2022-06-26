@@ -52,12 +52,14 @@ nav a:hover {
 }
 
 .navbar-brand::before {
-  content: "PHOTO";
+  content: "Norway";
+  text-transform: uppercase;
   color: #bdbdbd;
 }
 
 .navbar-brand::after {
-  content: "POSTERS";
+  content: "Poster";
+  text-transform: uppercase;
   color: #bdbdbd;
 }
 

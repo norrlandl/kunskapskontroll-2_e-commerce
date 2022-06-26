@@ -10,31 +10,9 @@ if (!isset($_SESSION['email'])) {
 $error = "";
 $message = "";
 
-/**
- * FETCH ORDERS 
- */
+// Lägg till FETCH ORDERS!
 
-// $sql = "
-//   SELECT * FROM users
-//   WHERE id = :id
-// ";
-
-/**
- * FETCH 
- */
-$sql = "
-    SELECT * FROM users
-    WHERE id = :id
-    ";
-
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_SESSION['id']);
-$stmt->execute();
-$user = $stmt->fetch();
-
-/**
- * UPDATE 
- */
+$user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 if (isset($_POST["updateUser"])) {
 
@@ -105,22 +83,11 @@ if (isset($_POST["updateUser"])) {
   }
 }
 
-/**
- * DELETE 
- */
-
 if (isset($_POST['deleteUser'])) {
-  $sql = "
-   DELETE FROM users 
-   WHERE id = :id";
 
-  $stmt = $pdo->prepare($sql);
-  $stmt->bindParam(":id", $_POST['userID']);
-  $stmt->execute();
-
-  header("Location: user-login.php ");
+  $globalDbHandler->deleteFromDb($_POST['userID'], "users");
+  redirect("Location: user-login.php?userDeleted");
 }
-
 
 ?>
 
@@ -133,7 +100,7 @@ if (isset($_POST['deleteUser'])) {
 <div class="container">
   <div class="row">
     <div class="info">
-      <p><b>Välkommen <?= htmlentities($user['first_name']) ?>!</b></p>
+      <p><b>Välkommen <?= ucfirst($user['first_name']) ?>!</b></p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque.
       </p>
@@ -234,7 +201,9 @@ if (isset($_POST['deleteUser'])) {
       </div> -->
     </div>
 
-    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">Uppdatera</button>
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">
+      Uppdatera
+    </button>
 
   </div>
 

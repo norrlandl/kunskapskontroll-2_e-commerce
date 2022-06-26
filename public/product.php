@@ -7,27 +7,11 @@ $pageTitle = "Product";
 //     exit;
 // }
 
-// echo "<pre>";
-// print_r($_GET);
-// echo "</pre>";
+$product = $globalDbHandler->fetchById($_GET['id'], "products");
 
+// Slider 
 
-$sql = "
-      SELECT * FROM products
-      WHERE id = {$_GET['id']}
-  ";
-
-$stmt = $pdo->prepare($sql);
-// $stmt->bindParam(':id', $_GET['productId']);
-$stmt->execute();
-$product = $stmt->fetch();
-
-?>
-
-<?php
-
-$sorted_array = $userDbHandler->fetchAllFromDb("products");
-
+$sorted_array = $globalDbHandler->fetchAllFromDb("products");
 $shuffled_array = array();
 
 $keys = array_keys($sorted_array);
@@ -45,6 +29,7 @@ $filter_marks = array_filter(
 );
 
 ?>
+
 
 <?php include('layout/header.php'); ?>
 
@@ -69,11 +54,11 @@ $filter_marks = array_filter(
       </ul>
     </div>
     <div class="product-text">
-      <h5><?= htmlentities($product['title']) ?></h5>
+      <h2><?= htmlentities($product['title']) ?></h2>
       <p><?= htmlentities($product['description']) ?></p>
-      <p class="stock">Lager: <?= htmlentities($product['stock']) ?> st</p>
-
-      <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-block mb-4">LÄGG I VARUKORG</button> -->
+      <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
+      <h4 class="price"><?= htmlentities($product['price']) ?>:-</h4>
+      <br>
       <form action="cart/add-cart-item.php" method="POST">
         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
         <div class="input-group mb-3">
@@ -90,13 +75,9 @@ $filter_marks = array_filter(
         </div>
         <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
       </form>
-      <p class="price"><b><?= htmlentities($product['price']) ?> KR</b></p>
 
     </div>
   </div>
-  <p>
-    <a href="index.php">Back</a>
-  </p>
   <section class="slider-products">
     <div class="slider-title">
       <h1 class="title__main">Du kanske också gillar?</h1>
