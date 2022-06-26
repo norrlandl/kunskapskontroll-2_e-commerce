@@ -14,75 +14,6 @@ $message = "";
 
 $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
-if (isset($_POST["updateUser"])) {
-
-  $firstName = trim($_POST["first_name"]);
-  $lastName = trim($_POST["last_name"]);
-  $email = trim($_POST["email"]);
-  $password = trim($_POST["password"]);
-  $phone = trim($_POST["phone"]);
-  $street = trim($_POST["street"]);
-  $postalCode = trim($_POST["postal_code"]);
-  $city = trim($_POST["city"]);
-  $country = trim($_POST["country"]);
-
-  if (empty($firstName)) {
-    $error .= "Förnamn är obligatoriskt <br>";
-  }
-
-  if (empty($lastName)) {
-    $error .= "Efternamn är obligatoriskt <br>";
-  }
-
-  if (empty($phone)) {
-    $error .= "Mobilnummer är obligatoriskt <br>";
-  }
-
-  if (empty($email)) {
-    $error .= "E-post är obligatoriskt <br>";
-  }
-
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error .= "Ogiltig e-post <br>";
-  }
-
-  if ($error) {
-    $message = "
-      <div>
-          {$error}
-      </div>
-    ";
-  }
-
-  if (empty($password)) {
-    $userDbHandler->updateUser(
-      $_POST['userID'],
-      $firstName,
-      $lastName,
-      $email,
-      $user["password"],
-      $phone,
-      $street,
-      $postalCode,
-      $city,
-      $country
-    );
-  } else {
-    $userDbHandler->updateUser(
-      $_POST['userID'],
-      $firstName,
-      $lastName,
-      $email,
-      $password,
-      $phone,
-      $street,
-      $postalCode,
-      $city,
-      $country
-    );
-  }
-}
-
 if (isset($_POST['deleteUser'])) {
 
   $globalDbHandler->deleteFromDb($_POST['userID'], "users");
@@ -148,63 +79,63 @@ if (isset($_POST['deleteUser'])) {
   <div class="container-small">
     <h4>Mina uppgifter</h4>
 
+    <form action="" id="init-form">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_first_name">Förnamn</label>
+          <input type="text" id="first_name" readonly class="form-control" name="first_name" value="<?= htmlentities($user['first_name']) ?>">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cart_last_name">Efternamn</label>
+          <input type="text" id="last_name" readonly class="form-control" name="last_name" value="<?= htmlentities($user['last_name']) ?>">
+        </div>
+      </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="cart_first_name">Förnamn</label>
-        <input type="text" readonly class="form-control" name="first_name" value="<?= htmlentities($user['first_name']) ?>">
+      <div class="form-group">
+        <label for="cart_street">Adress</label>
+        <input type="text" id="street" readonly class="form-control" name="street" value="<?= htmlentities($user['street']) ?>">
       </div>
-      <div class="form-group col-md-6">
-        <label for="cart_last_name">Efternamn</label>
-        <input type="text" readonly class="form-control" name="last_name" value="<?= htmlentities($user['last_name']) ?>">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_city">Stad</label>
+          <input type="text" id="city" readonly class="form-control" name="city" value="<?= htmlentities($user['city']) ?>">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="cart_postal_code">Zip</label>
+          <input type="text" id="postal_code" readonly class="form-control" name="postal_code" value="<?= htmlentities($user['postal_code']) ?>">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="cart_country">Land</label>
+          <input type="text" id="country" readonly class="form-control" name="country" value="<?= htmlentities($user['country']) ?>">
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="cart_street">Adress</label>
-      <input type="text" readonly class="form-control" name="street" value="<?= htmlentities($user['street']) ?>">
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="cart_city">Stad</label>
-        <input type="text" readonly class="form-control" name="city" value="<?= htmlentities($user['city']) ?>">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_email">E-post</label>
+          <input type="text" id="email" readonly class="form-control" name="email" value="<?= htmlentities($user['email']) ?>">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cart_phone">Telefon</label>
+          <input type="text" id="phone" readonly class="form-control" name="phone" value="<?= htmlentities($user['phone']) ?>">
+        </div>
       </div>
-      <div class="form-group col-md-2">
-        <label for="cart_postal_code">Zip</label>
-        <input type="text" readonly class="form-control" name="postal_code" value="<?= htmlentities($user['postal_code']) ?>">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="cart_country">Land</label>
-        <input type="text" readonly class="form-control" name="country" value="<?= htmlentities($user['country']) ?>">
-      </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="cart_email">E-post</label>
-        <input type="text" readonly class="form-control" name="email" value="<?= htmlentities($user['email']) ?>">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="cart_phone">Telefon</label>
-        <input type="text" readonly class="form-control" name="phone" value="<?= htmlentities($user['phone']) ?>">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="cart_passord">Lösenord</label>
-        <input type="password" readonly class="form-control" name="password" value="***">
-      </div>
-      <!--       <div class="form-group col-md-6">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_passord">Lösenord</label>
+          <input type="password" readonly class="form-control" name="password" value="***">
+        </div>
+        <!--       <div class="form-group col-md-6">
         <label for="cart_confirm">Bekräfta lösenord</label>
         <input type="password" readonly class="form-control" name="confirm" value="***">
       </div> -->
-    </div>
+      </div>
 
-    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">
-      Uppdatera
-    </button>
-
+      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">
+        Uppdatera
+      </button>
+    </form>
   </div>
 
 </div>
@@ -214,8 +145,10 @@ if (isset($_POST['deleteUser'])) {
 <div id="updateModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
   <h4>UPPDATERA - Mina uppgifter</h4>
-
+  <br>
+  <br>
   <div class="modal-dialog modal-lg" role="document">
+
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Uppdatera min uppgifter</h5>
@@ -225,47 +158,50 @@ if (isset($_POST['deleteUser'])) {
       </div>
 
       <div class="modal-body">
-        <form action="" method="POST">
+        <div id="success-message"></div>
+        <div id="error-message"></div>
+        <form id="modal-user-form" action="../data/update-user-logged-in.php" method="POST">
+          <!-- <div id="error-message"></div> -->
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="cart_first_name">Förnamn</label>
-              <input type="text" class="form-control" name="first_name" value="<?= htmlentities($user['first_name']) ?>">
+              <input type="text" class="form-control" id="modal-first-name" name="first_name" value="<?= htmlentities($user['first_name']) ?>">
             </div>
             <div class="form-group col-md-6">
               <label for="cart_last_name">Efternamn</label>
-              <input type="text" class="form-control" name="last_name" value="<?= htmlentities($user['last_name']) ?>">
+              <input type="text" class="form-control" id="modal-last-name" name="last_name" value="<?= htmlentities($user['last_name']) ?>">
             </div>
           </div>
 
           <div class="form-group">
             <label for="cart_street">Adress</label>
-            <input type="text" class="form-control" name="street" value="<?= htmlentities($user['street']) ?>">
+            <input type="text" class="form-control" id="modal-street" name="street" value="<?= htmlentities($user['street']) ?>">
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="cart_city">Stad</label>
-              <input type="text" class="form-control" name="city" value="<?= htmlentities($user['city']) ?>">
+              <input type="text" class="form-control" id="modal-city" name="city" value="<?= htmlentities($user['city']) ?>">
             </div>
             <div class="form-group col-md-2">
               <label for="cart_postal_code">Zip</label>
-              <input type="text" class="form-control" name="postal_code" value="<?= htmlentities($user['postal_code']) ?>">
+              <input type="text" class="form-control" id="modal-postal-code" name="postal_code" value="<?= htmlentities($user['postal_code']) ?>">
             </div>
             <div class="form-group col-md-4">
               <label for="cart_country">Land</label>
-              <input type="text" class="form-control" name="country" value="<?= htmlentities($user['country']) ?>">
+              <input type="text" class="form-control" id="modal-country" name="country" value="<?= htmlentities($user['country']) ?>">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="cart_email">E-post</label>
-              <input type="text" class="form-control" name="email" value="<?= htmlentities($user['email']) ?>">
+              <input type="text" class="form-control" id="modal-email" name="email" value="<?= htmlentities($user['email']) ?>">
             </div>
             <div class="form-group col-md-6">
               <label for="cart_phone">Telefon</label>
-              <input type="text" class="form-control" name="phone" value="<?= htmlentities($user['phone']) ?>">
+              <input type="text" class="form-control" id="modal-phone" name="phone" value="<?= htmlentities($user['phone']) ?>">
             </div>
           </div>
 
@@ -277,7 +213,7 @@ if (isset($_POST['deleteUser'])) {
           </div>
 
           <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
-          <input type="submit" name="updateUser" value="Uppdatera konto" class="btn btn-success">
+          <input type="submit" name="updateUser" id="user-modal-exit" value="Uppdatera konto" class="btn btn-success">
 
           <div class="modal-footer">
             <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger">
@@ -323,6 +259,8 @@ if (isset($_POST['deleteUser'])) {
     modal.find('.modal-body input[name="id"]').val(id);
   })
 </script>
+
+<script src="../js/update-user-logged-in.js"></script>
 
 <!-- Prevent +1(form) on reload page -->
 <script>
