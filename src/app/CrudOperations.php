@@ -1,6 +1,6 @@
 <?php
 
-// Note: ev. optimera en del querys och bara välja specifikt de vi behöver hämta.
+// Note: ev. optimera en del querys och bara välja specifikt det vi behöver hämta.
 
 class GlobalDbHandler
 // Hantera alla globala anrop
@@ -45,14 +45,16 @@ class GlobalDbHandler
 
     public function clearTableInDb($tableName)
     {
-        $sql = " DELETE FROM $tableName ";
+        $sql = "
+        DELETE FROM $tableName
+        ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
 }
 
 class ProductDbHandler
-// Hantera alla anrop till products
+// Hantera alla anrop till products table
 {
     public function __construct($pdo)
     {
@@ -101,7 +103,7 @@ class ProductDbHandler
 }
 
 class UserDbHandler
-// Hantera alla anrop till users
+// Hantera alla anrop till users table
 {
     public function __construct($pdo)
     {
@@ -114,6 +116,7 @@ class UserDbHandler
         SELECT * FROM users
         WHERE id = :id
         ";
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -225,7 +228,7 @@ class UserDbHandler
 
 
 class OrderdbHandler
-// Hantera alla anrop till order och order_items
+// Hantera alla anrop till order och order_items tables
 {
     public function __construct($pdo)
     {

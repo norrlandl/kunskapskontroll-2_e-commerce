@@ -44,7 +44,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
 <!-- ALL PRODUCTS -->
 
 <div class="wrapper">
-  <h1>Hej, <?= $_SESSION['first_name'] ?>!</h1>
+  <h1>Hej, <?= ucfirst($_SESSION['first_name']) ?>!</h1>
   <h2>Alla produkter</h2>
   <div class="top-buttons">
     <form action="./products/create-new-product.php">

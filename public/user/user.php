@@ -100,7 +100,7 @@ if (isset($_POST['deleteUser'])) {
 <div class="container">
   <div class="row">
     <div class="info">
-      <p><b>Välkommen <?= htmlentities($user['first_name']) ?>!</b></p>
+      <p><b>Välkommen <?= ucfirst($user['first_name']) ?>!</b></p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque.
       </p>
