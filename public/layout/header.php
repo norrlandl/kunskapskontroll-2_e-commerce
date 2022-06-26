@@ -14,7 +14,7 @@
 
     <div class="admin-container">
       <span>
-        <i>Fri frakt över 599kr!</i>
+        Fri frakt över 599kr!
       </span>
       <div class="admin-nav">
         <a href="/kunskapskontroll-2_e-commerce/public/admin/index.php">Admin</a>

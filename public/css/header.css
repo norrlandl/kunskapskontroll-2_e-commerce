@@ -6,11 +6,11 @@
   background-color: white;
   color: gray;
   padding: 0 2rem;
- 
 }
 
 .admin-container span {
   color: #4a4a4a;
+  font-weight: lighter;
 }
 
 .search-bar {
