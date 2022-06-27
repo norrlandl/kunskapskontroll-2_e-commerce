@@ -70,7 +70,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               <td>
                 <!-- UPDATE -->
                 <!-- Hur skall denna fungera är det tänkt? -->
-                <form id="update-cart-form" action="update-cart-item.php" method="POST">
+                <form id="update-cart-form" action="/kunskapskontroll-2_e-commerce/public/cart/update-cart-item.php" method="POST">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
                 </form>
@@ -80,7 +80,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               </td>
               <td>
                 <!-- DELETE -->
-                <form action="./cart/delete-cart-item.php" method="POST">
+                <form action="/kunskapskontroll-2_e-commerce/public/cart/delete-cart-item.php" method="POST">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <button type="submit" class="btn btn-outline-danger" value="">Ta bort
                   </button>
@@ -115,7 +115,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
         </tr>
         <tr>
           <td colspan="5">
-            <form action="cart/checkout.php" method="">
+            <form action="/kunskapskontroll-2_e-commerce/public/cart/checkout.php" method="">
               <button class="btn btn-primary btn-block mb-4">KASSAN</button>
             </form>
           </td>
