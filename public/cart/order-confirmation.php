@@ -78,12 +78,12 @@ unset($_SESSION['cartItems'])
         <td></td>
         <td></td>
         <td></td>
-        <td>
-          <!-- <p>Antal: <?= $cartTotalItems  ?></p> -->
-        </td>
-        <td colspan="2">
-          <p>Totalsumma: <?= $totalSum ?>kr</p>
-        </td>
+        <th>
+          <p>Totalsumma:</p>
+        </th>
+        <th>
+          <p><?= $totalSum ?>kr</p>
+        </th>
       </tr>
     </tfoot>
     </table>
