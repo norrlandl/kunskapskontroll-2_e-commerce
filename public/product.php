@@ -86,12 +86,12 @@ $filter_marks = array_filter(
     <br>
     <div class="slider-gallery">
       <div class="slider-container">
-        <?php foreach ($filter_marks as $item) : ?>
+        <?php foreach ($filter_marks as $item) { ?>
           <div class="panel">
             <h3><?= $item["title"] ?></h3>
             <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
           </div>
-        <?php endforeach; ?>
+        <?php } ?>
       </div>
     </div>
   </section>
