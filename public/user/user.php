@@ -10,21 +10,6 @@ if (!isset($_SESSION['email'])) {
 $error = "";
 $message = "";
 
-// Lägg till FETCH ORDERS!
-
-// $sql = "
-// SELECT * FROM users
-// WHERE id = :id
-// ";
-
-// $stmt = $pdo->prepare($sql);
-// $stmt->bindParam(':id', $id);
-// $stmt->execute();
-// $test = $stmt->fetch();
-
-
-
-
 
 $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
@@ -33,6 +18,14 @@ if (isset($_POST['deleteUser'])) {
   $globalDbHandler->deleteFromDb($user["id"], "users");
   redirect("user-login.php?userDeleted");
 }
+
+
+// Lägg till FETCH ORDERS!
+
+$userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "users");
+
+debug($userOrders);
+debug($user);
 
 ?>
 
@@ -56,6 +49,7 @@ if (isset($_POST['deleteUser'])) {
     <h4>Tidigare ordrar</h4>
     <table class="table table-user">
 
+
       <thead>
         <tr>
           <th scope="col">Ordernummner</th>
@@ -65,18 +59,18 @@ if (isset($_POST['deleteUser'])) {
       </thead>
 
       <tbody>
-
+        <!-- <?php foreach ($userOrders as $orders) { ?> -->
         <tr>
-          <th scope="row">#1</th>
+          <th scope="row">#<?= $orders['order_id'] ?></th>
           <td colspan="3">
-            <p>2022-02-02<?= $user['city'] ?></p>
+            <p><?= $orders['create_date'] ?></p>
           </td>
           <td>
             <button class="btn btn-outline-info">Se detaljer</button>
           </td>
         </tr>
       </tbody>
-
+      <!-- <?php } ?> -->
 
 
       <tfoot>

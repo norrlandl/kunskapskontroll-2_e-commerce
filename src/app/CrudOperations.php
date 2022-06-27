@@ -32,6 +32,22 @@ class GlobalDbHandler
         return $stmt->fetch();
     }
 
+    public function fetchByOrders($id, $tableName)
+    {
+        $sql = "
+        SELECT * FROM $tableName
+        JOIN orders
+        ON users.id = orders.user_id
+        JOIN order_items
+        ON order_items.order_id = orders.id;
+
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        // $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function deleteFromDb($id, $tableName)
     {
         $sql = "
