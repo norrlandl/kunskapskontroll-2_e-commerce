@@ -217,7 +217,7 @@ if (isset($_POST['deleteUser'])) {
           <form action="" method="POST">
             <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
             <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Gå tillbaka</button>
+            <button type="button" id="modal-close-btn" class="btn btn-secondary" data-dismiss="modal">Gå tillbaka</button>
         </div>
         </form>
       </div>
@@ -255,8 +255,11 @@ if (isset($_POST['deleteUser'])) {
     modal.find('.modal-body input[name="confirm"]').val(confirm);
     modal.find('.modal-body input[name="id"]').val(id);
   })
-</script>
 
+  function closeModalOnSucess() {
+    $('#updateModal').modal('hide');
+  }
+</script>
 <script src="../js/update-user-logged-in.js"></script>
 
 <!-- Prevent +1(form) on reload page -->
