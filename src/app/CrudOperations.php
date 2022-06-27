@@ -138,12 +138,12 @@ class UserDbHandler
     }
 
     public function addUserToDb(
-        $firstName,
-        $lastName,
+        $first_name,
+        $last_name,
         $email,
         $phone,
         $street,
-        $postalCode,
+        $postal_code,
         $city,
         $country,
         $password,
@@ -159,24 +159,24 @@ class UserDbHandler
         $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(":first_name", $firstName);
-        $stmt->bindParam(":last_name", $lastName);
+        $stmt->bindParam(":first_name", $first_name);
+        $stmt->bindParam(":last_name", $last_name);
         $stmt->bindParam(":email", $email);
         $stmt->bindParam(":password", $encryptedPassword);
         $stmt->bindParam(":phone", $phone);
         $stmt->bindParam(":street", $street);
-        $stmt->bindParam(":postal_code", $postalCode);
+        $stmt->bindParam(":postal_code", $postal_code);
         $stmt->bindParam(":city", $city);
         $stmt->bindParam(":country", $country);
         $stmt->execute();
 
-        $firstName = "";
-        $lastName = "";
+        $first_name = "";
+        $last_name = "";
         $email = "";
         $password = "";
         $phone = "";
         $street = "";
-        $postalCode = "";
+        $postal_code = "";
         $city = "";
         $country = "";
     }

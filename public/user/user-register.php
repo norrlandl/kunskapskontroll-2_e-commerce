@@ -24,6 +24,7 @@ $country = "";
 $phone = "";
 $email = "";
 $password = "";
+$confirm_password = "";
 
 if (isset($_POST['createUser'])) {
   $first_name   = trim($_POST['first_name']);
@@ -35,10 +36,10 @@ if (isset($_POST['createUser'])) {
   $phone        = trim($_POST['phone']);
   $email        = trim($_POST['email']);
   $password     = trim($_POST['password']);
-  $confirm      = trim($_POST['confirm']);
+  $confirm      = trim($_POST['confirm_password']);
 
 
-  if (trim($_POST["password"]) !== trim($_POST["confirm"])) {
+  if (trim($_POST["password"]) !== trim($_POST["confirm_password"])) {
     $message = '
         <div>
             Confirmed password incorrect!
@@ -178,7 +179,7 @@ if (isset($_POST['createUser'])) {
         </div>
         <div class="form-group col-md-6">
           <label for="cart_confirm">Bekräfta lösenord</label>
-          <input type="password" id="confirmPassword" class="form-control" name="confirm">
+          <input type="password" id="confirm_password" class="form-control" name="confirm_password">
         </div>
       </div>
 
