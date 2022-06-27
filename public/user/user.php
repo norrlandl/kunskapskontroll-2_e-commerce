@@ -16,8 +16,8 @@ $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 if (isset($_POST['deleteUser'])) {
 
-  $globalDbHandler->deleteFromDb($_POST['userID'], "users");
-  redirect("Location: user-login.php?userDeleted");
+  $globalDbHandler->deleteFromDb($user["id"], "users");
+  redirect("user-login.php?userDeleted");
 }
 
 ?>
@@ -157,7 +157,7 @@ if (isset($_POST['deleteUser'])) {
       <div class="modal-body">
         <div id="success-message"></div>
         <div id="error-message"></div>
-        <form id="modal-user-form" action="../data/update-user-logged-in.php" method="POST">
+        <form id="modal-user-form" action="../API/update-user-logged-in.php" method="POST">
           <!-- <div id="error-message"></div> -->
 
           <div class="form-row">
@@ -212,15 +212,15 @@ if (isset($_POST['deleteUser'])) {
           <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
           <input type="submit" name="updateUser" id="user-modal-exit" value="Uppdatera konto" class="btn btn-success">
 
-          <div class="modal-footer">
+        </form>
+        <div class="modal-footer">
+          <form action="" method="POST">
+            <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
             <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-
+            <button type="button" id="modal-close-btn" class="btn btn-secondary" data-dismiss="modal">Gå tillbaka</button>
+        </div>
         </form>
       </div>
-
-
     </div>
   </div>
 </div>
@@ -255,8 +255,11 @@ if (isset($_POST['deleteUser'])) {
     modal.find('.modal-body input[name="confirm"]').val(confirm);
     modal.find('.modal-body input[name="id"]').val(id);
   })
-</script>
 
+  function closeModalOnSucess() {
+    $('#updateModal').modal('hide');
+  }
+</script>
 <script src="../js/update-user-logged-in.js"></script>
 
 <!-- Prevent +1(form) on reload page -->

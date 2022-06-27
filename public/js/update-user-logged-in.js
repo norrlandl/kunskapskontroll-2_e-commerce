@@ -18,13 +18,14 @@ async function updateUserModal (e) {
 
     let errMsg = data["error"];
 
+    // Saving old inputs in an object
     let inputs = document.querySelectorAll("#init-form input"); 
     let initFormInputs = {};
     
     for (let i = 0; i < inputs.length; i++) {
       initFormInputs[inputs[i].id] = inputs[i].value;
     }
-    console.log(initFormInputs);
+ 
 
     if(data["error"] == 0) {
       document.querySelector("#error-message").innerHTML = "";
@@ -38,7 +39,7 @@ async function updateUserModal (e) {
       document.querySelector("#email").value = data["email"];
       document.querySelector("#phone").value = data["phone"];
 
-      document.querySelector("#success-message").innerHTML = `<p class="alert alert-success">Lyckad uppdatering</p>`;
+      closeModalOnSucess();
 
     } else {
       document.querySelector("#success-message").innerHTML = "";
