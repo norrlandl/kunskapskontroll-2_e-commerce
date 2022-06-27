@@ -22,10 +22,10 @@ if (isset($_POST['deleteUser'])) {
 
 // Lägg till FETCH ORDERS!
 
-$userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "users");
+$userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
+debug($_SESSION['id']);
 debug($userOrders);
-debug($user);
 
 ?>
 
@@ -59,9 +59,9 @@ debug($user);
       </thead>
 
       <tbody>
-        <!-- <?php foreach ($userOrders as $orders) { ?> -->
+        <?php foreach ($userOrders as $orders) { ?>
         <tr>
-          <th scope="row">#<?= $orders['order_id'] ?></th>
+          <th scope="row">#<?= $orders['id'] ?></th>
           <td colspan="3">
             <p><?= $orders['create_date'] ?></p>
           </td>
@@ -69,8 +69,8 @@ debug($user);
             <button class="btn btn-outline-info">Se detaljer</button>
           </td>
         </tr>
+        <?php } ?>
       </tbody>
-      <!-- <?php } ?> -->
 
 
       <tfoot>
