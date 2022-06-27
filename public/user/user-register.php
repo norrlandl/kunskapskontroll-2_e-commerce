@@ -5,9 +5,6 @@ $pageId    = "user-register";
 // checkLoginSession();
 
 
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
 
 /**
  * Create user
@@ -126,59 +123,59 @@ if (isset($_POST['createUser'])) {
       </p>
     </div>
   </div>
-
+  <h4>Registrera</h4>
   <div class="container-small">
     <form action="" method="POST" class="fm-control">
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="cart_first_name">Förnamn</label>
+          <label for="first_name">Förnamn</label>
           <input type="text" id="first_name" class="form-control" name="first_name" value="<?= htmlentities($first_name) ?>">
         </div>
         <div class="form-group col-md-6">
-          <label for="cart_last_name">Efternamn</label>
+          <label for="last_name">Efternamn</label>
           <input type="text" id="last_name" class="form-control" name="last_name" value="<?= htmlentities($last_name) ?>">
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cart_street">Adress</label>
+        <label for="street">Adress</label>
         <input type="text" id="street" class="form-control" name="street" value="<?= htmlentities($street) ?>">
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="cart_city">Stad</label>
+          <label for="city">Stad</label>
           <input type="text" id="city" class="form-control" name="city" value="<?= htmlentities($city) ?>">
         </div>
         <div class="form-group col-md-2">
-          <label for="cart_postal_code">Zip</label>
+          <label for="postal_code">Zip</label>
           <input type="text" id="postal_code" class="form-control" name="postal_code" value="<?= htmlentities($postal_code) ?>">
         </div>
         <div class="form-group col-md-4">
-          <label for="cart_country">Land</label>
+          <label for="country">Land</label>
           <input type="text" id="country" class="form-control" name="country" value="<?= htmlentities($country) ?>">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="cart_email">E-post</label>
+          <label for="email">E-post</label>
           <input type="text" id="email" class="form-control" name="email" value="<?= htmlentities($email) ?>">
         </div>
         <div class="form-group col-md-6">
-          <label for="cart_phone">Telefon</label>
+          <label for="phone">Telefon</label>
           <input type="text" id="phone" class="form-control" name="phone" value="<?= htmlentities($phone) ?>">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="cart_passord">Lösenord</label>
+          <label for="passord">Lösenord</label>
           <input type="password" id="password" class="form-control" name="password">
         </div>
         <div class="form-group col-md-6">
-          <label for="cart_confirm">Bekräfta lösenord</label>
+          <label for="confirm">Bekräfta lösenord</label>
           <input type="password" id="confirm_password" class="form-control" name="confirm_password">
         </div>
       </div>
