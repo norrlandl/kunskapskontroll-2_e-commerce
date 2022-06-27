@@ -1,12 +1,3 @@
-<!--  cart.php är inkluderat i checkout.php
-
-Så dessa variablar fungerar även i checkout.php:
-$cartTotalSum 
-$cartTotalItems 
-
--->
-
-
 <?php
 require('../../src/config.php');
 
