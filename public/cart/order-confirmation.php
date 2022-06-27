@@ -23,7 +23,7 @@ unset($_SESSION['cartItems'])
     <div class="info">
       <p><b>Din order har genomförts!</b></p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <p>För att se orderdetaljer gå till <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">mina sidor</a>.
       </p>
     </div>
   </div>
@@ -31,11 +31,11 @@ unset($_SESSION['cartItems'])
 
   <div class="container-small">
     <h4>Order #3</h4>
-    <table class="table table-hover table-checkout">
+    <table class="table table-checkout">
 
       <thead>
         <tr>
-          <th scope="col" width="140"></th>
+          <th scope="col" width="120"></th>
           <th scope="col" width="300" colspan="2">Poster</th>
           <!-- <th scope="col"></th> -->
           <th scope="col">Antal</th>
@@ -46,19 +46,17 @@ unset($_SESSION['cartItems'])
 
       <tbody>
 
-
-
         <?php foreach ($cartItems as $item) : ?>
 
           <tr>
             <td>
-              <!-- <div class="checkout-img">
+              <div class="confirmation-img">
                 <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $item['img_url'] ?>">
-              </div> -->
+              </div>
             </td>
-            <td colspan="2">
+            <th scope="row" colspan="2">
               <p><?= $item['title'] ?></p>
-            </td>
+            </th>
             <!-- <td>
               <p><?= $item['price'] ?></p>
             </td> -->

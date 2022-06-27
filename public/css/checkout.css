@@ -16,6 +16,12 @@
   height: 120px;
 }
 
+.confirmation-img img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
+
 .table-checkout  thead td,
 .table-checkout  thead th
  {
