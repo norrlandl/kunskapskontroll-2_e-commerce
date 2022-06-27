@@ -12,6 +12,20 @@ $message = "";
 
 // Lägg till FETCH ORDERS!
 
+$sql = "
+SELECT * FROM users
+WHERE id = :id
+";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$test = $stmt->fetch();
+
+
+
+
+
 $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 if (isset($_POST['deleteUser'])) {
@@ -55,7 +69,7 @@ if (isset($_POST['deleteUser'])) {
         <tr>
           <th scope="row">#1</th>
           <td colspan="3">
-            <p>2022-02-02</p>
+            <p>2022-02-02<?= $user['city'] ?></p>
           </td>
           <td>
             <button class="btn btn-outline-info">Se detaljer</button>
