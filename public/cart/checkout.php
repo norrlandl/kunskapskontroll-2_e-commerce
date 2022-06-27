@@ -126,7 +126,7 @@ $message = "";
   <div class="container-small">
     <h4>Fakturaadress</h4>
 
-    <?
+    <?php
     if (isset($_SESSION['email'])) {
       $user = $userDbHandler->fetchUserByEmail($_SESSION['email']);
       // debug($user);
@@ -142,13 +142,13 @@ $message = "";
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="cart_first_name">Förnamn</label>
-          <input type="text" class="form-control" name="first_name" id="cart_first_name" value="<? if (isset($_SESSION['email'])) {
+          <input type="text" class="form-control" name="first_name" id="cart_first_name" value="<?php if (isset($_SESSION['email'])) {
                                                                                                   echo htmlentities($user["first_name"]);
                                                                                                 } ?>">
         </div>
         <div class="form-group col-md-6">
           <label for="cart_last_name">Efternamn</label>
-          <input type="text" class="form-control" name="last_name" id="cart_last_name" value="<? if (isset($_SESSION['email'])) {
+          <input type="text" class="form-control" name="last_name" id="cart_last_name" value="<?php if (isset($_SESSION['email'])) {
                                                                                                 echo htmlentities($user["last_name"]);
                                                                                               } ?>">
         </div>
@@ -156,26 +156,26 @@ $message = "";
 
       <div class="form-group">
         <label for="cart_street">Adress</label>
-        <input type="text" class="form-control" name="street" id="cart_street" value="<? if (isset($_SESSION['email'])) {
+        <input type="text" class="form-control" name="street" id="cart_street" value="<?php if (isset($_SESSION['email'])) {
                                                                                         echo htmlentities($user["street"]);
                                                                                       } ?>">
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="cart_city">Stad</label>
-          <input type="text" class="form-control" name="city" id="cart_city" value="<? if (isset($_SESSION['email'])) {
+          <input type="text" class="form-control" name="city" id="cart_city" value="<?php if (isset($_SESSION['email'])) {
                                                                                       echo htmlentities($user["city"]);
                                                                                     } ?>">
         </div>
         <div class="form-group col-md-2">
           <label for="cart_postal_code">Zip</label>
-          <input type="text" class="form-control" name="postal_code" id="cart_postal_code" value="<? if (isset($_SESSION['email'])) {
+          <input type="text" class="form-control" name="postal_code" id="cart_postal_code" value="<?php if (isset($_SESSION['email'])) {
                                                                                                     echo htmlentities($user["postal_code"]);
                                                                                                   } ?>">
         </div>
         <div class="form-group col-md-4">
           <label for="cart_country">Land</label>
-          <select id="cart_country" class="form-control" name="country" value="<? if (isset($_SESSION['email'])) {
+          <select id="cart_country" class="form-control" name="country" value="<?php if (isset($_SESSION['email'])) {
                                                                                   echo htmlentities($user["country"]);
                                                                                 } ?>">
             <option selected>Sverige</option>
@@ -189,19 +189,19 @@ $message = "";
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="cart_email">E-post</label>
-          <input type="text" class="form-control" name="email" id="cart_email" value="<? if (isset($_SESSION['email'])) {
+          <input type="text" class="form-control" name="email" id="cart_email" value="<?php if (isset($_SESSION['email'])) {
                                                                                         echo htmlentities($user["email"]);
                                                                                       } ?>">
         </div>
         <div class="form-group col-md-6">
           <label for="cart_phone">Telefon</label>
-          <input type="text" class="form-control" name="phone" id="cart_phone" value="<? if (isset($_SESSION['email'])) {
+          <input type="text" class="form-control" name="phone" id="cart_phone" value="<?php if (isset($_SESSION['email'])) {
                                                                                         echo htmlentities($user["phone"]);
                                                                                       } ?>">
         </div>
       </div>
 
-      <? if (!isset($_SESSION['email'])) { ?>
+      <?php if (!isset($_SESSION['email'])) { ?>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="cart_passord">Lösenord</label>
@@ -213,12 +213,12 @@ $message = "";
           </div>
         </div>
 
-      <? } ?>
+      <?php } ?>
 
 
-      <? if (!isset($_SESSION['email'])) { ?>
+      <?php if (!isset($_SESSION['email'])) { ?>
         <p><i>Ett nytt konto skapas vid genomförande av köp</i></p>
-      <? } ?>
+      <?php } ?>
       <div class="form-group">
         <div class="form-check">
         </div>
