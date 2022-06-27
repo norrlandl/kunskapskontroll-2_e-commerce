@@ -12,15 +12,15 @@ $message = "";
 
 // Lägg till FETCH ORDERS!
 
-$sql = "
-SELECT * FROM users
-WHERE id = :id
-";
+// $sql = "
+// SELECT * FROM users
+// WHERE id = :id
+// ";
 
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $id);
-$stmt->execute();
-$test = $stmt->fetch();
+// $stmt = $pdo->prepare($sql);
+// $stmt->bindParam(':id', $id);
+// $stmt->execute();
+// $test = $stmt->fetch();
 
 
 
