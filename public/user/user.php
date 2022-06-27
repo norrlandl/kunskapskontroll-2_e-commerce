@@ -24,9 +24,6 @@ if (isset($_POST['deleteUser'])) {
 
 $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
-debug($_SESSION['id']);
-debug($userOrders);
-
 ?>
 
 <?php include('../layout/header.php'); ?>
@@ -53,6 +50,7 @@ debug($userOrders);
       <thead>
         <tr>
           <th scope="col">Ordernummner</th>
+          <th scope="col">Total summa</th>
           <th scope="col" colspan="3">Datum</th>
           <th scope="col">Mer</th>
         </tr>
@@ -61,7 +59,8 @@ debug($userOrders);
       <tbody>
         <?php foreach ($userOrders as $orders) { ?>
         <tr>
-          <th scope="row">#<?= $orders['id'] ?></th>
+          <td scope="row">#<?= $orders['id'] ?></td>
+          <td scope="row"><?= $orders['total_price'] ?> kr</td>
           <td colspan="3">
             <p><?= $orders['create_date'] ?></p>
           </td>
