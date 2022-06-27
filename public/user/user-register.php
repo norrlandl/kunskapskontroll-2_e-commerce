@@ -115,24 +115,78 @@ if (isset($_POST['createUser'])) {
 
 <?php include('../layout/header.php'); ?>
 
-<main class="main-login-page">
-  <div class="page-wrapper-login">
-    <h2>Registrera konto</h2>
-    <?= $message ?>
-    <br><br>
+<div class="container">
+
+  <div class="row">
+    <div class="info">
+      <p><b>REGISTRERA KONTO!</b></p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque.
+      </p>
+    </div>
+  </div>
+
+  <div class="container-small">
     <form action="" method="POST" class="fm-control">
-      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Förnamn" value="<?= htmlentities($first_name) ?>"><br>
-      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Efternamn" value="<?= htmlentities($last_name) ?>"><br>
-      <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?= htmlentities($email) ?>"><br>
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefon" value="<?= htmlentities($phone) ?>"><br>
-      <input type="text" class="form-control" id="street" name="street" placeholder="Address" value="<?= htmlentities($street) ?>"><br>
-      <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="Postkod" value="<?= htmlentities($postal_code) ?>"><br>
-      <input type="text" class="form-control" id="city" name="city" placeholder="Stad" value="<?= htmlentities($city) ?>"><br>
-      <input type="text" class="form-control" id="country" name="country" placeholder="Land" value="<?= htmlentities($country) ?>"><br>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Lösenord"><br>
-      <input type="password" class="form-control" id="confirmPassword" name="confirm" placeholder="Bekräfta lösenord"><br>
-      <input type="submit" name="createUser" class="btn btn-outline-success" value="Registrera konto"><br>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_first_name">Förnamn</label>
+          <input type="text" id="first_name" class="form-control" name="first_name" value="<?= htmlentities($first_name) ?>">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cart_last_name">Efternamn</label>
+          <input type="text" id="last_name" class="form-control" name="last_name" value="<?= htmlentities($last_name) ?>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cart_street">Adress</label>
+        <input type="text" id="street" class="form-control" name="street" value="<?= htmlentities($street) ?>">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_city">Stad</label>
+          <input type="text" id="city" class="form-control" name="city" value="<?= htmlentities($city) ?>">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="cart_postal_code">Zip</label>
+          <input type="text" id="postal_code" class="form-control" name="postal_code" value="<?= htmlentities($postal_code) ?>">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="cart_country">Land</label>
+          <input type="text" id="country" class="form-control" name="country" value="<?= htmlentities($country) ?>">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_email">E-post</label>
+          <input type="text" id="email" class="form-control" name="email" value="<?= htmlentities($email) ?>">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cart_phone">Telefon</label>
+          <input type="text" id="phone" class="form-control" name="phone" value="<?= htmlentities($phone) ?>">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cart_passord">Lösenord</label>
+          <input type="password" id="password" class="form-control" name="password">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cart_confirm">Bekräfta lösenord</label>
+          <input type="password" id="confirmPassword" class="form-control" name="confirm">
+        </div>
+      </div>
+
+      <input type="submit" name="createUser" class="btn btn-outline-success" value="Registrera konto">
+
     </form>
   </div>
-</main>
+</div>
+
+
 <?php include('../layout/footer.php'); ?>
