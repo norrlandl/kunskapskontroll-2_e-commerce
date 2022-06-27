@@ -32,6 +32,12 @@
   background-color: #232323;
 }
 
+.navbar {
+  position: fixed;
+  width: 100vw;
+  z-index: 2;
+}
+
 .admin-nav {
   display: flex;
   min-height: 4vh;
@@ -85,7 +91,7 @@ nav a:hover {
   z-index: 1;
 }
 
-#search-form input[type=search] {
+#search-form input[type="search"] {
   font-weight: lighter;
   padding-left: 1.5rem;
 }
