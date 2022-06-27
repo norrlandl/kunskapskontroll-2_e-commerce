@@ -143,9 +143,6 @@ if (isset($_POST['deleteUser'])) {
 
 <!-- MODAL -->
 <div id="updateModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-
-  <h4>UPPDATERA - Mina uppgifter</h4>
-  <br>
   <br>
   <div class="modal-dialog modal-lg" role="document">
 
