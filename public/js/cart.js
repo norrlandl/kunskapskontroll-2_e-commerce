@@ -44,8 +44,6 @@ buyButtonElements.forEach((element) => {
     const price = data.get("price");
     const description = data.get("description");
 
-    console.log(productId, quantity);
-
     try {
       fetch(
         `/kunskapskontroll-2_e-commerce/public/cart/add-cart-item.php?productId=${productId}&quantity=${quantity}`,
@@ -101,7 +99,6 @@ buyButtonElements.forEach((element) => {
           `.total-price-${productId}`
         );
 
-        console.log(elementQty.value, quantity);
         elementQty.value = parseInt(elementQty.value) + parseInt(quantity);
         elementTotalPrice.innerHTML = `${elementQty.value * price}kr`;
       }
