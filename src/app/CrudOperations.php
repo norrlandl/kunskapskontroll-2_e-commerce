@@ -64,14 +64,17 @@ class GlobalDbHandler
         $stmt->execute();
     }
 
-    // FLYTTAS TILL UserDbHandler
+    // FLYTTAS TILL OrderdbHandler
 
     public function getOrder($id, $tableName)
     {
         $sql = "
         SELECT * FROM $tableName
+        JOIN orders 
+        ON $tableName.order_id = orders.id
         WHERE order_id = :id;
-    
+
+
         ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
