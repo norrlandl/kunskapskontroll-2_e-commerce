@@ -61,7 +61,11 @@ $filter_marks = array_filter(
       </div>
       <div class="product-text-2">
         <form class="buy-button">
-          <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+          <input type="hidden" name="title" value="<?= $product['title'] ?>">
+          <input type="hidden" name="price" value="<?= $product['price'] ?>">
+          <input type="hidden" name="description" value="<?= preg_replace('/\s+?(\S+)?$/', '', substr($product['description'], 0, 55)) ?>">
+          <input type="hidden" name="img" value="/kunskapskontroll-2_e-commerce/public/img/<?= $product['img_url'] ?>">
           <div class="input-group mb-3">
             <select class="custom-select" id="quantity" name="quantity">
 
