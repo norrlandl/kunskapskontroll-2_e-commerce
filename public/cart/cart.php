@@ -70,7 +70,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               <td>
                 <!-- UPDATE -->
                 <!-- Hur skall denna fungera är det tänkt? -->
-                <form id="update-cart-form" action="/kunskapskontroll-2_e-commerce/public/cart/update-cart-item.php" method="POST">
+                <form id="update-cart-form" class="updateCart">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
                 </form>

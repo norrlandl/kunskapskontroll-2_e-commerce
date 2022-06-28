@@ -61,5 +61,5 @@ $products = $globalDbHandler->fetchAllFromDb("products");
     <?php } ?>
   </div>
 </div>
-
+<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
 <?php include('layout/footer.php'); ?>

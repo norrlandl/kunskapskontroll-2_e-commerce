@@ -74,7 +74,7 @@ $message = "";
             </td>
             <td>
               <!-- UPDATE -->
-              <form id="update-cart-form" action="update-cart-item.php" method="POST">
+              <form class="updateCart" id="update-cart-form">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
                 <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
               </form>
@@ -224,8 +224,8 @@ $message = "";
     </form>
   </div>
 </div>
-
 <?php include('../layout/footer.php'); ?>
+<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
 
 
 <!-- skickar formuläret när man ändra kvantitet -->
@@ -237,8 +237,8 @@ $message = "";
   });
 </script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $('#update-cart-form input[name="quantity"]').on('change', function() {
     $(this).parent().submit();
   });
-</script>
+</script> -->

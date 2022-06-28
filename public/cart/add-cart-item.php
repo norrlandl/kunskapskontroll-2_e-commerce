@@ -1,12 +1,6 @@
 <?php
 require('../../src/config.php');
 
-
-// echo "<pre>";
-// print_r($_POST);
-// echo "<pre>";
-
-
 if (!empty($_POST['quantity'])) {
 
   $productId  = (int) $_POST['productId'];
@@ -35,11 +29,6 @@ if (!empty($_POST['quantity'])) {
         $_SESSION['cartItems'] += $cartItem;
       }
     }
-
-    // echo "<pre>";
-    // print_r($cartItem)      // kolla om det funkar att lägga till flera saker i varukorgen
-    // echo "<pre>";
-
   }
 }
 
@@ -48,9 +37,3 @@ if (!empty($_POST['quantity'])) {
 if (!empty($_SERVER['HTTP_REFERER'])) {
   header("Location: " . $_SERVER['HTTP_REFERER']);
 } 
-// else
-// print "<br> referpage:" . $_SERVER['HTTP_REFERER'];
-
-// Funkar ej
-// header('Locatiton: ' . $_SERVER['HTTP_REFERER']);
-// exit;

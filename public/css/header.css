@@ -32,12 +32,6 @@
   background-color: #232323;
 }
 
-.navbar {
-  position: fixed;
-  width: 100vw;
-  z-index: 2;
-}
-
 .admin-nav {
   display: flex;
   min-height: 4vh;

@@ -42,16 +42,3 @@ searchInput.addEventListener("keyup", (event) => {
   }
   document.getElementById("searchResults").innerHTML = html;
 });
-
-// Cart
-
-function showCart() {
-  const dropDownButton = document.querySelector("#dropdownMenuButton");
-  const dropdown = document.querySelector(".dropdown-menu");
-
-  if (dropdown.classList.contains("show") === false) dropDownButton.click();
-}
-
-function updateCart() {
-  const 
-}

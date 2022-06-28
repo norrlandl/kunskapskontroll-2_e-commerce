@@ -97,4 +97,5 @@ $filter_marks = array_filter(
   </section>
 </div>
 <script src="../public/js/slider-products.js"></script>
+<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
 <?php include('layout/footer.php'); ?>
