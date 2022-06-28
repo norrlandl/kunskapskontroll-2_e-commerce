@@ -9,12 +9,11 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
   $cartTotalItems += $cartItem['quantity'];
 }
 
+$message = "";
 if (isset($_SESSION["errorMessages"])) {
   $message = $_SESSION["errorMessages"];
-} else {
-  $message = "";
+  unset($_SESSION["errorMessages"]);
 }
-
 
 ?>
 
@@ -128,6 +127,8 @@ if (isset($_SESSION["errorMessages"])) {
       // debug($user);
     }
     ?>
+
+
 
     <?= $message ?>
 

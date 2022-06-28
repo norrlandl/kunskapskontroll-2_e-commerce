@@ -1,5 +1,6 @@
 <?php
 require('../../src/config.php');
+/* unset($_SESSION["errorMessages"]); */
 
 if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
 
@@ -15,10 +16,6 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   $confirm      = trim($_POST['confirm']);
   $cartTotalSum = $_POST['cartTotalSum'];
 
-  // Hämta user om hen existerar
-
-  $user = $userDbHandler->fetchUserByEmail($email);
-  $userId = isset($user['id']) ? $user['id'] : null;
 
   if (empty($first_name)) {
     $error .= "<li>Förnamn är obligatoriskt</li>";
@@ -26,10 +23,6 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
 
   if (empty($last_name)) {
     $error .= "<li>Efternamn är obligatoriskt</li>";
-  }
-
-  if (empty($email)) {
-    $error .= "<li>Mejladress är obligatoriskt</li>";
   }
 
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -52,16 +45,19 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
     $error .= "<li>Stad är obligatoriskt</li>";
   }
 
-  if (empty($password)) {
-    $error .= "<li>Lösenord är obligatoriskt</li>";
-  }
+  if (!isset($_SESSION['email'])) {
 
-  if ($password !== $confirm) {
-    $error .= '
+    if (empty($password)) {
+      $error .= "<li>Lösenord är obligatoriskt</li>";
+    }
+
+    if ($password !== $confirm) {
+      $error .= '
         <li>
             Lösenorden måste stämma överens med varandra
         </li>
     ';
+    }
   }
 
   if ($error) {
@@ -76,6 +72,9 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   // Skapa en user om inte hen existerar
 
   else {
+
+    $user = $userDbHandler->fetchUserByEmail($email);
+    $userId = isset($user['id']) ? $user['id'] : null;
 
     if (empty($user)) {
 
