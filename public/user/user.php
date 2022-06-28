@@ -22,10 +22,10 @@ if (isset($_POST['deleteUser'])) {
   redirect("user-login.php?userDeleted");
 }
 
+
 if (isset($_POST['orderDetails'])) {
 
   $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
-
 
   $createOrderDate = new DateTime($orderDetails['0']['create_date']);
   $newOrderDate = $createOrderDate->format('Y-m-d');
@@ -33,11 +33,11 @@ if (isset($_POST['orderDetails'])) {
   echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
 }
 
-debug($orderDetails);
-// debug($newOrderDate);
+// debug($orderDetails);
 
 // FETCH ORDERS!
 $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
+
 
 ?>
 
@@ -252,7 +252,7 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
           <form action="" method="POST">
             <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
             <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger">
-            <button type="button" id="modal-close-btn" class="btn btn-secondary" data-dismiss="modal">Gå tillbaka</button>
+            <button type="button" id="modal-close-btn" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
         </div>
         </form>
       </div>
@@ -356,6 +356,7 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
     $('#updateModal').modal('hide');
   }
 </script>
+
 <script src="../js/update-user-logged-in.js"></script>
 
 <!-- Prevent +1(form) on reload page -->
