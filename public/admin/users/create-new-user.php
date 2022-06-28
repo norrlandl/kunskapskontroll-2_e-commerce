@@ -31,66 +31,52 @@ if (isset($_POST["addNewUser"])) {
     $country = trim($_POST["country"]);
 
 
-    if (
-        empty($firstName)
-        || empty($lastName)
-        || empty($email)
-        || empty($password)
-        || empty($password)
-        || empty($phone)
-        || empty($street)
-        || empty($postalCode)
-        || empty($city)
-        || empty($country)
-    ) {
+    if (empty($firstName)) {
+        $error .= "<li>Förnamn är obligatoriskt</li>";
+    }
 
-        if (empty($firstName)) {
-            $error .= "<li>Förnamn är obligatoriskt</li>";
-        }
+    if (empty($lastName)) {
+        $error .= "<li>Efternamn är obligatoriskt</li>";
+    }
 
-        if (empty($lastName)) {
-            $error .= "<li>Efternamn är obligatoriskt</li>";
-        }
+    if (empty($email)) {
+        $error .= "<li>Mejladress är obligatoriskt</li>";
+    }
 
-        if (empty($email)) {
-            $error .= "<li>Mejladress är obligatoriskt</li>";
-        }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error .= "Ogiltig e-post <br>";
+    }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error .= "Ogiltig e-post <br>";
-        }
+    if (empty($phone)) {
+        $error .= "<li>Telefonnummer är obligatoriskt</li>";
+    }
 
-        if (empty($phone)) {
-            $error .= "<li>Telefonnummer är obligatoriskt</li>";
-        }
+    if (empty($street)) {
+        $error .= "<li>Address är obligatoriskt</li>";
+    }
 
-        if (empty($street)) {
-            $error .= "<li>Address är obligatoriskt</li>";
-        }
+    if (empty($postalCode)) {
+        $error .= "<li>Postkod är obligatoriskt</li>";
+    }
 
-        if (empty($postalCode)) {
-            $error .= "<li>Postkod är obligatoriskt</li>";
-        }
+    if (empty($city)) {
+        $error .= "<li>Stad är obligatoriskt</li>";
+    }
 
-        if (empty($city)) {
-            $error .= "<li>Stad är obligatoriskt</li>";
-        }
-
-        if (trim($_POST["password"]) !== trim($_POST["confirm_password"])) {
-            $error .= '
+    if (trim($_POST["password"]) !== trim($_POST["confirm_password"])) {
+        $error .= '
             <li>
                 Lösenorden måste stämma överens med varandra
             </li>
         ';
-        }
+    }
 
-        if ($error) {
-            $message = "
+    if ($error) {
+        $message = "
           <ul class='alert alert-danger list-unstyled'>
             $error
           </ul>
           ";
-        }
     } else {
         $userDbHandler->addUserToDb(
             $firstName,
