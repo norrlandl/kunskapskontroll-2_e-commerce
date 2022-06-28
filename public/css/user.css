@@ -1,6 +1,7 @@
 .table-user  thead td,
-.table-user  thead th
- {
+.table-user  thead th, 
+.table-order  thead td,
+.table-order  thead th {
   border-top: none;
 }
 
@@ -16,6 +17,22 @@
   width: 50%;
 }
 
+
+
+
+.table-order thead tr th:nth-child(1) {
+  width: 40%;
+}
+
+.table-order thead tr th:nth-child(2) {
+  width: 20%;
+}
+
+.table-order thead tr th:nth-child(3) {
+  width: 20%;
+}
+
+
 .modal-footer {
   display: flex;
   justify-content: space-between;
@@ -29,4 +46,8 @@
 .modal-header {
   /* border: none; */
   margin-bottom: 40px;
+}
+
+.modal-title i {
+  font-weight: 300;
 }
