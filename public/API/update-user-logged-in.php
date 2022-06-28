@@ -24,16 +24,28 @@ if (isset($_POST["updateUser"])) {
     $error .= "<li>Efternamn är obligatoriskt</li>";
   }
 
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $error .= "<li>Ogiltig e-post</li>";
+  }
+
   if (empty($phone)) {
     $error .= "<li>Mobilnummer är obligatoriskt</li>";
   }
 
-  if (empty($email)) {
-    $error .= "<li>E-post är obligatoriskt</li>";
+  if (empty($street)) {
+    $error .= "<li>Address är obligatoriskt</li>";
   }
 
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error .= "<li>Ogiltig e-post</li>";
+  if (empty($postalCode)) {
+    $error .= "<li>Postkod (zip) är obligatoriskt</li>";
+  }
+
+  if (empty($city)) {
+    $error .= "<li>Stad är obligatoriskt</li>";
+  }
+
+  if (empty($country)) {
+    $error .= "<li>Land är obligatoriskt</li>";
   }
 
   if ($error) {

@@ -154,11 +154,11 @@ if (isset($_POST["updateUser"])) {
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="passord">Lösenord</label>
-                <input type="password" id="password" class="form-control" name="password" placeholder="Lämna tom för samma lösenord">
+                <input type="password" id="password" class="form-control" name="password" placeholder="Lämna tom för att samma lösenord...">
             </div>
             <div class="form-group col-md-6">
                 <label for="confirm">Bekräfta lösenord</label>
-                <input type="password" id="confirm_password" class="form-control" name="confirm_password">
+                <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Lämna tom för att samma lösenord...">
             </div>
         </div>
 
