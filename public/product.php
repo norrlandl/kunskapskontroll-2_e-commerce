@@ -54,7 +54,15 @@ $filter_marks = array_filter(
       </ul>
     </div>
     <div class="product-text">
-      <div class="product-text-1">
+      <h2><?= htmlentities($product['title']) ?></h2>
+      <p><?= htmlentities($product['description']) ?></p>
+      <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
+      <h4 class="price"><?= htmlentities($product['price']) ?>:-</h4>
+      <br>
+      <form class="buy-button">
+        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+        <div class="input-group mb-3">
+          <select class="custom-select" id="quantity" name="quantity">
 
         <h2><?= htmlentities($product['title']) ?></h2>
         <p><?= htmlentities($product['description']) ?></p>
@@ -109,4 +117,5 @@ $filter_marks = array_filter(
   </section>
 </div>
 <script src="../public/js/slider-products.js"></script>
+<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
 <?php include('layout/footer.php'); ?>

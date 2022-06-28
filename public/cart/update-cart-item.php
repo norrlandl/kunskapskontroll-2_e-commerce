@@ -3,20 +3,19 @@
 require('../../src/config.php');
 
 // Kolla så att id följer med
-echo "<pre>";
-print_r($_POST);
-echo "<pre>";
-
+// echo "<pre>";
+// print_r($_GET);
+// echo "<pre>";
 
 if (
-  isset($_POST['cartId'])
-  && !empty($_POST['quantity'])
-  && isset($_SESSION['cartItems'][$_POST['cartId']])
+  isset($_GET['cartId'])
+  && !empty($_GET['quantity'])
+  && isset($_SESSION['cartItems'][$_GET['cartId']])
 ) {
-  $_SESSION['cartItems'][$_POST['cartId']]['quantity'] = $_POST['quantity'];
+  $_SESSION['cartItems'][$_GET['cartId']]['quantity'] = $_GET['quantity'];
 }
 
 // Hoppar tillbaka till senaste sidan
-if (!empty($_SERVER['HTTP_REFERER'])) {
-  header("Location: " . $_SERVER['HTTP_REFERER']);
-}
+// if (!empty($_SERVER['HTTP_REFERER'])) {
+//   header("Location: " . $_SERVER['HTTP_REFERER']);
+// }

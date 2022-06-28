@@ -62,7 +62,7 @@ if (isset($_SESSION["errorMessages"])) {
 
         ?>
 
-          <tr>
+          <tr class="cart-item-<?= $cartId ?>">
             <!-- <tr class="<?php echo $divclass; ?>"> -->
             <td>
               <div class="checkout-img">
@@ -78,22 +78,21 @@ if (isset($_SESSION["errorMessages"])) {
             </td>
             <td>
               <!-- UPDATE -->
-              <form id="update-cart-form" action="update-cart-item.php" method="POST">
+              <form class="updateCart" id="update-cart-form">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
-                <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
+                <input type="hidden" name="price" value="<?= $cartItem['price'] ?>">
+                <input type="number" class="total-amount-<?= $cartId ?> update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
               </form>
             </td>
             <td>
-              <p><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
+              <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
             </td>
             <td>
               <!-- DELETE -->
-              <form action="delete-cart-item.php" method="POST">
+              <form class="delete-button">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
                 <button type="submit" class="btn btn-outline-danger" value="">Ta bort
                 </button>
-
-
               </form>
             </td>
           </tr>
@@ -107,10 +106,10 @@ if (isset($_SESSION["errorMessages"])) {
         <td></td>
         <td></td>
         <td>
-          <p>Antal: <?= $cartTotalItems  ?></p>
+          <p class="total-amount">Antal: <?= $cartTotalItems  ?></p>
         </td>
         <td colspan="2">
-          <p>Totalpris: <?= $cartTotalSum ?>kr</p>
+          <p class="total-price">Att betala: <?= $cartTotalSum ?>kr</p>
         </td>
       </tr>
     </tfoot>
@@ -230,8 +229,8 @@ if (isset($_SESSION["errorMessages"])) {
     </form>
   </div>
 </div>
-
 <?php include('../layout/footer.php'); ?>
+<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
 
 
 <!-- skickar formuläret när man ändra kvantitet -->
@@ -243,8 +242,8 @@ if (isset($_SESSION["errorMessages"])) {
   });
 </script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $('#update-cart-form input[name="quantity"]').on('change', function() {
     $(this).parent().submit();
   });
-</script>
+</script> -->

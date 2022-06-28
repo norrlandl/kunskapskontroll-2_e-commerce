@@ -5,22 +5,22 @@
 .dropdown-menu {
   width: 600px;
   padding: 25px;
+  z-index: 2;
 }
 
 .cart table {
   font-size: 14px;
 }
 
-.table-cart  thead td,
-.table-cart  thead th {
+.table-cart thead td,
+.table-cart thead th {
   border-top: none;
 }
 
-.table-cart  tfoot tr:nth-child(1n+2) td,
-.table-cart  tfoot tr:nth-child(1n+2) th {
+.table-cart tfoot tr:nth-child(1n + 2) td,
+.table-cart tfoot tr:nth-child(1n + 2) th {
   border-top: none;
 }
-
 
 /* .cart-items-count {
   background-color: rgb(47, 96, 140);
@@ -77,5 +77,3 @@
 .cart-total {
   margin: 20px 0px;
 }
-
-

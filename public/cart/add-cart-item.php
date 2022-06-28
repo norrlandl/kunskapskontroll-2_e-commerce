@@ -1,16 +1,10 @@
 <?php
 require('../../src/config.php');
 
+if (!empty($_GET['quantity'])) {
 
-// echo "<pre>";
-// print_r($_POST);
-// echo "<pre>";
-
-
-if (!empty($_POST['quantity'])) {
-
-  $productId  = (int) $_POST['productId'];
-  $quantity   = (int) $_POST['quantity'];
+  $productId  = (int) $_GET['productId'];
+  $quantity   = (int) $_GET['quantity'];
 
   $product = $globalDbHandler->fetchById($productId, "products");
 
@@ -35,22 +29,5 @@ if (!empty($_POST['quantity'])) {
         $_SESSION['cartItems'] += $cartItem;
       }
     }
-
-    // echo "<pre>";
-    // print_r($cartItem)      // kolla om det funkar att lägga till flera saker i varukorgen
-    // echo "<pre>";
-
   }
 }
-
-
-// Hoppar tillbaka till senaste sidan
-if (!empty($_SERVER['HTTP_REFERER'])) {
-  header("Location: " . $_SERVER['HTTP_REFERER']);
-} 
-// else
-// print "<br> referpage:" . $_SERVER['HTTP_REFERER'];
-
-// Funkar ej
-// header('Locatiton: ' . $_SERVER['HTTP_REFERER']);
-// exit;
