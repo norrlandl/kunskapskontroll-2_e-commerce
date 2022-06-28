@@ -54,22 +54,13 @@ $filter_marks = array_filter(
       </ul>
     </div>
     <div class="product-text">
-      <h2><?= htmlentities($product['title']) ?></h2>
-      <p><?= htmlentities($product['description']) ?></p>
-      <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
-      <h4 class="price"><?= htmlentities($product['price']) ?>:-</h4>
-      <br>
-      <form class="buy-button">
-        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-        <div class="input-group mb-3">
-          <select class="custom-select" id="quantity" name="quantity">
-
+      <div class="product-text-1">
         <h2><?= htmlentities($product['title']) ?></h2>
         <p><?= htmlentities($product['description']) ?></p>
         <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
       </div>
       <div class="product-text-2">
-        <form action="cart/add-cart-item.php" method="POST">
+        <form class="buy-button">
           <input type="hidden" name="productId" value="<?= $product['id'] ?>">
           <div class="input-group mb-3">
             <select class="custom-select" id="quantity" name="quantity">
