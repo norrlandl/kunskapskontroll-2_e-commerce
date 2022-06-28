@@ -50,24 +50,24 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
       <thead>
         <tr>
           <th scope="col">Ordernummner</th>
+          <th scope="col" colspan="2">Datum</th>
           <th scope="col">Total summa</th>
-          <th scope="col" colspan="3">Datum</th>
           <th scope="col">Mer</th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($userOrders as $orders) { ?>
-        <tr>
-          <td scope="row">#<?= $orders['id'] ?></td>
-          <td scope="row"><?= $orders['total_price'] ?> kr</td>
-          <td colspan="3">
-            <p><?= $orders['create_date'] ?></p>
-          </td>
-          <td>
-            <button class="btn btn-outline-info">Se detaljer</button>
-          </td>
-        </tr>
+          <tr>
+            <td scope="row">#<?= $orders['id'] ?></td>
+            <td colspan="2">
+              <p><?= $orders['create_date'] ?></p>
+            </td>
+            <td><?= $orders['total_price'] ?> kr</td>
+            <td>
+              <button class="btn btn-outline-info">Se detaljer</button>
+            </td>
+          </tr>
         <?php } ?>
       </tbody>
 
