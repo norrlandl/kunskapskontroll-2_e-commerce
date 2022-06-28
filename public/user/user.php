@@ -85,7 +85,7 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
             </td>
             <td colspan="2"><?= $orders['total_price'] ?> kr</td>
             <td>
-              <form id="orderDetailsForm" action="" method="POST">
+              <form action="" method="POST">
                 <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
                 <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
               </form>
