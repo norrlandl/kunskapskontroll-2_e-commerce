@@ -54,28 +54,40 @@ $filter_marks = array_filter(
       </ul>
     </div>
     <div class="product-text">
-      <h2><?= htmlentities($product['title']) ?></h2>
-      <p><?= htmlentities($product['description']) ?></p>
-      <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
-      <h4 class="price"><?= htmlentities($product['price']) ?>:-</h4>
-      <br>
-      <form action="cart/add-cart-item.php" method="POST">
-        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-        <div class="input-group mb-3">
-          <select class="custom-select" id="quantity" name="quantity">
+      <div class="product-text-1">
 
-            <?php
+        <h2><?= htmlentities($product['title']) ?></h2>
+        <p><?= htmlentities($product['description']) ?></p>
+        <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
+      </div>
+      <div class="product-text-2">
+        <form action="cart/add-cart-item.php" method="POST">
+          <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+          <div class="input-group mb-3">
+            <select class="custom-select" id="quantity" name="quantity">
 
-            for ($i = 1; $i <= $product['stock']; $i++) {
-              echo "<option value=" . $i . ">" . $i . "</option>";
-            }
-            ?>
-          </select>
+              <?php
+
+              for ($i = 1; $i <= $product['stock']; $i++) {
+                echo "<option value=" . $i . ">" . $i . "</option>";
+              }
+              ?>
+            </select>
+
+          </div>
+          <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
+        </form>
+        <div class="price-shipping">
+          <div class="price">
+            <p class="price"><?= htmlentities($product['price']) ?> kr</p>
+          </div>
+          <div class="shipping">
+            <p>Fraktfritt över 599 kr</p>
+            <p>Leverans 2-4 arbetsdagar</p>
+          </div>
 
         </div>
-        <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
-      </form>
-
+      </div>
     </div>
   </div>
   <section class="slider-products">

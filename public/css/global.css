@@ -13,17 +13,17 @@
 }
 
 .btn-primary:hover {
-  background-color: rgb(81, 130, 173);
-  border-color: rgb(81, 130, 173);
+  background-color: rgb(42, 74, 103);
+  border-color:  rgb(42, 74, 103);
 }
 
 :root {
-  --blue: rgb(81, 130, 173);
-  --primary: rgb(81, 130, 173);
+  --blue: rgb(42, 74, 103);
+  --primary: rgb(42, 74, 103);
 }
 
 a {
-  color:  rgb(81, 130, 173);
+  color:  rgb(42, 74, 103);
 }
 
 a:hover {

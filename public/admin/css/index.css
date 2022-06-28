@@ -7,14 +7,26 @@ h1 {
   text-align: center;
 }
 
-h2 {
+/* h2 {
   margin: 1.5rem 0;
-}
+} */
 
 .action {
   display: flex;
 }
 
+.action form:nth-child(2){
+  margin-left: 10px;
+}
+
 .action form {
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
+}
+
+.wrapper h2 {
+  margin: 90px 0px 50px 0px;
+}
+
+.wrapper table {
+  margin-top: 30px;
 }

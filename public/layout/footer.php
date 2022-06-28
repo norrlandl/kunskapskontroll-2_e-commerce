@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="text-center pt-5 text-lg-start text-dark" style="background-color: #212529;">
+<footer class="text-center pt-5 text-lg-start text-dark">
   <!-- Section: Social media -->
   <!-- <section class="d-flex justify-content-between p-4 text-white" style="background-color: #212529">
     Left
@@ -41,7 +41,7 @@
         <!-- Grid column -->
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
-          <a class="navbar-brand" href="#"><img class="logo text-logo" src="/kunskapskontroll-2_e-commerce/public/img/logo.png" width="80px" height="80px" alt="logga"></a>
+          <a class="navbar-brand" href="#"><img class="logo text-logo" src="/kunskapskontroll-2_e-commerce/public/img/logo.png" width="60px" height="60px" alt="logga"></a>
         </div>
 
         <!-- Grid column -->
@@ -86,9 +86,9 @@
   <!-- Section: Links  -->
 
   <!-- Copyright -->
-  <div class="text-center small font-weight-light text-white p-4">
+  <div class="text-center small font-weight-light p-4 copyright">
     © 2022. Alla rättigheter reserverade.
-    <a class="text-white" href="#"><?= strtoupper("norway poster AB") ?></a>.
+    <a class="" href="#"><?= strtoupper("norway poster AB") ?></a>.
   </div>
   <!-- Copyright -->
 </footer>

@@ -123,10 +123,12 @@ if (isset($_POST['createUser'])) {
       </p>
     </div>
   </div>
-  <br>
+
   <?= $message ?>
   <h4>Registrera</h4>
+
   <div class="container-small">
+    <h4>Registrera</h4>
     <form action="" method="POST" class="fm-control">
 
       <div class="form-row">
@@ -182,7 +184,7 @@ if (isset($_POST['createUser'])) {
         </div>
       </div>
 
-      <input type="submit" name="createUser" class="btn btn-outline-success" value="Registrera konto">
+      <input type="submit" name="createUser" class="btn btn-success" value="Registrera konto">
 
     </form>
   </div>

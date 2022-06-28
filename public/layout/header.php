@@ -30,7 +30,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="/kunskapskontroll-2_e-commerce/public/index.php" class="navbar-brand order-first order-md-0 mx-0" href="#"><img class="logo" src="/kunskapskontroll-2_e-commerce/public/img/logo.png" width="50px" height="50px" alt="logga"></a>
+        <a href="/kunskapskontroll-2_e-commerce/public/index.php" class="navbar-brand order-first order-md-0 mx-0" href="#"><img class="logo" src="/kunskapskontroll-2_e-commerce/public/img/logo.png" width="40px" height="40px" alt="logga"></a>
         <div class="collapse navbar-collapse w-100">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">

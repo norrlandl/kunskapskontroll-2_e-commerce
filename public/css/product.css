@@ -3,18 +3,19 @@
 .product-singel {
   display: flex;
   flex-direction: row;
-  /* background-color: green; */
 }
 
 .product-image {
   flex-basis: 45%;
   flex-grow: 0;
   flex-shrink: 0;
-  /* background-color: red;  */
 }
 
 .product-text {
-  padding: 100px 60px 0 60px;
+  padding: 30px 60px 40px 60px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .product-image img {
@@ -29,5 +30,30 @@
 
 .stock {
   color: #c6c6c6;
-  margin-bottom: 40px;
+}
+
+.price-shipping {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.shipping {
+  text-align: right;
+  font-size: 14px;
+}
+
+.shipping p:nth-child(1){
+  font-weight: 600;
+}
+
+.shipping p:nth-child(2){
+  line-height: 0px;
+  font-weight: 300;
+  font-style: italic;
 }
