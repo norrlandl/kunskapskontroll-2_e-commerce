@@ -4,9 +4,6 @@ $pageTitle = "Användare";
 $pageId    = "user";
 
 
-// debug($_POST['orderDetails']);
-// debug($orderDetails);
-
 if (!isset($_SESSION['email'])) {
   header("Location: ./user-login.php?mustLogin");
 }
@@ -27,6 +24,8 @@ if (isset($_POST['deleteUser'])) {
 if (isset($_POST['orderDetails'])) {
 
   $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
+
+  echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
 }
 
 debug($orderDetails);
@@ -82,10 +81,11 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
             <td>
               <form id="orderDetailsForm" action="" method="POST">
                 <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
-
                 <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
-
               </form>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderDetailsModal">
+                modal
+              </button>
             </td>
           </tr>
         <?php } ?>
@@ -257,9 +257,6 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
 
 <!-- MODAL ORDER DETAILS -->
-<!-- Button trigger modal -->
-
-<!-- Modal -->
 <div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -270,11 +267,41 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <table class="table table-user">
+
+
+          <thead>
+            <tr>
+              <th scope="col">Orderdatum</th>
+              <th scope="col">Antal</th>
+              <th scope="col">Product</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <?php foreach ($orderDetails as $details) { ?>
+              <tr>
+                <th scope="row">#<?= $details['order_id'] ?></th>
+                <td>
+                  <p><?= $details['quantity'] ?></p>
+                </td>
+                <td><?= $details['product_title'] ?></td>
+              </tr>
+            <?php } ?>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tfoot>
+
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -282,12 +309,12 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
 <!-- jQuery Modal -->
 
-<script>
+<!-- <script>
   $('#orderDetailsForm').on('submit', function(e) {
     $('#orderDetailsModal').modal('show');
     e.preventDefault();
   });
-</script>
+</script> -->
 
 
 <script>
