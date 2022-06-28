@@ -3,12 +3,17 @@ require('../../src/config.php');
 $pageTitle = "Användare";
 $pageId    = "user";
 
+
+// debug($_POST['orderDetails']);
+// debug($orderDetails);
+
 if (!isset($_SESSION['email'])) {
   header("Location: ./user-login.php?mustLogin");
 }
 
 $error = "";
 $message = "";
+$orderDetails = "";
 
 
 $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
@@ -19,9 +24,14 @@ if (isset($_POST['deleteUser'])) {
   redirect("user-login.php?userDeleted");
 }
 
+if (isset($_POST['orderDetails'])) {
 
-// Lägg till FETCH ORDERS!
+  $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
+}
 
+debug($orderDetails);
+
+// FETCH ORDERS!
 $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
 ?>
@@ -49,23 +59,33 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
       <thead>
         <tr>
-          <th scope="col">Ordernummner</th>
-          <th scope="col" colspan="2">Datum</th>
-          <th scope="col">Total summa</th>
+          <th scope="col">Order</th>
+          <th scope="col">Datum</th>
+          <th scope="col" colspan="2">Total summa</th>
           <th scope="col">Mer</th>
         </tr>
       </thead>
 
       <tbody>
-        <?php foreach ($userOrders as $orders) { ?>
+        <?php foreach ($userOrders as $orders) {
+
+          $createDate = new DateTime($orders['create_date']);
+          $newDate = $createDate->format('Y-m-d');
+
+        ?>
           <tr>
-            <td scope="row">#<?= $orders['id'] ?></td>
-            <td colspan="2">
-              <p><?= $orders['create_date'] ?></p>
-            </td>
-            <td><?= $orders['total_price'] ?> kr</td>
+            <th scope="row">#<?= $orders['id'] ?></th>
             <td>
-              <button class="btn btn-outline-info">Se detaljer</button>
+              <p><?= $newDate ?></p>
+            </td>
+            <td colspan="2"><?= $orders['total_price'] ?> kr</td>
+            <td>
+              <form id="orderDetailsForm" action="" method="POST">
+                <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
+
+                <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
+
+              </form>
             </td>
           </tr>
         <?php } ?>
@@ -74,9 +94,11 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
       <tfoot>
         <tr>
-          <th scope="col"></th>
-          <th scope="col" colspan="3"></th>
-          <th scope="col"></th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </tfoot>
 
@@ -148,7 +170,7 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 </div>
 
 
-<!-- MODAL -->
+<!-- MODAL UPDATE USER -->
 <div id="updateModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <br>
   <div class="modal-dialog modal-lg" role="document">
@@ -233,7 +255,41 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 </div>
 
 
+
+<!-- MODAL ORDER DETAILS -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery Modal -->
+
+<script>
+  $('#orderDetailsForm').on('submit', function(e) {
+    $('#orderDetailsModal').modal('show');
+    e.preventDefault();
+  });
+</script>
+
+
 <script>
   $('#updateModal').on('show.bs.modal', function(event) {
 

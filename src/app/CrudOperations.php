@@ -63,6 +63,21 @@ class GlobalDbHandler
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
+
+    // FLYTTAS TILL UserDbHandler
+
+    public function getOrder($id, $tableName)
+    {
+        $sql = "
+        SELECT * FROM $tableName
+        WHERE order_id = :id;
+    
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 class ProductDbHandler

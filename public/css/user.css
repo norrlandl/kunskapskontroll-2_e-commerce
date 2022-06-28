@@ -5,11 +5,15 @@
 }
 
 .table-user thead tr th:nth-child(1) {
-  width: 25%;
+  width: 15%;
 }
 
 .table-user thead tr th:nth-child(2) {
-  width: 55%;
+  width: 20%;
+}
+
+.table-user thead tr th:nth-child(3) {
+  width: 50%;
 }
 
 .modal-footer {
