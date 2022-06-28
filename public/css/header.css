@@ -10,11 +10,12 @@
 
 .admin-container span {
   color: #4a4a4a;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
+
 .search-bar {
-  min-height: 8vh;
+  min-height: 6vh;
   background-color: #ebebeb;
   position: relative;
 }
@@ -29,7 +30,8 @@
 }
 
 #main-nav {
-  background-color: #232323;
+  background-color: #252525;
+  min-height: 7vh;
 }
 
 .admin-nav {
@@ -55,16 +57,18 @@ nav a:hover {
   content: "Norway";
   text-transform: uppercase;
   color: #bdbdbd;
+  font-size: 18px;
 }
 
 .navbar-brand::after {
   content: "Poster";
   text-transform: uppercase;
   color: #bdbdbd;
+  font-size: 18px;
 }
 
 .logo {
-  margin: 0 5px;
+  margin: 0 10px;
 }
 
 .cart-icon {
@@ -78,6 +82,7 @@ nav a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-left: 2rem;
+  font-family: inherit;
 }
 
 .searchbar {

@@ -57,8 +57,6 @@ $filter_marks = array_filter(
       <h2><?= htmlentities($product['title']) ?></h2>
       <p><?= htmlentities($product['description']) ?></p>
       <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
-      <h4 class="price"><?= htmlentities($product['price']) ?>:-</h4>
-      <br>
       <form action="cart/add-cart-item.php" method="POST">
         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
         <div class="input-group mb-3">
@@ -75,7 +73,16 @@ $filter_marks = array_filter(
         </div>
         <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
       </form>
+      <div class="price-shipping">
+        <div class="price">
+          <p class="price"><?= htmlentities($product['price']) ?> kr</p>
+        </div>
+        <div class="shipping">
+          <p>Fraktfritt över 599 kr</p>
+          <p>Leverans 2-4 arbetsdagar</p>
+        </div>
 
+      </div>
     </div>
   </div>
   <section class="slider-products">
