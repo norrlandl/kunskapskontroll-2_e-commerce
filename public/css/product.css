@@ -12,7 +12,10 @@
 }
 
 .product-text {
-  padding: 40px 60px 0 60px;
+  padding: 30px 60px 40px 60px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .product-image img {
@@ -27,7 +30,6 @@
 
 .stock {
   color: #c6c6c6;
-  margin-bottom: 60px;
 }
 
 .price-shipping {
