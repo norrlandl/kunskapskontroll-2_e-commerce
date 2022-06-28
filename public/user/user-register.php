@@ -46,38 +46,38 @@ if (isset($_POST['createUser'])) {
 
   if (empty($first_name)) {
     //Lägg till bootstrap alerts!
-    $error .= '<div class="alert alert-danger">Förnamn är obligatoriskt <br></div>';
+    $error .= "<li>Förnamn är obligatoriskt</li>";
   }
 
   if (empty($last_name)) {
-    $error .= "Efternamn är obligatoriskt <br>";
+    $error .= "<li>Efternamn är obligatoriskt</li>";
   }
 
   if (empty($phone)) {
-    $error .= "Mobilnummer är obligatoriskt <br>";
+    $error .= "<li>Mobilnummer är obligatoriskt</li>";
   }
 
   if (empty($email)) {
-    $error .= "E-post är obligatoriskt <br>";
+    $error .= "<li>E-post är obligatoriskt</li>";
   }
 
   if (empty($password)) {
-    $error .= "Du har glömt fylla i lösenord <br>";
+    $error .= "<li>Du har glömt fylla i lösenord</li>";
   }
 
   if ($password !== $confirm) {
-    $error .= 'Det bekräftade lösenordet måste vara samma som lösenord!';
+    $error .= "<li>Det bekräftade lösenordet måste vara samma som lösenord</li>";
   }
 
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error .= "Ogiltig e-post <br>";
+    $error .= "<li>Ogiltig e-post</li>";
   }
 
   if ($error) {
     $message = "
-            <div>
+            <ul class='alert alert-danger list-unstyled'>
                 {$error}
-            </div>
+            </ul>
         ";
   } else {
     try {
@@ -94,13 +94,13 @@ if (isset($_POST['createUser'])) {
         $password
       );
 
-      redirect("user-login.php?email=$email");
+      redirect("user-login.php?newAccount");
     } catch (\PDOException $e) {
       if ((int) $e->getCode() === 23000) {
         $message = "
-                  <div class='error_msg'>
+                  <li>
                       E-post addressen är redan taget. Var snäll ange en annan E-post
-                  </div>
+                  </li>
               ";
       } else {
         throw new \PDOException($e->getMessage(), (int) $e->getCode());
@@ -123,6 +123,8 @@ if (isset($_POST['createUser'])) {
       </p>
     </div>
   </div>
+  <br>
+  <?= $message ?>
   <h4>Registrera</h4>
   <div class="container-small">
     <form action="" method="POST" class="fm-control">
