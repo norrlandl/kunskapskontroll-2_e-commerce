@@ -59,7 +59,7 @@ $filter_marks = array_filter(
       <p class="stock">I lager: <?= htmlentities($product['stock']) ?> st</p>
       <h4 class="price"><?= htmlentities($product['price']) ?>:-</h4>
       <br>
-      <form action="cart/add-cart-item.php" method="POST">
+      <form class="buy-button">
         <input type="hidden" name="productId" value="<?= $product['id'] ?>">
         <div class="input-group mb-3">
           <select class="custom-select" id="quantity" name="quantity">

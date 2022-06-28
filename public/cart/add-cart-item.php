@@ -1,10 +1,10 @@
 <?php
 require('../../src/config.php');
 
-if (!empty($_POST['quantity'])) {
+if (!empty($_GET['quantity'])) {
 
-  $productId  = (int) $_POST['productId'];
-  $quantity   = (int) $_POST['quantity'];
+  $productId  = (int) $_GET['productId'];
+  $quantity   = (int) $_GET['quantity'];
 
   $product = $globalDbHandler->fetchById($productId, "products");
 
@@ -31,9 +31,3 @@ if (!empty($_POST['quantity'])) {
     }
   }
 }
-
-
-// Hoppar tillbaka till senaste sidan
-if (!empty($_SERVER['HTTP_REFERER'])) {
-  header("Location: " . $_SERVER['HTTP_REFERER']);
-} 

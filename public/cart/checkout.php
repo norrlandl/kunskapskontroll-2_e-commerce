@@ -58,7 +58,7 @@ $message = "";
 
         ?>
 
-          <tr>
+          <tr class="cart-item-<?= $cartId ?>">
             <!-- <tr class="<?php echo $divclass; ?>"> -->
             <td>
               <div class="checkout-img">
@@ -85,12 +85,10 @@ $message = "";
             </td>
             <td>
               <!-- DELETE -->
-              <form action="delete-cart-item.php" method="POST">
+              <form class="delete-button">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
                 <button type="submit" class="btn btn-outline-danger" value="">Ta bort
                 </button>
-
-
               </form>
             </td>
           </tr>
@@ -107,7 +105,7 @@ $message = "";
           <p class="total-amount">Antal: <?= $cartTotalItems  ?></p>
         </td>
         <td colspan="2">
-          <p class="total-price">Totalpris: <?= $cartTotalSum ?>kr</p>
+          <p class="total-price">Att betala: <?= $cartTotalSum ?>kr</p>
         </td>
       </tr>
     </tfoot>

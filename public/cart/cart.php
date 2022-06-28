@@ -46,7 +46,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody class="cart-body">
 
           <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
             $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 20));
@@ -54,7 +54,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
           ?>
 
 
-            <tr>
+            <tr class="cart-item-<?= $cartId ?>">
               <td>
                 <div class="checkout-img">
                   <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $cartItem['img_url'] ?>">
@@ -80,7 +80,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               </td>
               <td>
                 <!-- DELETE -->
-                <form action="/kunskapskontroll-2_e-commerce/public/cart/delete-cart-item.php" method="POST">
+                <form class="delete-button">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <button type="submit" class="btn btn-outline-danger" value="">Ta bort
                   </button>

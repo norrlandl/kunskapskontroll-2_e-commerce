@@ -38,11 +38,14 @@ $products = $globalDbHandler->fetchAllFromDb("products");
           <p><i><?= htmlentities($info) ?></i></p>
           <p><b><?= htmlentities($product['price']) ?> kr</b></p>
 
-          <form action="cart/add-cart-item.php" method="POST">
+          <form class="buy-button">
             <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+            <input type="hidden" name="title" value="<?= $product['title'] ?>">
+            <input type="hidden" name="price" value="<?= $product['price'] ?>">
+            <input type="hidden" name="description" value="<?= $info ?>">
+            <input type="hidden" name="img" value="/kunskapskontroll-2_e-commerce/public/img/<?= $product['img_url'] ?>">
             <div class="input-group mb-3">
               <select class="custom-select" id="quantity" name="quantity">
-
                 <?php
 
                 for ($i = 1; $i <= $product['stock']; $i++) {
@@ -50,9 +53,8 @@ $products = $globalDbHandler->fetchAllFromDb("products");
                 }
                 ?>
               </select>
-
             </div>
-            <!-- <input type="number" class="btn btn-2" name="quantity" value="1" min="0"> -->
+
             <input type="submit" class="btn btn-primary btn-2" name="addToCart" value="KÖP">
 
           </form>
@@ -61,5 +63,5 @@ $products = $globalDbHandler->fetchAllFromDb("products");
     <?php } ?>
   </div>
 </div>
-<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
 <?php include('layout/footer.php'); ?>
+<script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
