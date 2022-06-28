@@ -32,7 +32,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
     <span><?php $counter = 0 ?></span>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 
-      <h5>Produkter (<?= $cartTotalItems  ?>)</h5>
+      <h5 class="total-amount-products">Produkter (<?= $cartTotalItems  ?>)</h5>
 
       <table class="table table-hover table-cart">
 

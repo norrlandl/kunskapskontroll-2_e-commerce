@@ -5,6 +5,7 @@ const totalPriceElements = document.querySelectorAll(".total-price");
 const buyButtonElements = document.querySelectorAll(".buy-button");
 const deleteButtonElements = document.querySelectorAll(".delete-button");
 const totalAmountHeader = document.querySelector(".total-amount-header");
+const totalAmountProducts = document.querySelector(".total-amount-products");
 
 function showCart() {
   const dropDownButton = document.querySelector("#dropdownMenuButton");
@@ -105,7 +106,14 @@ buyButtonElements.forEach((element) => {
 
       // Uppdatera totala varor + summor
       cartTotals().then((data) => {
+        totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
         totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
+        totalAmountElements.forEach((element) => {
+          element.innerHTML = `Antal: ${data.totalAmount}`;
+        });
+        totalPriceElements.forEach((element) => {
+          element.innerHTML = `Att betala: ${data.totalSum}kr`;
+        });
       });
     } catch (error) {
       console.log(error);
@@ -137,6 +145,7 @@ deleteButtonElements.forEach((element) => {
       // Uppdatera totala varor + summor
       cartTotals().then((data) => {
         totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
+        totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
         totalAmountElements.forEach((element) => {
           element.innerHTML = `Antal: ${data.totalAmount}`;
         });
@@ -173,7 +182,7 @@ updateElements.forEach((element) => {
         }
       );
 
-      // Uppdatera dom i cart + checkout
+      // Uppdatera DOM i cart + checkout
       amountCartItem.forEach((element) => (element.value = quantity));
       totalPriceCartItem.forEach(
         (element) => (element.innerHTML = `${quantity * price}kr`)
@@ -181,6 +190,7 @@ updateElements.forEach((element) => {
 
       // Uppdatera totala varor + summor
       cartTotals().then((data) => {
+        totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
         totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
         totalAmountElements.forEach((element) => {
           element.innerHTML = `Antal: ${data.totalAmount}`;
