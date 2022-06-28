@@ -33,7 +33,7 @@
 }
 
 
-.modal-footer {
+.table-user .modal-footer {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
@@ -50,4 +50,9 @@
 
 .modal-title i {
   font-weight: 300;
+}
+
+
+#orderDetailsModal .modal-footer {
+ border-top: none;
 }
