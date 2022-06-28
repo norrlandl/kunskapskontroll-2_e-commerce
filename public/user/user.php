@@ -14,7 +14,6 @@ $orderDetails = "";
 $newOrderDate = "";
 
 
-$user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 if (isset($_POST['deleteUser'])) {
 
@@ -26,14 +25,15 @@ if (isset($_POST['deleteUser'])) {
 if (isset($_POST['orderDetails'])) {
 
   $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
-
   $createOrderDate = new DateTime($orderDetails['0']['create_date']);
   $newOrderDate = $createOrderDate->format('Y-m-d');
 
-  echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
+  // echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
 }
 
-// debug($orderDetails);
+debug($orderDetails);
+
+$user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 // FETCH ORDERS!
 $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
