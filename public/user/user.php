@@ -11,6 +11,7 @@ if (!isset($_SESSION['email'])) {
 $error = "";
 $message = "";
 $orderDetails = "";
+$newOrderDate = "";
 
 
 $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
@@ -25,10 +26,15 @@ if (isset($_POST['orderDetails'])) {
 
   $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
 
+
+  $createOrderDate = new DateTime($orderDetails['0']['create_date']);
+  $newOrderDate = $createOrderDate->format('Y-m-d');
+
   echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
 }
 
 debug($orderDetails);
+// debug($newOrderDate);
 
 // FETCH ORDERS!
 $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
@@ -261,38 +267,38 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ordernummer #<?= $orderDetails['0']['order_id'] ?> <br> <i><?= $newOrderDate ?></i></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <table class="table table-user">
+        <table class="table table-order">
 
 
           <thead>
             <tr>
-              <th scope="col">Orderdatum</th>
+              <th scope="col">Poster</th>
               <th scope="col">Antal</th>
-              <th scope="col">Product</th>
+              <th scope="col">Pris</th>
             </tr>
           </thead>
 
           <tbody>
             <?php foreach ($orderDetails as $details) { ?>
               <tr>
-                <th scope="row">#<?= $details['order_id'] ?></th>
+                <th scope="row"><?= $details['product_title'] ?></th>
                 <td>
-                  <p><?= $details['quantity'] ?></p>
+                  <p><?= $details['quantity'] ?> st</p>
                 </td>
-                <td><?= $details['product_title'] ?></td>
+                <td><?= $details['unit_price'] ?> kr</td>
               </tr>
             <?php } ?>
           </tbody>
 
           <tfoot>
             <tr>
-              <td></td>
+              <th scope="row">Totalsumma: <?= $details['total_price'] ?> kr</th>
               <td></td>
               <td></td>
             </tr>
