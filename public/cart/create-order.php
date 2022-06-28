@@ -122,7 +122,7 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
     );
   }
 
-  redirect("order-confirmation.php");
+  redirect("order-confirmation.php?orderSuccess");
 }
 
 // Om inget finns i varukorgen, hoppa tillbaka
