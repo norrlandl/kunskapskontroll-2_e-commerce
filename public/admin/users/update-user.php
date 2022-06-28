@@ -3,50 +3,97 @@
 require('../../../src/config.php');
 $pageTitle = "Uppdatera användare";
 
+$error = "";
 $message = "";
 
 $singleUser = $globalDbHandler->fetchById($_GET['userID'], "users");
 
 if (isset($_POST["updateUser"])) {
 
-    $first_name = trim($_POST["first_name"]);
-    $last_name = trim($_POST["last_name"]);
+    $firstName = trim($_POST["first_name"]);
+    $lastName = trim($_POST["last_name"]);
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
     $phone = trim($_POST["phone"]);
     $street = trim($_POST["street"]);
-    $postal_code = trim($_POST["postal_code"]);
+    $postalCode = trim($_POST["postal_code"]);
     $city = trim($_POST["city"]);
     $country = trim($_POST["country"]);
 
-    if (empty($password)) {
-        $userDbHandler->updateUser(
-            $_GET['userID'],
-            $first_name,
-            $last_name,
-            $email,
-            $singleUser["password"],
-            $phone,
-            $street,
-            $postal_code,
-            $city,
-            $country
-        );
-    } else {
-        $userDbHandler->updateUser(
-            $_GET['userID'],
-            $first_name,
-            $last_name,
-            $email,
-            $password,
-            $phone,
-            $street,
-            $postal_code,
-            $city,
-            $country
-        );
+
+    if (empty($firstName)) {
+        $error .= "<li>Förnamn är obligatoriskt</li>";
     }
-    redirect("../index.php");
+
+    if (empty($lastName)) {
+        $error .= "<li>Efternamn är obligatoriskt</li>";
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error .= "Ogiltig e-post <br>";
+    }
+    if (empty($phone)) {
+        $error .= "<li>Telefonnummer är obligatoriskt</li>";
+    }
+    if (empty($street)) {
+        $error .= "<li>Address är obligatoriskt</li>";
+    }
+    if (empty($postalCode)) {
+        $error .= "<li>Postkod är obligatoriskt</li>";
+    }
+    if (empty($city)) {
+        $error .= "<li>Stad är obligatoriskt</li>";
+    }
+
+    if (empty($country)) {
+        $error .= "<li>Land är obligatoriskt</li>";
+    }
+
+    if (trim($_POST["password"]) !== trim($_POST["confirm_password"])) {
+        $error .= '
+        <li>
+            Lösenorden måste stämma överens med varandra
+        </li>
+    ';
+    }
+
+    if ($error) {
+        $message = "
+      <ul class='alert alert-danger list-unstyled'>
+        $error
+      </ul>
+      ";
+    } else {
+
+        if (empty($password)) {
+            $userDbHandler->updateUser(
+                $_GET['userID'],
+                $firstName,
+                $lastName,
+                $email,
+                $singleUser["password"],
+                $phone,
+                $street,
+                $postalCode,
+                $city,
+                $country
+            );
+        } else {
+            $userDbHandler->updateUser(
+                $_GET['userID'],
+                $firstName,
+                $lastName,
+                $email,
+                $password,
+                $phone,
+                $street,
+                $postalCode,
+                $city,
+                $country
+            );
+        }
+        redirect("../index.php");
+    }
 }
 
 ?>
@@ -59,6 +106,7 @@ if (isset($_POST["updateUser"])) {
 
     </br>
     </br>
+    <?= $message ?>
     <form action="" method="POST" class="fm-control">
 
         <div class="form-row">
@@ -117,6 +165,5 @@ if (isset($_POST["updateUser"])) {
         <input type="submit" name="updateUser" class="btn btn-outline-primary" value="Uppdatera"><br>
     </form>
 </div>
-<?= $message ?>
 
 <?php include('../layout/footer.php'); ?>

@@ -47,9 +47,11 @@ if (isset($_POST["addNewUser"])) {
         if (empty($firstName)) {
             $error .= "<li>Förnamn är obligatoriskt</li>";
         }
+
         if (empty($lastName)) {
             $error .= "<li>Efternamn är obligatoriskt</li>";
         }
+
         if (empty($email)) {
             $error .= "<li>Mejladress är obligatoriskt</li>";
         }
@@ -57,21 +59,21 @@ if (isset($_POST["addNewUser"])) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error .= "Ogiltig e-post <br>";
         }
+
         if (empty($phone)) {
             $error .= "<li>Telefonnummer är obligatoriskt</li>";
         }
+
         if (empty($street)) {
             $error .= "<li>Address är obligatoriskt</li>";
         }
+
         if (empty($postalCode)) {
             $error .= "<li>Postkod är obligatoriskt</li>";
         }
+
         if (empty($city)) {
             $error .= "<li>Stad är obligatoriskt</li>";
-        }
-
-        if (empty($password) || empty($confirmPassword)) {
-            $error .= "<li>Lösenord är obligatoriskt</li>";
         }
 
         if (trim($_POST["password"]) !== trim($_POST["confirm_password"])) {
