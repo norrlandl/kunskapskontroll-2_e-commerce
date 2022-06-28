@@ -76,11 +76,12 @@ $message = "";
               <!-- UPDATE -->
               <form class="updateCart" id="update-cart-form">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
-                <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
+                <input type="hidden" name="price" value="<?= $cartItem['price'] ?>">
+                <input type="number" class="total-amount-<?= $cartId ?> update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
               </form>
             </td>
             <td>
-              <p><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
+              <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
             </td>
             <td>
               <!-- DELETE -->
@@ -103,10 +104,10 @@ $message = "";
         <td></td>
         <td></td>
         <td>
-          <p>Antal: <?= $cartTotalItems  ?></p>
+          <p class="total-amount">Antal: <?= $cartTotalItems  ?></p>
         </td>
         <td colspan="2">
-          <p>Totalpris: <?= $cartTotalSum ?>kr</p>
+          <p class="total-price">Totalpris: <?= $cartTotalSum ?>kr</p>
         </td>
       </tr>
     </tfoot>

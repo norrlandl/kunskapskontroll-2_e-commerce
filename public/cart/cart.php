@@ -25,7 +25,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
 <div class="cart">
   <div class="dropdown">
-    <i class="fa fa-shopping-bag shopping-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="total-amount-header fa fa-shopping-bag shopping-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       (<?= $cartTotalItems  ?>)
     </i>
 
@@ -69,14 +69,14 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               </td>
               <td>
                 <!-- UPDATE -->
-                <!-- Hur skall denna fungera är det tänkt? -->
                 <form id="update-cart-form" class="updateCart">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
-                  <input type="number" class="update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
+                  <input type="hidden" name="price" value="<?= $cartItem['price'] ?>">
+                  <input type="number" class="total-amount-<?= $cartId ?> update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
                 </form>
               </td>
               <td>
-                <p><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
+                <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
               </td>
               <td>
                 <!-- DELETE -->
@@ -104,11 +104,11 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
         <tr>
           <td></td>
           <td>
-            <p>Antal: <?= $cartTotalItems  ?></p>
+            <p class="total-amount">Antal: <?= $cartTotalItems  ?></p>
           </td>
           <td colspan="2">
             <b>
-              <p>Att betala: <?= $cartTotalSum ?>kr</p>
+              <p class="total-price">Att betala: <?= $cartTotalSum ?>kr</p>
             </b>
           </td>
           <td></td>
