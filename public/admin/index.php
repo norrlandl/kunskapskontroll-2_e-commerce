@@ -45,6 +45,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
 
 <div class="wrapper">
   <h1>Hej, <?= ucfirst($_SESSION['first_name']) ?>!</h1>
+
   <h2>Produkter</h2>
   <div class="top-buttons">
     <form action="./products/create-new-product.php">
@@ -56,7 +57,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
   </div>
 
   <table class="table table-hover">
-    <thead class="table-dark">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Bild</th>
@@ -67,7 +68,6 @@ $users = $globalDbHandler->fetchAllFromDb("users");
         <th scope="col">Hantera</th>
       </tr>
     </thead>
-    <br />
     <tbody>
       <?php foreach ($products as $product) : ?>
         <tr>
@@ -95,14 +95,13 @@ $users = $globalDbHandler->fetchAllFromDb("users");
   </table>
 
   <!-- ALL USERS -->
-
   <h2>Användare</h2>
   <div class="top-buttons">
     <form action="./users/create-new-user.php">
       <input type="submit" class="btn btn-info" value="&#43; Skapa ny" />
     </form>
     <form action="" method="POST">
-      <input type="submit" name="clearAllUsers" class="btn btn-warning" value="&#10006; Rensa alla " />
+      <input type="submit" name="clearAllUsers" class="btn btn-warning" value="&#10006; Rensa alla" />
     </form>
   </div>
 
@@ -116,7 +115,6 @@ $users = $globalDbHandler->fetchAllFromDb("users");
         <th>Hantera</th>
       </tr>
     </thead>
-    <br />
     <tbody>
       <?php foreach ($users as $user) : ?>
         <tr>
@@ -138,6 +136,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
       <?php endforeach; ?>
     </tbody>
   </table>
+
 </div>
 
 <?php include('./layout/footer.php'); ?>
