@@ -53,7 +53,7 @@ async function updateUserModal (e) {
       document.querySelector("#modal-email").value = initFormInputs.email;
       document.querySelector("#modal-phone").value = initFormInputs.phone;
       
-      document.querySelector("#error-message").innerHTML = `<ul class="alert alert-danger">${errMsg}</ul>`;
+      document.querySelector("#error-message").innerHTML = `<ul class="alert alert-danger list-unstyled">${errMsg}</ul>`;
     }
 
   }

@@ -10,8 +10,6 @@ $description = "";
 $price = "";
 $stock = "";
 
-print_r($_FILES);
-
 if (isset($_POST["addNewProduct"])) {
   $title = trim($_POST['title']);
   $description = trim($_POST['description']);
@@ -19,31 +17,31 @@ if (isset($_POST["addNewProduct"])) {
   $stock = trim($_POST['stock']);
 
   if (empty($title)) {
-    $error .= "Titel är obligatoriskt <br>";
+    $error .= "<li>Titel är obligatoriskt </li>";
   }
 
   if (empty($description)) {
-    $error .= "Beskrivning är obligatoriskt <br>";
+    $error .= "<li>Beskrivning är obligatoriskt</li>";
   }
 
   if (empty($price)) {
-    $error .= "Pris är obligatoriskt <br>";
+    $error .= "<li>Pris är obligatoriskt</li>";
   }
 
   if (empty($stock)) {
-    $error .= "Lagerantal är obligatoriskt <br>";
+    $error .= "<li>Lagerantal är obligatoriskt</li>";
   }
 
   if (!is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-    $error .= "En bild måste laddas upp";
+    $error .= "<li>En bild måste laddas upp</li>";
   }
 
   if ($error) {
     $message = "
-          <div>
-              {$error}
-          </div>
-      ";
+          <ul class='alert alert-danger list-unstyled'>
+            $error
+          </ul>
+          ";
   } else {
     if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
       $fileName         = $_FILES['img_url']['name'];
@@ -53,18 +51,35 @@ if (isset($_POST["addNewProduct"])) {
       $newFilePath = $path . $fileName;
     }
 
-    move_uploaded_file($fileTempPath, $newFilePath);
-    $img = $fileName;
+    $allowedFileTypes = [
+      'image/png',
+      'image/jpeg',
+      'image/gif',
+    ];
 
-    $productDbHandler->addProductToDb(
-      $title,
-      $description,
-      $price,
-      $stock,
-      $img
-    );
+    $isFileTypeAllowed = array_search($fileType, $allowedFileTypes, true);
 
-    redirect("../index.php");
+    if (!$isFileTypeAllowed) {
+      $error .= "<li>Filtyp inte tillåten.</li>";
+    }
+
+    if ($_FILES['img_url']['size'] > 10000000) {
+      $error .= "<li>För stor fil. Max är 10 MB.</li>";
+    } else {
+
+      move_uploaded_file($fileTempPath, $newFilePath);
+      $img = $fileName;
+
+      $productDbHandler->addProductToDb(
+        $title,
+        $description,
+        $price,
+        $stock,
+        $img
+      );
+
+      redirect("../index.php");
+    }
   }
 }
 ?>
@@ -74,8 +89,9 @@ if (isset($_POST["addNewProduct"])) {
   <form action="../index.php">
     <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Tillbaka">
   </form>
-  <?= $message ?>
   </br>
+  </br>
+  <?= $message ?>
   </br>
   <form action="" method="POST" class="form-group" enctype="multipart/form-data">
     <input type="text" class="form-control" id="title" name="title" placeholder="Titel" value="<?= htmlentities($title) ?>"><br>
@@ -87,4 +103,4 @@ if (isset($_POST["addNewProduct"])) {
     <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Skapa ny"><br>
   </form>
 </div>
-<? include('../../layout/footer.php'); ?>
+<?php include('../layout/footer.php'); ?>

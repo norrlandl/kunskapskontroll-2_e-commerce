@@ -20,24 +20,81 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   $user = $userDbHandler->fetchUserByEmail($email);
   $userId = isset($user['id']) ? $user['id'] : null;
 
+  if (empty($first_name)) {
+    $error .= "<li>Förnamn är obligatoriskt</li>";
+  }
+
+  if (empty($last_name)) {
+    $error .= "<li>Efternamn är obligatoriskt</li>";
+  }
+
+  if (empty($email)) {
+    $error .= "<li>Mejladress är obligatoriskt</li>";
+  }
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $error .= "Ogiltig e-post <br>";
+  }
+
+  if (empty($phone)) {
+    $error .= "<li>Telefonnummer är obligatoriskt</li>";
+  }
+
+  if (empty($street)) {
+    $error .= "<li>Address är obligatoriskt</li>";
+  }
+
+  if (empty($postal_code)) {
+    $error .= "<li>Postkod är obligatoriskt</li>";
+  }
+
+  if (empty($city)) {
+    $error .= "<li>Stad är obligatoriskt</li>";
+  }
+
+  if (empty($password)) {
+    $error .= "<li>Lösenord är obligatoriskt</li>";
+  }
+
+  if ($password !== $confirm) {
+    $error .= '
+        <li>
+            Lösenorden måste stämma överens med varandra
+        </li>
+    ';
+  }
+
+  if ($error) {
+    $_SESSION["errorMessages"] = $message = "
+    <ul class='alert alert-danger list-unstyled'>
+      $error
+    </ul>
+      ";
+
+    redirect($_SERVER['HTTP_REFERER']);
+  }
   // Skapa en user om inte hen existerar
 
-  if (empty($user)) {
+  else {
 
-    $userDbHandler->addUserToDb(
-      $first_name,
-      $last_name,
-      $email,
-      $phone,
-      $street,
-      $postal_code,
-      $city,
-      $country,
-      $password
-    );
+    if (empty($user)) {
 
-    $userId = $pdo->lastInsertId();
+      $userDbHandler->addUserToDb(
+        $first_name,
+        $last_name,
+        $email,
+        $phone,
+        $street,
+        $postal_code,
+        $city,
+        $country,
+        $password
+      );
+
+      $userId = $pdo->lastInsertId();
+    }
   }
+
 
   // Skapa ny order
 
