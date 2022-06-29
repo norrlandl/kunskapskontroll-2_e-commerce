@@ -195,7 +195,7 @@ class UserDbHandler
         ";
 
         $stmt = $this->pdo->prepare($sql);
-        if (str_starts_with($password, "$2y$12$")) {
+        if (str_starts_with($password, "$2y$12$") && strlen($password) == 60) {
             $stmt->bindParam(":password", $password);
         } else {
             $encryptPW = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
