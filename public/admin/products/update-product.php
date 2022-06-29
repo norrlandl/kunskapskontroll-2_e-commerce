@@ -8,12 +8,10 @@ $message = "";
 
 if (isset($_POST["updateProduct"])) {
 
-
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
     $price = trim($_POST['price']);
     $stock = trim($_POST['stock']);
-
 
     if (empty($title)) {
         $error .= "<li>Titel är obligatoriskt </li>";
@@ -43,7 +41,6 @@ if (isset($_POST["updateProduct"])) {
             </ul>
             ";
     } else {
-
         if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
             $fileName         = $_FILES['img_url']['name'];
             $fileType         = $_FILES['img_url']['type'];
@@ -71,16 +68,17 @@ if (isset($_POST["updateProduct"])) {
             move_uploaded_file($fileTempPath, $newFilePath);
             $img = $fileName;
 
-
             $productDbHandler->updateProduct(
                 $_GET['productID'],
-                $title,
-                $description,
-                $price,
-                $stock,
+                trim($_POST["title"]),
+                trim($_POST["description"]),
+                trim($_POST["price"]),
+                $stock = trim($_POST["stock"]),
                 $img
             );
+
             redirect("../index.php");
+            exit;
         }
     }
 }
@@ -97,7 +95,7 @@ $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
 
     <?= $message ?>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="title">Titel</label>

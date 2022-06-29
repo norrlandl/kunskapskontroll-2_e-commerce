@@ -119,7 +119,7 @@ class ProductDbHandler
         $sql = "
         UPDATE products
         SET title = :title, description = :description,
-        price = :price, stock = :stock, img = :img_url
+        price = :price, stock = :stock, img_url = :img_url
         WHERE id = :id;
         ";
 
