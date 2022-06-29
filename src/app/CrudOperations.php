@@ -113,12 +113,13 @@ class ProductDbHandler
         $description,
         $price,
         $stock,
+        $img
     ) {
 
         $sql = "
         UPDATE products
         SET title = :title, description = :description,
-        price = :price, stock = :stock
+        price = :price, stock = :stock, img = :img_url
         WHERE id = :id;
         ";
 
@@ -128,6 +129,7 @@ class ProductDbHandler
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':stock', $stock);
+        $stmt->bindParam(':img_url', $img);
         $stmt->execute();
     }
 }
