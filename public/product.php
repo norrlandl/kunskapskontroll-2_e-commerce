@@ -88,7 +88,6 @@ $filter_marks = array_filter(
             <p>Fraktfritt över 599 kr</p>
             <p>Leverans 2-4 arbetsdagar</p>
           </div>
-
         </div>
       </div>
     </div>
