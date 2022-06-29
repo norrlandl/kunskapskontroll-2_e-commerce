@@ -32,18 +32,6 @@ class GlobalDbHandler
         return $stmt->fetch();
     }
 
-    public function fetchByOrders($id, $tableName)
-    {
-        $sql = "
-        SELECT * FROM $tableName
-        WHERE user_id = :id
-        ";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
-
     public function deleteFromDb($id, $tableName)
     {
         $sql = "
@@ -62,24 +50,6 @@ class GlobalDbHandler
         ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
-    }
-
-    // FLYTTAS TILL OrderdbHandler
-
-    public function getOrder($id, $tableName)
-    {
-        $sql = "
-        SELECT * FROM $tableName
-        JOIN orders 
-        ON $tableName.order_id = orders.id
-        WHERE order_id = :id;
-
-
-        ";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return $stmt->fetchAll();
     }
 }
 
@@ -180,8 +150,6 @@ class UserDbHandler
         $country,
         $password,
     ) {
-
-
         $sql = "
         INSERT INTO users (first_name, last_name, email,
         password, phone, street, postal_code, city, country) 
@@ -217,7 +185,6 @@ class UserDbHandler
         $city,
         $country
     ) {
-
         $sql = "
         UPDATE users
         SET first_name = :first_name, last_name = :last_name,
@@ -292,5 +259,33 @@ class OrderdbHandler
         $stmt->bindValue(':quantity',       $qty);
         $stmt->bindValue(':unit_price',     $price);
         $stmt->execute();
+    }
+
+    public function fetchByOrders($id, $tableName)
+    {
+        $sql = "
+        SELECT * FROM $tableName
+        WHERE user_id = :id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getOrder($id, $tableName)
+    {
+        $sql = "
+        SELECT * FROM $tableName
+        JOIN orders 
+        ON $tableName.order_id = orders.id
+        WHERE order_id = :id;
+
+
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }

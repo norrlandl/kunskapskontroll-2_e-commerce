@@ -25,7 +25,7 @@ if (isset($_POST['deleteUser'])) {
 
 
 // FETCH ORDERS!
-$userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
+$userOrders = $orderDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
 
 ?>

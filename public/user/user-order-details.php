@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
 $orderDetails = "";
 $newOrderDate = "";
 
-$orderDetails = $globalDbHandler->getOrder($_GET['id'], "order_items");
+$orderDetails = $orderDbHandler->getOrder($_GET['id'], "order_items");
 
 $createOrderDate = new DateTime($orderDetails['0']['create_date']);
 $newOrderDate = $createOrderDate->format('Y-m-d');
