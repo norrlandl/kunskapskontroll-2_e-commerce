@@ -121,16 +121,20 @@ nav a:hover {
   padding: 10px;
 }
 
+.fa-shopping-bag {
+  line-height: 2rem;
+}
+
 .shopping-icon:hover {
   cursor: pointer;
 }
 
 .user-icon {
-  line-height: 2rem;
+  margin-top: 0.45rem;
   padding: 10px;
 }
 
 .log-out-link {
   padding: 10px;
-  line-height: 3.2rem;
+  line-height: 2.2rem;
 }
