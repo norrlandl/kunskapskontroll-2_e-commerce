@@ -1,4 +1,5 @@
 <?php
+
 require('../../src/config.php');
 
 $cartTotalSum = 0;
@@ -11,8 +12,8 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
 // Output with JSON
 $cartData = [
-    'totalSum' => $cartTotalSum,
-    'totalItems' => $cartTotalItems
+  'totalSum' => $cartTotalSum,
+  'totalItems' => $cartTotalItems
 ];
 
 echo json_encode($cartData);

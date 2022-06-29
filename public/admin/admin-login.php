@@ -71,6 +71,7 @@ if (isset($_POST['doLogin'])) {
         <div id="content">
             <form method="POST" action="#">
                 <h2>Logga in</h2>
+                <br>
                 <?= $message ?>
                 <br>
                 <div class="form-outline mb-4">

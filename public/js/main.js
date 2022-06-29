@@ -1,4 +1,4 @@
-// Search
+// AJAX 1
 
 let productsArray = [];
 

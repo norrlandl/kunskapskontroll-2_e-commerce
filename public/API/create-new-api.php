@@ -1,8 +1,6 @@
-<?
+<?php
 
-// AJAX 3
-
-require('../../../src/config.php');
+require('../../src/config.php');
 
 $error = "";
 $img = "";
@@ -44,7 +42,7 @@ if (isset($_POST["addNewProduct"])) {
       $fileName         = $_FILES['img_url']['name'];
       $fileType         = $_FILES['img_url']['type'];
       $fileTempPath   = $_FILES['img_url']['tmp_name'];
-      $path             = '../../img/';
+      $path             = '../img/';
       $newFilePath = $path . $fileName;
     }
 

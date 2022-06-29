@@ -1,4 +1,5 @@
 <?php
+
 require('../../src/config.php');
 
 $error = "";

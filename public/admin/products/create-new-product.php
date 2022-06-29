@@ -62,6 +62,6 @@ $stock = "";
   </form>
 </div>
 
-<script src="./create-new.js"></script>
+<script src="../../js/create-new.js"></script>
 
 <?php include('../layout/footer.php'); ?>

@@ -1,5 +1,7 @@
-formSubmit = document.querySelector("#createNewSubmit");
 
+// AJAX 3
+
+formSubmit = document.querySelector("#createNewSubmit");
 formSubmit.addEventListener("submit", createNewProduct);
 
 async function createNewProduct (e) {
@@ -9,7 +11,7 @@ async function createNewProduct (e) {
   formData.set("addNewProduct", true);
 
   try {
-    const response = await fetch("/kunskapskontroll-2_e-commerce/public/admin/products/create-new-api.php", { 
+    const response = await fetch("/kunskapskontroll-2_e-commerce/public/API/create-new-api.php", { 
       method: "POST",
       body: formData
     });
@@ -28,7 +30,7 @@ async function createNewProduct (e) {
           let tID = setTimeout(function () {
               window.location.href = "../index.php";
               window.clearTimeout(tID);
-          }, 1500);
+          }, 1200);
       }
 
       redirectPage();
