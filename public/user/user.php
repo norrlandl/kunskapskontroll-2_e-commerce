@@ -23,14 +23,20 @@ if (isset($_POST['deleteUser'])) {
 }
 
 
+
 if (isset($_POST['orderDetails'])) {
 
-  $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
+  // $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
 
-  $createOrderDate = new DateTime($orderDetails['0']['create_date']);
-  $newOrderDate = $createOrderDate->format('Y-m-d');
+  // $createOrderDate = new DateTime($orderDetails['0']['create_date']);
+  // $newOrderDate = $createOrderDate->format('Y-m-d');
 
-  echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
+  redirect('user-order-details.php');
+
+  debug($_POST['ordersID']);
+
+
+  // echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
 }
 
 // debug($orderDetails);
@@ -89,9 +95,6 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
                 <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
                 <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
               </form>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderDetailsModal">
-                modal
-              </button>
             </td>
           </tr>
         <?php } ?>
@@ -251,67 +254,16 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
         <div class="modal-footer">
           <form action="" method="POST">
             <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
-            <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger">
-            <button type="button" id="modal-close-btn" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger float-left">
+            <button type="button" id="modal-close-btn" class="btn btn-secondary float-right" data-dismiss="modal">Stäng</button>
+          </form>
         </div>
-        </form>
       </div>
     </div>
   </div>
 </div>
 
 
-
-<!-- MODAL ORDER DETAILS -->
-<div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ordernummer #<?= $orderDetails['0']['order_id'] ?> <br> <i><?= $newOrderDate ?></i></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-order">
-
-
-          <thead>
-            <tr>
-              <th scope="col">Poster</th>
-              <th scope="col">Antal</th>
-              <th scope="col">Pris</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <?php foreach ($orderDetails as $details) { ?>
-              <tr>
-                <th scope="row"><?= $details['product_title'] ?></th>
-                <td>
-                  <p><?= $details['quantity'] ?> st</p>
-                </td>
-                <td><?= $details['unit_price'] ?> kr</td>
-              </tr>
-            <?php } ?>
-          </tbody>
-
-          <tfoot>
-            <tr>
-              <th scope="row">Totalsumma: <?= $details['total_price'] ?> kr</th>
-              <td></td>
-              <td></td>
-            </tr>
-          </tfoot>
-
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- jQuery Modal -->
 

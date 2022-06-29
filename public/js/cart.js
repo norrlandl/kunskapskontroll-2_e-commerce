@@ -200,10 +200,10 @@ buyButtonElements.forEach((element) => {
         totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
         totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
         totalAmountElements.forEach((element) => {
-          element.innerHTML = `Antal: ${data.totalAmount}`;
+          element.innerHTML = `<b>Antal</b>: ${data.totalAmount}`;
         });
         totalPriceElements.forEach((element) => {
-          element.innerHTML = `Att betala: ${data.totalSum}kr`;
+          element.innerHTML = `<b>Att betala</b>: ${data.totalSum}kr`;
         });
       });
     } catch (error) {
@@ -214,7 +214,44 @@ buyButtonElements.forEach((element) => {
 
 // Remove from cart
 deleteButtonElements.forEach((element) => {
+
+  element.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const data = new FormData(element);
+    const cartId = data.get("cartId");
+
+    try {
+      fetch(
+        `/kunskapskontroll-2_e-commerce/public/cart/delete-cart-item.php?cartId=${cartId}`,
+        {
+          method: "POST",
+        }
+      );
+
+      const cartItemsToDelete = document.querySelectorAll(
+        `.cart-item-${cartId}`
+      );
+      cartItemsToDelete.forEach((element) => element.remove());
+
+      // Uppdatera totala varor + summor
+      cartTotals().then((data) => {
+        totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
+        totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
+        totalAmountElements.forEach((element) => {
+          element.innerHTML = `<b>Antal</b>: ${data.totalAmount}`;
+        });
+        totalPriceElements.forEach((element) => {
+          element.innerHTML = `<b>Att betala</b>: ${data.totalSum}kr`;
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   bindRemoveFromCart(element);
+
 });
 
 // Update quantity
