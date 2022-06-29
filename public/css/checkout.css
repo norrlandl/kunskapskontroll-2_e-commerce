@@ -28,7 +28,29 @@
   border-top: none;
 }
 
+.table-checkout thead tr th:nth-child(1) {
+  width: 10%;
+}
 
 .table-checkout thead tr th:nth-child(2) {
   width: 40%;
 }
+
+.table-checkout thead tr th:nth-child(3) {
+  width: 10%;
+}
+
+.table-checkout thead tr th:nth-child(4) {
+  width: 12%;
+}
+
+.table-checkout thead tr th:nth-child(5) {
+  width: 15%;
+}
+
+.table-checkout thead tr th:nth-child(6) {
+  width: 8%;
+}
+
+
+
