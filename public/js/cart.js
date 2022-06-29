@@ -32,95 +32,7 @@ async function cartTotals() {
   }
 }
 
-// Add to cart
-buyButtonElements.forEach((element) => {
-  element.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const data = new FormData(element);
-    const productId = data.get("productId");
-    const quantity = data.get("quantity");
-    const img = data.get("img");
-    const title = data.get("title");
-    const price = data.get("price");
-    // const description = data.get("description");
-
-    try {
-      fetch(
-        `/kunskapskontroll-2_e-commerce/public/cart/add-cart-item.php?productId=${productId}&quantity=${quantity}`,
-        {
-          method: "POST",
-        }
-      );
-
-      // Testa om varan redan finns
-      const buyElement = document.querySelector(`.cart-item-${productId}`);
-      if (!buyElement) {
-        // Lägg till varan i cart om den inte finns
-        const cartBody = document.querySelector(".cart-body");
-        cartBody.innerHTML += `
-          <tr class="cart-item-${productId}">
-            <td>
-              <div class="cart-img">
-                <img src="${img}">
-              </div>
-            </td>
-            <td>
-              <p class="cart-title">${title}</p>
-              <p>${price}kr</p>
-            </td>
-            <td>
-              <!-- UPDATE -->
-              <form id="update-cart-form" class="updateCart">
-                <input type="hidden" name="cartId" value="${productId}">
-                <input type="hidden" name="price" value="${price}">
-
-                <input type="number" class="total-amount-${productId} update-quantity" name="quantity" value="${quantity}" min="0">
-              </form>
-            </td>
-            <td>
-              <p class="total-price-${productId}">${price * quantity}kr </p>
-            </td>
-            <td>
-              <!-- DELETE -->
-              <form class="delete-button">
-                <input type="hidden" name="cartId" value="${productId}">
-                <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
-                </button>
-              </form>
-            </td>
-          </tr>
-        `;
-      } else {
-        // Öka antal om den finns
-        const elementQty = document.querySelector(`.total-amount-${productId}`);
-        const elementTotalPrice = document.querySelector(
-          `.total-price-${productId}`
-        );
-
-        elementQty.value = parseInt(elementQty.value) + parseInt(quantity);
-        elementTotalPrice.innerHTML = `${elementQty.value * price}kr`;
-      }
-
-      // Uppdatera totala varor + summor
-      cartTotals().then((data) => {
-        totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
-        totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
-        totalAmountElements.forEach((element) => {
-          element.innerHTML = `Antal: ${data.totalAmount}`;
-        });
-        totalPriceElements.forEach((element) => {
-          element.innerHTML = `Att betala: ${data.totalSum}kr`;
-        });
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  });
-});
-
-// Remove from cart
-deleteButtonElements.forEach((element) => {
+function bindRemoveFromCart(element) {
   element.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -155,10 +67,9 @@ deleteButtonElements.forEach((element) => {
       console.log(error);
     }
   });
-});
+}
 
-// Update quantity
-updateElements.forEach((element) => {
+function bindUpdateCart(element) {
   element.addEventListener("change", (event) => {
     event.preventDefault();
 
@@ -201,4 +112,112 @@ updateElements.forEach((element) => {
       console.log(error);
     }
   });
+}
+
+// Add to cart
+buyButtonElements.forEach((element) => {
+  element.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const data = new FormData(element);
+    const productId = data.get("productId");
+    const quantity = data.get("quantity");
+    const img = data.get("img");
+    const title = data.get("title");
+    const price = data.get("price");
+    // const description = data.get("description");
+
+    try {
+      fetch(
+        `/kunskapskontroll-2_e-commerce/public/cart/add-cart-item.php?productId=${productId}&quantity=${quantity}`,
+        {
+          method: "POST",
+        }
+      );
+
+      // Testa om varan redan finns
+      const buyElement = document.querySelector(`.cart-item-${productId}`);
+      if (!buyElement) {
+        // Lägg till varan i cart om den inte finns
+        const cartBody = document.querySelector(".cart-body");
+        cartBody.innerHTML += `
+          <tr class="cart-item-${productId}">
+            <td>
+              <div class="cart-img">
+                <img src="${img}">
+              </div>
+            </td>
+            <td>
+              <p class="cart-title">${title}</p>
+              <p>${price}kr</p>
+            </td>
+            <td>
+              <!-- UPDATE -->
+              <form id="update-cart-form" class="updateCart-${productId}">
+                <input type="hidden" name="cartId" value="${productId}">
+                <input type="hidden" name="price" value="${price}">
+                <input type="number" class="total-amount-${productId} update-quantity" name="quantity" value="${quantity}" min="0">
+              </form>
+            </td>
+            <td>
+              <p class="total-price-${productId}">${price * quantity}kr </p>
+            </td>
+            <td>
+              <!-- DELETE -->
+              <form class="delete-button-${productId}">
+                <input type="hidden" name="cartId" value="${productId}">
+                <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+        `;
+
+        // Bind event listeners
+        // Update
+        const elementToBindUpdate = document.querySelector(
+          `.updateCart-${productId}`
+        );
+        bindUpdateCart(elementToBindUpdate);
+        // Delete
+        const elementToBindRemove = document.querySelector(
+          `.delete-button-${productId}`
+        );
+        bindRemoveFromCart(elementToBindRemove);
+      } else {
+        // Öka antal om den finns
+        const elementQty = document.querySelector(`.total-amount-${productId}`);
+        const elementTotalPrice = document.querySelector(
+          `.total-price-${productId}`
+        );
+
+        elementQty.value = parseInt(elementQty.value) + parseInt(quantity);
+        elementTotalPrice.innerHTML = `${elementQty.value * price}kr`;
+      }
+
+      // Uppdatera totala varor + summor
+      cartTotals().then((data) => {
+        totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
+        totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
+        totalAmountElements.forEach((element) => {
+          element.innerHTML = `Antal: ${data.totalAmount}`;
+        });
+        totalPriceElements.forEach((element) => {
+          element.innerHTML = `Att betala: ${data.totalSum}kr`;
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+});
+
+// Remove from cart
+deleteButtonElements.forEach((element) => {
+  bindRemoveFromCart(element);
+});
+
+// Update quantity
+updateElements.forEach((element) => {
+  bindUpdateCart(element);
 });
