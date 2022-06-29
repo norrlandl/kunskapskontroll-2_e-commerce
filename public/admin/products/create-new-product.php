@@ -86,21 +86,44 @@ if (isset($_POST["addNewProduct"])) {
 
 <?php include('../layout/header.php'); ?>
 <div class="page-wrapper">
-  <form action="../index.php">
-    <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Tillbaka">
-  </form>
-  </br>
-  </br>
+
+  <h4>Skapa ny produkt</h4>
+
   <?= $message ?>
-  </br>
+
   <form action="" method="POST" class="form-group" enctype="multipart/form-data">
-    <input type="text" class="form-control" id="title" name="title" placeholder="Titel" value="<?= htmlentities($title) ?>"><br>
-    <textarea rows="6" cols="60" class="form-control" id="description" name="description" placeholder="Beskrivning"><?= htmlentities($description) ?></textarea><br>
-    <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="price" name="price" placeholder="Pris" value="<?= htmlentities($price) ?>"><br>
-    <input type="number" class="form-control" id="stock" name="stock" placeholder="Lagerantal" value="<?= htmlentities($stock) ?>"><br>
-    <label for="image">Lägg till bild:</label><br>
-    <input type="file" id="image" name="img_url" placeholder="Add image"><br><br>
-    <input type="submit" name="addNewProduct" class="btn btn-outline-primary" value="Skapa ny"><br>
+
+    <div class="form-group">
+      <label for="title">Titel</label>
+      <input type="text" class="form-control" id="title" name="title" value="<?= htmlentities($title) ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Beskrivning</label>
+      <textarea rows="6" cols="60" class="form-control" id="description" name="description"><?= htmlentities($description) ?></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Pris</label>
+      <input type="number" min="0.00" max="10000.00" step="0.01" class="form-control" id="price" name="price" value="<?= htmlentities($price) ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Lagerantal</label>
+      <input type="number" class="form-control" id="stock" name="stock" value="<?= htmlentities($stock) ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Produktfoto</label><br>
+      <label class="btn-file-upload btn btn-outline-info" for="image">&#43; Välj bild
+        <input type="file" id="image" name="img_url" placeholder="Add image"></label>
+    </div>
+
+    <input type="submit" name="addNewProduct" class="btn btn-success float-left btn-margin" value="&#10003; Skapa ny">
+
+  </form>
+  <form action="../index.php">
+    <input type="submit" class="btn btn-secondary float-right btn-margin" value="&#x2190; Tillbaka">
   </form>
 </div>
 <?php include('../layout/footer.php'); ?>

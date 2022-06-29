@@ -57,25 +57,25 @@ $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
 
 <?php include('../layout/header.php'); ?>
 <div class="page-wrapper">
-    <form action="../index.php">
-        <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Tillbaka">
-    </form>
-    </br>
-    </br>
+
+    <h4>Uppdatera produkt</h4>
+
     <?= $message ?>
     <form action="" method="POST">
 
-        <label for="title">Titel:</label><br>
+        <label for="title">Titel</label><br>
         <input type="text" class="form-control" name="title" value="<?= htmlentities($singleProduct["title"]) ?>"><br>
-        <label for="description">Beskrivning:</label><br>
+        <label for="description">Beskrivning</label><br>
         <textarea rows="6" cols="60" class="form-control" name="description"><?= htmlentities($singleProduct["description"]) ?>
         </textarea><br>
-        <label for="price">Pris:</label><br>
+        <label for="price">Pris</label><br>
         <input type="number" class="form-control" name="price" value="<?= htmlentities($singleProduct["price"]) ?>"><br>
-        <label for="stock">Lagerantal:</label><br>
+        <label for="stock">Lagerantal</label><br>
         <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
-        <input type="submit" name="updateProduct" class="btn btn-outline-primary" value="Uppdatera"><br>
-
+        <input type="submit" name="updateProduct" class="btn btn-success float-left btn-margin" value="&#10003; Uppdatera">
+    </form>
+    <form action="../index.php">
+        <input type="submit" class="btn btn-secondary float-right btn-margin" value="&#x2190; Tillbaka">
     </form>
 </div>
 
