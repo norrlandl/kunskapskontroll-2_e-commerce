@@ -233,20 +233,22 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
       </div>
 
       <div class="modal-header modal-header-2">
-        <h5 class="modal-title" id="exampleModalLabel">Radera mitt konto</h5>
+        <h5 class="modal-title">Radera mitt konto</h5>
       </div>
-      <div class="modal-body">
-        <form action="" method="POST" class="">
+      <div class="modal-body-2">
+
+        <form action="" method="POST" class="float-left">
           <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
           <input type="submit" name="deleteUser" value="&#33; Radera konto" class="btn btn-danger ">
         </form>
 
-      </div>
-      <div class="">
         <button type="button" id="modal-close-btn" class="btn btn-secondary float-right" data-dismiss="modal">
           Stäng</button>
 
       </div>
+      <!-- <div class="">
+
+      </div> -->
 
 
 
