@@ -12,7 +12,7 @@
 
 <body>
     <header class="admin-header">
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-dark bg-admin">
             <a href="/kunskapskontroll-2_e-commerce/public/index.php" class="navbar-brand">Till hemsidan</a>
             <div class="form-inline">
                 <?php if (isset($_SESSION["email"])) { ?>

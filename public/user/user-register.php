@@ -117,7 +117,9 @@ if (isset($_POST['createUser'])) {
 
   <div class="row">
     <div class="info">
-      <p><b>REGISTRERA KONTO!</b></p>
+      <p>
+      <h1>REGISTRERA KONTO!</h1>
+      </p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque.
       </p>
@@ -125,7 +127,6 @@ if (isset($_POST['createUser'])) {
   </div>
 
   <?= $message ?>
-  <h4>Registrera</h4>
 
   <div class="container-small">
     <h4>Registrera</h4>

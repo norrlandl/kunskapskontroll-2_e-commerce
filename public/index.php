@@ -10,7 +10,8 @@ $products = $globalDbHandler->fetchAllFromDb("products");
 <div class="container">
   <div class="row">
     <div class="info">
-      <p><b>POSTERS FRÅN NORGE</b>
+      <p>
+      <h5>POSTERS FRÅN NORGE</h5>
       <p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at tincidunt.
