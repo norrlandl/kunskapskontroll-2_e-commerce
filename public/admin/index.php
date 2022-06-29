@@ -138,3 +138,5 @@ $users = $globalDbHandler->fetchAllFromDb("users");
   </table>
 
 </div>
+
+<?php include('../layout/footer.php'); ?>
