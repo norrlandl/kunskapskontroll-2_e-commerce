@@ -41,16 +41,20 @@
 }
 
 .panel h3 {
-  font-size: 24px;
+  font-size: 22px;
+  width: 100%;
   color: white;
   font-weight: bold;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 0px;
   margin: 0;
   opacity: 0;
-  background: black;
-  padding: 0px 10px;
+  background: #252525;
+  padding: 5px;
+}
+
+.panel a {
+  color: white;
 }
 
 .panel.active {
@@ -58,6 +62,11 @@
 }
 
 .panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+.panel.active .btn {
   opacity: 1;
   transition: opacity 0.3s ease-in 0.4s;
 }

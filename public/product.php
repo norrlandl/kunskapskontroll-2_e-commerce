@@ -13,6 +13,7 @@ $product = $globalDbHandler->fetchById($_GET['id'], "products");
 
 $sorted_array = $globalDbHandler->fetchAllFromDb("products");
 $shuffled_array = array();
+$cut_array = array();
 
 $keys = array_keys($sorted_array);
 shuffle($keys);
@@ -21,12 +22,7 @@ foreach ($keys as $key) {
   $shuffled_array[$key] = $sorted_array[$key];
 }
 
-$filter_marks = array_filter(
-  $shuffled_array,
-  function ($shuffled_array) {
-    return $shuffled_array["id"] <= 4;
-  }
-);
+$cut_array = array_slice($shuffled_array, 0, 4);
 
 ?>
 
@@ -94,15 +90,15 @@ $filter_marks = array_filter(
   </div>
   <section class="slider-products">
     <div class="slider-title">
-      <h1 class="title__main">Du kanske också gillar?</h1>
+      <h4 class="title__main">Du kanske gillar dessa motiv?</h4>
     </div>
     <br>
     <br>
     <div class="slider-gallery">
       <div class="slider-container">
-        <?php foreach ($filter_marks as $item) { ?>
+        <?php foreach ($cut_array as $item) { ?>
           <div class="panel">
-            <h3><?= $item["title"] ?></h3>
+            <h3><a href="http://localhost/kunskapskontroll-2_e-commerce/public/product.php?id=<?= $item["id"] ?>"><?= $item["title"] ?></a></h3>
             <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
           </div>
         <?php } ?>
