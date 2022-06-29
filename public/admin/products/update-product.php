@@ -61,18 +61,32 @@ $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
     <h4>Uppdatera produkt</h4>
 
     <?= $message ?>
+
     <form action="" method="POST">
 
-        <label for="title">Titel</label><br>
-        <input type="text" class="form-control" name="title" value="<?= htmlentities($singleProduct["title"]) ?>"><br>
-        <label for="description">Beskrivning</label><br>
-        <textarea rows="6" cols="60" class="form-control" name="description"><?= htmlentities($singleProduct["description"]) ?>
-        </textarea><br>
-        <label for="price">Pris</label><br>
-        <input type="number" class="form-control" name="price" value="<?= htmlentities($singleProduct["price"]) ?>"><br>
-        <label for="stock">Lagerantal</label><br>
-        <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
+        <div class="form-group">
+            <label for="title">Titel</label>
+            <input type="text" class="form-control" name="title" value="<?= htmlentities($singleProduct["title"]) ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Beskrivning</label>
+            <textarea rows="6" cols="60" class="form-control" name="description"><?= htmlentities($singleProduct["description"]) ?>
+        </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Pris</label>
+            <input type="number" class="form-control" name="price" value="<?= htmlentities($singleProduct["price"]) ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Lagerantal</label>
+            <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
+        </div>
+
         <input type="submit" name="updateProduct" class="btn btn-success float-left btn-margin" value="&#10003; Uppdatera">
+
     </form>
     <form action="../index.php">
         <input type="submit" class="btn btn-secondary float-right btn-margin" value="&#x2190; Tillbaka">
