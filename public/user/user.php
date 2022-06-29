@@ -10,8 +10,8 @@ if (!isset($_SESSION['email'])) {
 
 $error = "";
 $message = "";
-$orderDetails = "";
-$newOrderDate = "";
+// $orderDetails = "";
+
 
 
 $user = $globalDbHandler->fetchById($_SESSION['id'], "users");
@@ -23,23 +23,6 @@ if (isset($_POST['deleteUser'])) {
 }
 
 
-
-if (isset($_POST['orderDetails'])) {
-
-  // $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
-
-  // $createOrderDate = new DateTime($orderDetails['0']['create_date']);
-  // $newOrderDate = $createOrderDate->format('Y-m-d');
-
-  redirect('user-order-details.php');
-
-  debug($_POST['ordersID']);
-
-
-  // echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
-}
-
-// debug($orderDetails);
 
 // FETCH ORDERS!
 $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
@@ -91,12 +74,12 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
             </td>
             <td colspan="2"><?= $orders['total_price'] ?> kr</td>
             <td>
-              <form action="" method="POST">
+              <!-- <form action="" method="POST">
                 <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
                 <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
+              </form> -->
 
-                <a href="user-order-details.php?id=<?php echo htmlentities($orders['id']); ?>"> TEST </a>
-              </form>
+              <a href="user-order-details.php?id=<?php echo htmlentities($orders['id']); ?>"> <button class="btn btn-outline-info">Se detaljer</button> </a>
             </td>
           </tr>
         <?php } ?>
