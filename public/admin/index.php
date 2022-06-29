@@ -44,7 +44,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
 <!-- ALL PRODUCTS -->
 
 <div class="wrapper container">
-  <h1>Hej, <?= ucfirst($_SESSION['first_name']) ?>!</h1>
+  <h1>Hej <?= ucfirst($_SESSION['first_name']) ?>!</h1>
 
   <h2>Produkter</h2>
   <div class="top-buttons">
@@ -138,5 +138,3 @@ $users = $globalDbHandler->fetchAllFromDb("users");
   </table>
 
 </div>
-
-<?php include('../layout/footer.php'); ?>
