@@ -10,78 +10,6 @@ $description = "";
 $price = "";
 $stock = "";
 
-if (isset($_POST["addNewProduct"])) {
-  $title = trim($_POST['title']);
-  $description = trim($_POST['description']);
-  $price = trim($_POST['price']);
-  $stock = trim($_POST['stock']);
-
-  if (empty($title)) {
-    $error .= "<li>Titel är obligatoriskt </li>";
-  }
-
-  if (empty($description)) {
-    $error .= "<li>Beskrivning är obligatoriskt</li>";
-  }
-
-  if (empty($price)) {
-    $error .= "<li>Pris är obligatoriskt</li>";
-  }
-
-  if (empty($stock)) {
-    $error .= "<li>Lagerantal är obligatoriskt</li>";
-  }
-
-  if (!is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-    $error .= "<li>En bild måste laddas upp</li>";
-  }
-
-  if ($error) {
-    $message = "
-          <ul class='alert alert-danger list-unstyled'>
-            $error
-          </ul>
-          ";
-  } else {
-    if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-      $fileName         = $_FILES['img_url']['name'];
-      $fileType         = $_FILES['img_url']['type'];
-      $fileTempPath   = $_FILES['img_url']['tmp_name'];
-      $path             = '../../img/';
-      $newFilePath = $path . $fileName;
-    }
-
-    $allowedFileTypes = [
-      'image/png',
-      'image/jpeg',
-      'image/gif',
-    ];
-
-    $isFileTypeAllowed = array_search($fileType, $allowedFileTypes, true);
-
-    if (!$isFileTypeAllowed) {
-      $error .= "<li>Filtyp inte tillåten.</li>";
-    }
-
-    if ($_FILES['img_url']['size'] > 10000000) {
-      $error .= "<li>För stor fil. Max är 10 MB.</li>";
-    } else {
-
-      move_uploaded_file($fileTempPath, $newFilePath);
-      $img = $fileName;
-
-      $productDbHandler->addProductToDb(
-        $title,
-        $description,
-        $price,
-        $stock,
-        $img
-      );
-
-      redirect("../index.php");
-    }
-  }
-}
 ?>
 
 <?php include('../layout/header.php'); ?>
@@ -90,9 +18,10 @@ if (isset($_POST["addNewProduct"])) {
 
   <h4>Skapa ny produkt</h4>
 
-  <?= $message ?>
+  <div id="success-msg"></div>
+  <div id="error-msg"></div>
 
-  <form action="" method="POST" class="form-group" enctype="multipart/form-data">
+  <form action="./create-new-api.php" id="createNewSubmit" method="POST" class="form-group" enctype="multipart/form-data">
 
     <div class="form-group">
       <label for="title">Titel</label>
@@ -132,4 +61,8 @@ if (isset($_POST["addNewProduct"])) {
     <input type="submit" class="btn btn-secondary float-left btn-margin" value="&#x2190; Tillbaka">
   </form>
 </div>
+
+
+<script src="./create-new.js"></script>
+
 <?php include('../layout/footer.php'); ?>

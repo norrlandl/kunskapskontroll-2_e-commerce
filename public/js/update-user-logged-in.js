@@ -15,6 +15,7 @@ async function updateUserModal (e) {
       body: formData
     });
     const data = await response.json();
+    console.log(data);
 
     let errMsg = data["error"];
 
