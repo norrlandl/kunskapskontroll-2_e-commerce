@@ -32,6 +32,7 @@ async function cartTotals() {
   }
 }
 
+//Remove
 function bindRemoveFromCart(element) {
   element.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -69,6 +70,7 @@ function bindRemoveFromCart(element) {
   });
 }
 
+//Update
 function bindUpdateCart(element) {
   element.addEventListener("change", (event) => {
     event.preventDefault();
@@ -153,7 +155,7 @@ buyButtonElements.forEach((element) => {
             </td>
             <td>
               <!-- UPDATE -->
-              <form id="update-cart-form" class="updateCart-${productId}">
+              <form id="update-cart-form" class="updateCart">
                 <input type="hidden" name="cartId" value="${productId}">
                 <input type="hidden" name="price" value="${price}">
                 <input type="number" class="total-amount-${productId} update-quantity" name="quantity" value="${quantity}" min="0">
@@ -164,7 +166,7 @@ buyButtonElements.forEach((element) => {
             </td>
             <td>
               <!-- DELETE -->
-              <form class="delete-button-${productId}">
+              <form class="delete-button">
                 <input type="hidden" name="cartId" value="${productId}">
                 <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
                 </button>
@@ -175,15 +177,29 @@ buyButtonElements.forEach((element) => {
 
         // Bind event listeners
         // Update
-        const elementToBindUpdate = document.querySelector(
-          `.updateCart-${productId}`
-        );
-        bindUpdateCart(elementToBindUpdate);
-        // Delete
-        const elementToBindRemove = document.querySelector(
-          `.delete-button-${productId}`
-        );
-        bindRemoveFromCart(elementToBindRemove);
+        // const elementToBindUpdate = document.querySelector(
+        //   `.updateCart-${productId}`
+        // );
+        // bindUpdateCart(elementToBindUpdate);
+        // // Delete
+        // const elementToBindRemove = document.querySelector(
+        //   `.delete-button-${productId}`
+        // );
+        // bindRemoveFromCart(elementToBindRemove);
+
+        const refetchDeleteButtonElements =
+          document.querySelectorAll(".delete-button");
+        const refetchUpdateElements = document.querySelectorAll(".updateCart");
+
+        // Bind remove from cart
+        refetchDeleteButtonElements.forEach((element) => {
+          bindRemoveFromCart(element);
+        });
+
+        // Bind update quantity
+        refetchUpdateElements.forEach((element) => {
+          bindUpdateCart(element);
+        });
       } else {
         // Öka antal om den finns
         const elementQty = document.querySelector(`.total-amount-${productId}`);
@@ -212,12 +228,12 @@ buyButtonElements.forEach((element) => {
   });
 });
 
-// Remove from cart
+// Bind remove from cart
 deleteButtonElements.forEach((element) => {
   bindRemoveFromCart(element);
 });
 
-// Update quantity
+// Bind update quantity
 updateElements.forEach((element) => {
   bindUpdateCart(element);
 });
