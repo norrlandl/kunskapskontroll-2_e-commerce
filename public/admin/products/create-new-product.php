@@ -119,11 +119,11 @@ if (isset($_POST["addNewProduct"])) {
         <input type="file" id="image" name="img_url" placeholder="Add image"></label>
     </div>
 
-    <input type="submit" name="addNewProduct" class="btn btn-success float-left btn-margin" value="&#10003; Skapa ny">
+    <input type="submit" name="addNewProduct" class="btn btn-success float-right btn-margin" value="&#10003; Skapa ny">
 
   </form>
   <form action="../index.php">
-    <input type="submit" class="btn btn-secondary float-right btn-margin" value="&#x2190; Tillbaka">
+    <input type="submit" class="btn btn-secondary float-left btn-margin" value="&#x2190; Tillbaka">
   </form>
 </div>
 <?php include('../layout/footer.php'); ?>
