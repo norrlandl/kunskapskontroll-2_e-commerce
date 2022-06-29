@@ -94,6 +94,8 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
               <form action="" method="POST">
                 <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
                 <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
+
+                <a href="user-order-details.php?id=<?php echo htmlentities($orders['id']); ?>"> TEST </a>
               </form>
             </td>
           </tr>

@@ -8,14 +8,14 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./user-login.php?mustLogin");
 }
 
-debug($_GET);
+debug($_GET['id']);
 
 $error = "";
 $message = "";
 $orderDetails = "";
 $newOrderDate = "";
 
-$orderDetails = $globalDbHandler->getOrder($_GET['ordersID'], "order_items");
+$orderDetails = $globalDbHandler->getOrder($_GET['id'], "order_items");
 
 
 
@@ -41,7 +41,7 @@ $orderDetails = $globalDbHandler->getOrder($_GET['ordersID'], "order_items");
 
   <div class="container-small">
     <h4>Tidigare ordrar</h4>
-    <table class="table table-user">
+    <!-- <table class="table table-user">
 
 
       <thead>
@@ -90,7 +90,7 @@ $orderDetails = $globalDbHandler->getOrder($_GET['ordersID'], "order_items");
         </tr>
       </tfoot>
 
-    </table>
+    </table> -->
   </div>
 
   <div class="container-small">
