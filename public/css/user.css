@@ -52,6 +52,10 @@
   font-weight: 300;
 }
 
+.modal-body-2 {
+  display: block;
+  padding: 0px 20px;
+}
 
 .modal-footer {
   display: block;
