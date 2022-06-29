@@ -44,10 +44,18 @@
   margin-bottom: 40px;
 }
 
+.modal-header-2 {
+  margin-top: 50px;
+}
+
 .modal-title i {
   font-weight: 300;
 }
 
+
+.modal-footer {
+  display: block;
+}
 
 #orderDetailsModal .modal-footer {
  border-top: none;

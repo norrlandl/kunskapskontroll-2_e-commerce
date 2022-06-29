@@ -74,17 +74,11 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
             </td>
             <td colspan="2"><?= $orders['total_price'] ?> kr</td>
             <td>
-              <!-- <form action="" method="POST">
-                <input type="hidden" name="ordersID" value="<?= htmlentities($orders['id']) ?>">
-                <input type="submit" name="orderDetails" value="Se detaljer" class="btn btn-outline-info">
-              </form> -->
-
               <a href="user-order-details.php?id=<?php echo htmlentities($orders['id']); ?>"> <button class="btn btn-outline-info">Se detaljer</button> </a>
             </td>
           </tr>
         <?php } ?>
       </tbody>
-
 
       <tfoot>
         <tr>
@@ -233,17 +227,29 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
           </div>
 
           <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
-          <input type="submit" name="updateUser" id="user-modal-exit" value="Uppdatera konto" class="btn btn-success">
-
+          <input type="submit" name="updateUser" id="user-modal-exit" value="&#10003; Uppdatera konto" class="btn btn-success">
         </form>
-        <div class="modal-footer">
-          <form action="" method="POST">
-            <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
-            <input type="submit" name="deleteUser" value="Radera konto" class="btn btn-danger float-left">
-            <button type="button" id="modal-close-btn" class="btn btn-secondary float-right" data-dismiss="modal">Stäng</button>
-          </form>
-        </div>
+
       </div>
+
+      <div class="modal-header modal-header-2">
+        <h5 class="modal-title" id="exampleModalLabel">Radera mitt konto</h5>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST" class="">
+          <input type="hidden" name="userID" value="<?= htmlentities($user['id']) ?>">
+          <input type="submit" name="deleteUser" value="&#33; Radera konto" class="btn btn-danger ">
+        </form>
+
+      </div>
+      <div class="">
+        <button type="button" id="modal-close-btn" class="btn btn-secondary float-right" data-dismiss="modal">
+          Stäng</button>
+
+      </div>
+
+
+
     </div>
   </div>
 </div>
@@ -251,14 +257,6 @@ $userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
 
 <!-- jQuery Modal -->
-
-<!-- <script>
-  $('#orderDetailsForm').on('submit', function(e) {
-    $('#orderDetailsModal').modal('show');
-    e.preventDefault();
-  });
-</script> -->
-
 
 <script>
   $('#updateModal').on('show.bs.modal', function(event) {
