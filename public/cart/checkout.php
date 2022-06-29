@@ -47,18 +47,9 @@ if (isset($_SESSION["errorMessages"])) {
 
       <tbody>
 
-        <!-- <?php $counter = 0 ?> -->
-
         <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
 
-          // $counter++;
-          // $divclass = "";
-          // if ($counter % 2 == 0) {
-          //   $divclass = "cart-background";
-          // }
-
           $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 50));
-
 
         ?>
 
@@ -91,7 +82,7 @@ if (isset($_SESSION["errorMessages"])) {
               <!-- DELETE -->
               <form class="delete-button">
                 <input type="hidden" name="cartId" value="<?= $cartId ?>">
-                <button type="submit" class="btn btn-outline-danger" value="">Ta bort
+                <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
                 </button>
               </form>
             </td>
@@ -106,10 +97,10 @@ if (isset($_SESSION["errorMessages"])) {
         <td></td>
         <td></td>
         <td>
-          <p class="total-amount">Antal: <?= $cartTotalItems  ?></p>
+          <p class="total-amount"> <b>Antal</b>: <?= $cartTotalItems  ?>st</p>
         </td>
         <td colspan="2">
-          <p class="total-price">Att betala: <?= $cartTotalSum ?>kr</p>
+          <p class="total-price"><b>Att betala</b>: <?= $cartTotalSum ?>kr</p>
         </td>
       </tr>
     </tfoot>
@@ -231,19 +222,3 @@ if (isset($_SESSION["errorMessages"])) {
 </div>
 <?php include('../layout/footer.php'); ?>
 <script src="/kunskapskontroll-2_e-commerce/public/js/cart.js"></script>
-
-
-<!-- skickar formuläret när man ändra kvantitet -->
-<!-- <script type="text/javascript">
-  const quantity = document.querySelector('#update-cart-form input[name="quantity"]');
-
-  quantity.addEventListener('change', function(e) {
-    e.target.parentNode().submit();
-  });
-</script> -->
-
-<!-- <script type="text/javascript">
-  $('#update-cart-form input[name="quantity"]').on('change', function() {
-    $(this).parent().submit();
-  });
-</script> -->

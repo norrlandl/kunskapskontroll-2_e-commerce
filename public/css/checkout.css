@@ -13,7 +13,7 @@
 }
 
 .checkout-img img {
-  height: 120px;
+  height: 100px;
 }
 
 .confirmation-img img {
@@ -26,4 +26,9 @@
 .table-checkout  thead th
  {
   border-top: none;
+}
+
+
+.table-checkout thead tr th:nth-child(2) {
+  width: 40%;
 }
