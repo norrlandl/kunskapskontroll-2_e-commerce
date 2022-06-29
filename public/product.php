@@ -98,7 +98,7 @@ $cut_array = array_slice($shuffled_array, 0, 4);
       <div class="slider-container">
         <?php foreach ($cut_array as $item) { ?>
           <div class="panel">
-            <h3><a href="http://localhost/kunskapskontroll-2_e-commerce/public/product.php?id=<?= $item["id"] ?>"><?= $item["title"] ?></a></h3>
+            <h3><a href="/kunskapskontroll-2_e-commerce/public/product.php?id=<?= $item["id"] ?>"><?= $item["title"] ?></a></h3>
             <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $item["img_url"] ?>" alt="<?= $item["title"] ?>">
           </div>
         <?php } ?>
