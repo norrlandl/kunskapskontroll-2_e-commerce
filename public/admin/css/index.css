@@ -20,6 +20,7 @@ h1 {
 }
 
 
+
 .table-admin thead tr th:last-child {
   width: 22%;
 }
@@ -27,9 +28,4 @@ h1 {
 .table-admin thead tr th:first-child {
   width: 7%;
 }
-
-/* .table-admin tbody tr td:last-child {
-  width: 22%;
-  background-color: rgb(61, 46, 74);
-} */
 
