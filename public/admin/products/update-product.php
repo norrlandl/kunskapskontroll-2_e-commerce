@@ -115,17 +115,17 @@ $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
 
         <div class="form-group">
             <label for="stock">Lagerantal</label>
-            <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
+            <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>">
         </div>
 
         <div class="form-group">
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="image" class="form-label">Produktfoto</label>
                 <input type="file" id="image" name="img_url" class="form-control" placeholder="Add image">
-            </div>
-            <!-- <label for="stock">Produktfoto</label><br>
-      <label class="btn-file-upload btn btn-outline-info" for="image">&#43; Välj bild
-        <input type="file" id="image" name="img_url" placeholder="Add image"></label> -->
+            </div> -->
+            <label for="img">Produktfoto</label><br>
+            <label class="btn-file-upload btn btn-outline-grey" for="image">
+                <input type="file" id="image" name="img_url" placeholder="Add image"></label>
         </div>
 
         <input type="submit" name="updateProduct" class="btn btn-success float-right btn-margin" value="&#10003; Uppdatera">

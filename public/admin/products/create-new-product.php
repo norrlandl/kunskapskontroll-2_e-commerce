@@ -44,13 +44,13 @@ $stock = "";
     </div>
 
     <div class="form-group">
-      <div class="mb-3">
+      <!-- <div class="mb-4">
         <label for="image" class="form-label">Produktfoto</label>
         <input type="file" id="image" name="img_url" class="form-control" placeholder="Add image">
-      </div>
-      <!-- <label for="stock">Produktfoto</label><br>
-      <label class="btn-file-upload btn btn-outline-info" for="image">&#43; Välj bild
-        <input type="file" id="image" name="img_url" placeholder="Add image"></label> -->
+      </div> -->
+      <label for="img">Produktfoto</label><br>
+      <label class="btn-file-upload btn btn-outline-grey" for="image">
+        <input type="file" id="image" name="img_url" placeholder="Add image"></label>
     </div>
 
     <input type="submit" name="addNewProduct" class="btn btn-success float-right btn-margin" value="&#10003; Skapa ny">
@@ -61,7 +61,6 @@ $stock = "";
     <input type="submit" class="btn btn-secondary float-left btn-margin" value="&#x2190; Tillbaka">
   </form>
 </div>
-
 
 <script src="./create-new.js"></script>
 
