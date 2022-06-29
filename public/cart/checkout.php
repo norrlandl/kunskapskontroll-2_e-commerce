@@ -65,7 +65,7 @@ if (isset($_SESSION["errorMessages"])) {
               <p><?= htmlentities($string) ?>.</p>
             </td>
             <td>
-              <p><?= $cartItem['price'] ?>kr</p>
+              <p><?= $cartItem['price'] ?> kr</p>
             </td>
             <td>
               <!-- UPDATE -->
@@ -80,7 +80,7 @@ if (isset($_SESSION["errorMessages"])) {
               </form>
             </td>
             <td>
-              <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
+              <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?> kr </p>
             </td>
             <td>
               <!-- DELETE -->
@@ -101,10 +101,10 @@ if (isset($_SESSION["errorMessages"])) {
         <td></td>
         <td></td>
         <td>
-          <p class="total-amount"> <b>Antal</b>: <?= $cartTotalItems  ?>st</p>
+          <p class="total-amount"> <b>Antal</b>: <?= $cartTotalItems  ?> st</p>
         </td>
         <td colspan="2">
-          <p class="total-price"><b>Att betala</b>: <?= $cartTotalSum ?>kr</p>
+          <p class="total-price"><b>Att betala</b>: <?= $cartTotalSum ?> kr</p>
         </td>
       </tr>
     </tfoot>

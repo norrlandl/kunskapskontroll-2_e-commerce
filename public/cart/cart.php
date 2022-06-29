@@ -62,7 +62,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
               <td>
                 <p class="cart-title"><?= $cartItem['title'] ?></p>
 
-                <p><?= $cartItem['price'] ?>kr</p>
+                <p><?= $cartItem['price'] ?> kr</p>
 
               </td>
               <td>
@@ -86,7 +86,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
                 </form>
               </td>
               <td>
-                <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?>kr </p>
+                <p class="total-price-<?= $cartId ?>"><?= $cartItem['price'] * $cartItem['quantity'] ?> kr </p>
               </td>
               <td>
                 <!-- DELETE -->

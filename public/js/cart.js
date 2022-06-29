@@ -96,7 +96,7 @@ function bindUpdateCart(element) {
       // Uppdatera DOM i cart + checkout
       amountCartItem.forEach((element) => (element.value = quantity));
       totalPriceCartItem.forEach(
-        (element) => (element.innerHTML = `${quantity * price}kr`)
+        (element) => (element.innerHTML = `${quantity * price} kr`)
       );
 
       // Uppdatera totala varor + summor
@@ -162,7 +162,7 @@ buyButtonElements.forEach((element) => {
               </form>
             </td>
             <td>
-              <p class="total-price-${productId}">${price * quantity}kr </p>
+              <p class="total-price-${productId}">${price * quantity} kr </p>
             </td>
             <td>
               <!-- DELETE -->
