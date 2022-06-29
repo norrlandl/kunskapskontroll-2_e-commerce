@@ -25,8 +25,8 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
 <div class="cart">
   <div class="dropdown">
-    <i class="total-amount-header fa fa-shopping-bag shopping-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      (<?= $cartTotalItems  ?>)
+    <i class="fa fa-shopping-bag shopping-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="total-amount-header">(<?= $cartTotalItems  ?>)</span>
     </i>
 
     <span><?php $counter = 0 ?></span>
