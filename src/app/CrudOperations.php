@@ -199,16 +199,6 @@ class UserDbHandler
         $stmt->bindParam(":city", $city);
         $stmt->bindParam(":country", $country);
         $stmt->execute();
-
-        $first_name = "";
-        $last_name = "";
-        $email = "";
-        $password = "";
-        $phone = "";
-        $street = "";
-        $postal_code = "";
-        $city = "";
-        $country = "";
     }
 
 

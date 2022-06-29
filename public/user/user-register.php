@@ -62,11 +62,11 @@ if (isset($_POST['createUser'])) {
   }
 
   if (empty($password)) {
-    $error .= "<li>Du har glömt fylla i lösenord</li>";
+    $error .= "<li>Lösenord är obligatoriskt</li>";
   }
 
   if ($password !== $confirm) {
-    $error .= "<li>Det bekräftade lösenordet måste vara samma som lösenord</li>";
+    $error .= "<li>Lösenorden måste stämma med varandra</li>";
   }
 
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -98,9 +98,9 @@ if (isset($_POST['createUser'])) {
     } catch (\PDOException $e) {
       if ((int) $e->getCode() === 23000) {
         $message = "
-                  <li>
-                      E-post addressen är redan taget. Var snäll ange en annan E-post
-                  </li>
+            <li class='alert alert-danger list-unstyled'>
+                E-post addressen är redan taget. Var snäll ange en annan e-post
+            </li>
               ";
       } else {
         throw new \PDOException($e->getMessage(), (int) $e->getCode());

@@ -43,10 +43,6 @@ if (isset($_POST["addNewUser"])) {
         $error .= "<li>Mejladress är obligatoriskt</li>";
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error .= "Ogiltig e-post <br>";
-    }
-
     if (empty($phone)) {
         $error .= "<li>Telefonnummer är obligatoriskt</li>";
     }
@@ -63,12 +59,20 @@ if (isset($_POST["addNewUser"])) {
         $error .= "<li>Stad är obligatoriskt</li>";
     }
 
-    if (trim($_POST["password"]) !== trim($_POST["confirm_password"])) {
+    if (empty($password)) {
+        $error .= "<li>Lösenord är obligatoriskt</li>";
+    }
+
+    if ($password !== $confirmPassword) {
         $error .= '
             <li>
-                Lösenorden måste stämma överens med varandra
+                Lösenorden måste stämma med varandra
             </li>
         ';
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error .= "<li>Ogiltig e-post<li>";
     }
 
     if ($error) {
@@ -78,19 +82,32 @@ if (isset($_POST["addNewUser"])) {
           </ul>
           ";
     } else {
-        $userDbHandler->addUserToDb(
-            $firstName,
-            $lastName,
-            $email,
-            $phone,
-            $street,
-            $postalCode,
-            $city,
-            $country,
-            $password,
-        );
 
-        redirect("../index.php");
+        try {
+            $userDbHandler->addUserToDb(
+                $firstName,
+                $lastName,
+                $email,
+                $phone,
+                $street,
+                $postalCode,
+                $city,
+                $country,
+                $password,
+            );
+
+            redirect("../index.php");
+        } catch (\PDOException $e) {
+            if ((int) $e->getCode() === 23000) {
+                $message = "
+                    <li class='alert alert-danger list-unstyled'>
+                        E-post addressen är redan taget. Var snäll ange en annan e-post
+                    </li>
+                ";
+            } else {
+                throw new \PDOException($e->getMessage(), (int) $e->getCode());
+            }
+        }
     }
 }
 ?>
