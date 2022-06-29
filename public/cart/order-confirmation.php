@@ -8,11 +8,11 @@ if (empty($_SESSION['cartItems'])) {
 
 if (isset($_GET["orderSuccess"])) {
   $message = '
-  <div class="order-confirmation-success">
-    <div class="alert alert-success alert-margin">
+
+    <div class="alert alert-success alert-m">
       Din order har genomförts.
     </div>
-  </div>
+
   ';
 }
 
