@@ -8,29 +8,18 @@ if (!isset($_SESSION['email'])) {
   header("Location: ./user-login.php?mustLogin");
 }
 
+debug($_GET);
+
 $error = "";
 $message = "";
 $orderDetails = "";
 $newOrderDate = "";
 
+$orderDetails = $globalDbHandler->getOrder($_GET['ordersID'], "order_items");
 
-$user = $globalDbHandler->fetchById($_SESSION['id'], "users");
 
 
-if (isset($_POST['orderDetails'])) {
 
-  $orderDetails = $globalDbHandler->getOrder($_POST['ordersID'], "order_items");
-
-  $createOrderDate = new DateTime($orderDetails['0']['create_date']);
-  $newOrderDate = $createOrderDate->format('Y-m-d');
-
-  echo "<script> $('#orderDetailsModal').modal('toggle'); </script>";
-}
-
-// debug($orderDetails);
-
-// FETCH ORDERS!
-$userOrders = $globalDbHandler->fetchByOrders($_SESSION['id'], "orders");
 
 ?>
 
