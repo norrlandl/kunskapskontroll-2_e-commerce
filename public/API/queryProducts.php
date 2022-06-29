@@ -4,9 +4,7 @@ require('../../src/config.php');
 $productsArray = [];
 
 // Fetch products
-$sql = "SELECT * FROM products";
-$stmt = $pdo->query($sql);
-$productsArray = $stmt->fetchAll();
+$productsArray = $globalDbHandler->fetchAllFromDb("products");
 
 // Output with JSON
 $data = [
