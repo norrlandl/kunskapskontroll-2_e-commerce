@@ -46,10 +46,10 @@ if (isset($_POST["updateProduct"])) {
             $price,
             $stock
         );
-
         redirect("../index.php");
     }
 }
+
 
 $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
 
