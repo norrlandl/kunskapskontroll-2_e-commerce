@@ -86,7 +86,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
             </form>
             <form action="" method="POST">
               <input type="hidden" name="productID" value="<?= $product['id'] ?>" />
-              <input type="submit" name="deleteProductBTN" class="btn btn-outline-danger" value="Radera" />
+              <input type="submit" name="deleteProductBTN" class="btn btn-outline-danger" value="&#33; Radera" />
             </form>
           </td>
         </tr>
@@ -129,7 +129,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
             </form>
             <form action="" method="POST">
               <input type="hidden" name="userID" value="<?= $user['id'] ?>" />
-              <input type="submit" name="deleteUserBTN" class="btn btn-outline-danger" value="Radera" />
+              <input type="submit" name="deleteUserBTN" class="btn btn-outline-danger" value="&#33; Radera" />
             </form>
           </td>
         </tr>

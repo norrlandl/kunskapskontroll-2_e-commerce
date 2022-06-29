@@ -97,13 +97,13 @@ if (isset($_POST["addNewUser"])) {
 
 <?php include('../layout/header.php'); ?>
 <div class="page-wrapper">
-    <form action="../index.php">
-        <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Tillbaka">
-    </form>
-    <br>
-    <br>
+
+    <h4>Skapa ny användare</h4>
+
     <?= $message ?>
+
     <form action="" method="POST" class="fm-control">
+
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="cart_first_name">Förnamn</label>
@@ -157,11 +157,13 @@ if (isset($_POST["addNewUser"])) {
             </div>
         </div>
 
-        <input type="submit" name="addNewUser" class="btn btn-success" value="Skapa ny">
+        <input type="submit" name="addNewUser" class="btn btn-success float-right btn-margin" value="&#10003; Skapa ny">
 
+    </form>
+    <form action="../index.php">
+        <input type="submit" class="btn btn-secondary float-left btn-margin" value="&#x2190; Tillbaka">
     </form>
 
 </div>
-
 
 <?php include('../layout/footer.php'); ?>

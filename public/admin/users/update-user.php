@@ -100,13 +100,11 @@ if (isset($_POST["updateUser"])) {
 
 <?php include('../layout/header.php'); ?>
 <div class="page-wrapper">
-    <form action="../index.php">
-        <input type="submit" class="btn btn-outline-secondary" value="&#x2190; Tillbaka">
-    </form>
 
-    </br>
-    </br>
+    <h4>Uppdatera användare</h4>
+
     <?= $message ?>
+
     <form action="" method="POST" class="fm-control">
 
         <div class="form-row">
@@ -162,8 +160,12 @@ if (isset($_POST["updateUser"])) {
             </div>
         </div>
 
-        <input type="submit" name="updateUser" class="btn btn-outline-primary" value="Uppdatera"><br>
+        <input type="submit" name="updateUser" class="btn btn-success float-right btn-margin" value="&#10003; Uppdatera">
     </form>
+    <form action="../index.php">
+        <input type="submit" class="btn btn-secondary float-left btn-margin" value="&#x2190; Tillbaka">
+    </form>
+
 </div>
 
 <?php include('../layout/footer.php'); ?>

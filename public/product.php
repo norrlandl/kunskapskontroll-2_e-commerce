@@ -39,7 +39,7 @@ $filter_marks = array_filter(
       <p><b>POSTERS FRÅN NORGE</b>
       <p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at senectus erat. Pretium sem tincidunt.
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere tincidunt.
       <p>
     </div>
   </div>
@@ -61,7 +61,7 @@ $filter_marks = array_filter(
       </div>
       <div class="product-text-2">
         <form class="buy-button">
-        <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+          <input type="hidden" name="productId" value="<?= $product['id'] ?>">
           <input type="hidden" name="title" value="<?= $product['title'] ?>">
           <input type="hidden" name="price" value="<?= $product['price'] ?>">
           <input type="hidden" name="description" value="<?= preg_replace('/\s+?(\S+)?$/', '', substr($product['description'], 0, 55)) ?>">

@@ -8,6 +8,11 @@
   margin: 4rem auto;
 }
 
+.page-wrapper h4 {
+  margin-bottom: 50px;
+}
+
+
 .main-login-page {
   min-height: 90vh;
   display: flex;
@@ -18,4 +23,8 @@
 .page-wrapper-login {
   width: 540px;
   margin: 4rem auto;
+}
+
+.btn-margin {
+  margin-top: 10px;
 }
