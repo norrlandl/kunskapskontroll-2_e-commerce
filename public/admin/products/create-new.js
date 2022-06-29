@@ -9,7 +9,7 @@ async function createNewProduct (e) {
   formData.set("addNewProduct", true);
 
   try {
-    const response = await fetch("/.create-new-api.php", { 
+    const response = await fetch("/kunskapskontroll-2_e-commerce/public/admin/products/create-new-api.php", { 
       method: "POST",
       body: formData
     });
@@ -28,7 +28,7 @@ async function createNewProduct (e) {
           let tID = setTimeout(function () {
               window.location.href = "../index.php";
               window.clearTimeout(tID);
-          }, 2000);
+          }, 1500);
       }
 
       redirectPage();

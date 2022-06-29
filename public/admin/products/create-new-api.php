@@ -1,5 +1,7 @@
 <?
 
+// AJAX 3
+
 require('../../../src/config.php');
 
 $error = "";
