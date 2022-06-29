@@ -107,10 +107,10 @@ buyButtonElements.forEach((element) => {
         totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
         totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
         totalAmountElements.forEach((element) => {
-          element.innerHTML = `Antal: ${data.totalAmount}`;
+          element.innerHTML = `<b>Antal</b>: ${data.totalAmount}`;
         });
         totalPriceElements.forEach((element) => {
-          element.innerHTML = `Att betala: ${data.totalSum}kr`;
+          element.innerHTML = `<b>Att betala</b>: ${data.totalSum}kr`;
         });
       });
     } catch (error) {
@@ -145,10 +145,10 @@ deleteButtonElements.forEach((element) => {
         totalAmountHeader.innerHTML = ` (${data.totalAmount})`;
         totalAmountProducts.innerHTML = `Produkter (${data.totalAmount})`;
         totalAmountElements.forEach((element) => {
-          element.innerHTML = `Antal: ${data.totalAmount}`;
+          element.innerHTML = `<b>Antal</b>: ${data.totalAmount}`;
         });
         totalPriceElements.forEach((element) => {
-          element.innerHTML = `Att betala: ${data.totalSum}kr`;
+          element.innerHTML = `<b>Att betala</b>: ${data.totalSum}kr`;
         });
       });
     } catch (error) {
