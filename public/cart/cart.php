@@ -49,7 +49,6 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
         <tbody class="cart-body">
 
           <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
-            // $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 20));
 
           ?>
 
