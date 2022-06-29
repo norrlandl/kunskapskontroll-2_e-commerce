@@ -143,10 +143,6 @@ $userOrders = $orderDbHandler->fetchByOrders($_SESSION['id'], "orders");
           <label for="cart_passord">Lösenord</label>
           <input type="password" readonly class="form-control" name="password" value="***">
         </div>
-        <!--       <div class="form-group col-md-6">
-        <label for="cart_confirm">Bekräfta lösenord</label>
-        <input type="password" readonly class="form-control" name="confirm" value="***">
-      </div> -->
       </div>
 
       <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateModal" data-first_name="<?= htmlentities($user['first_name']) ?>" data-last_name="<?= htmlentities($user['last_name']) ?>" data-street="<?= htmlentities($user['street']) ?>" data-city="<?= htmlentities($user['city']) ?>" data-postal_code="<?= htmlentities($user['postal_code']) ?>" data-country="<?= htmlentities($user['country']) ?>" data-email="<?= htmlentities($user['email']) ?>" data-phone="<?= htmlentities($user['phone']) ?>" data-password="<?= htmlentities($user['password']) ?>" data-id="<?= htmlentities($user['id']) ?>">
