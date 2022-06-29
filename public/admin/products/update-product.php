@@ -85,11 +85,11 @@ $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
             <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
         </div>
 
-        <input type="submit" name="updateProduct" class="btn btn-success float-left btn-margin" value="&#10003; Uppdatera">
+        <input type="submit" name="updateProduct" class="btn btn-success float-right btn-margin" value="&#10003; Uppdatera">
 
     </form>
     <form action="../index.php">
-        <input type="submit" class="btn btn-secondary float-right btn-margin" value="&#x2190; Tillbaka">
+        <input type="submit" class="btn btn-secondary float-left btn-margin" value="&#x2190; Tillbaka">
     </form>
 </div>
 

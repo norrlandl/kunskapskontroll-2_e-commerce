@@ -56,7 +56,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
     </form>
   </div>
 
-  <table class="table table-hover">
+  <table class="table table-hover table-admin">
     <thead class="thead-dark">
       <tr>
         <th scope="col">ID</th>
@@ -74,17 +74,17 @@ $users = $globalDbHandler->fetchAllFromDb("users");
           <td><?= htmlentities($product["id"]) ?></td>
           <td><img src="../img/<?= htmlentities($product["img_url"]) ?>" width="60px" height="60px" alt="<?= htmlentities($product["title"]) ?>"></td>
           <th><?= htmlentities($product["title"]) ?></th>
-          <td><?= htmlentities(substr($product["description"], 0, 32)) ?>...</td>
+          <td><i><?= htmlentities(substr($product["description"], 0, 32)) ?>...</i></td>
           <td>
             <?= htmlentities($product["price"]) ?> kr
           </td>
           <td><?= htmlentities($product["stock"]) ?> </td>
           <td class="action">
-            <form action="./products/update-product.php" method="GET">
+            <form action="./products/update-product.php" method="GET" class="float-left">
               <input type="hidden" name="productID" value="<?= htmlentities($product["id"]) ?>">
               <input type="submit" class="btn btn-outline-success" value="Uppdatera" />
             </form>
-            <form action="" method="POST">
+            <form action="" method="POST" class="float-right">
               <input type="hidden" name="productID" value="<?= $product['id'] ?>" />
               <input type="submit" name="deleteProductBTN" class="btn btn-outline-danger" value="&#33; Radera" />
             </form>
@@ -105,7 +105,7 @@ $users = $globalDbHandler->fetchAllFromDb("users");
     </form>
   </div>
 
-  <table class="table table-hover">
+  <table class="table table-hover table-admin">
     <thead class="thead-dark">
       <tr>
         <th>ID</th>
@@ -123,11 +123,11 @@ $users = $globalDbHandler->fetchAllFromDb("users");
           <td><?= htmlentities($user["last_name"]) ?></td>
           <td><?= htmlentities($user["email"]) ?></td>
           <td class="action">
-            <form action="./users/update-user.php" method="GET">
+            <form action="./users/update-user.php" method="GET" class="float-left">
               <input type="hidden" name="userID" value="<?= htmlentities($user["id"]) ?>">
               <input type="submit" class="btn btn-outline-success" value="Uppdatera" />
             </form>
-            <form action="" method="POST">
+            <form action="" method="POST" class="float-right">
               <input type="hidden" name="userID" value="<?= $user['id'] ?>" />
               <input type="submit" name="deleteUserBTN" class="btn btn-outline-danger" value="&#33; Radera" />
             </form>

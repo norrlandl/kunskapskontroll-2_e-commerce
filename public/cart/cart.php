@@ -32,13 +32,13 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
     <span><?php $counter = 0 ?></span>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 
-      <h5 class="total-amount-products">Produkter (<?= $cartTotalItems  ?>)</h5>
+      <h5 class="total-amount-products">Varukorg (<?= $cartTotalItems  ?>)</h5>
 
       <table class="table table-hover table-cart">
 
         <thead>
           <tr>
-            <th scope="col"></th>
+            <th scope="col">Produkt</th>
             <th scope="col"></th>
             <th scope="col">Antal</th>
             <th scope="col">Summa</th>
@@ -49,23 +49,22 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
         <tbody class="cart-body">
 
           <?php foreach ($_SESSION['cartItems'] as $cartId => $cartItem) :
-            $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 20));
+            // $string = preg_replace('/\s+?(\S+)?$/', '', substr($cartItem['description'], 0, 20));
 
           ?>
 
 
             <tr class="cart-item-<?= $cartId ?>">
               <td>
-                <div class="checkout-img">
+                <div class="cart-img">
                   <img src="/kunskapskontroll-2_e-commerce/public/img/<?= $cartItem['img_url'] ?>">
                 </div>
               </td>
               <td>
                 <p class="cart-title"><?= $cartItem['title'] ?></p>
-                <p><?= htmlentities($string) ?>.</p>
-                <b>
-                  <p><?= $cartItem['price'] ?>kr</p>
-                </b>
+
+                <p><?= $cartItem['price'] ?>kr</p>
+
               </td>
               <td>
                 <!-- UPDATE -->
@@ -82,7 +81,7 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
                 <!-- DELETE -->
                 <form class="delete-button">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
-                  <button type="submit" class="btn btn-outline-danger" value="">Ta bort
+                  <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
                   </button>
 
 
@@ -95,23 +94,15 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
 
       <tfoot>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td colspan="5"></td>
         </tr>
         <tr>
-          <td></td>
-          <td>
-            <p class="total-amount">Antal: <?= $cartTotalItems  ?></p>
-          </td>
-          <td colspan="2">
+
+          <td colspan="5">
             <b>
-              <p class="total-price">Att betala: <?= $cartTotalSum ?>kr</p>
+              <p class="total-price">Att betala: <?= $cartTotalSum ?> kr</p>
             </b>
           </td>
-          <td></td>
         </tr>
         <tr>
           <td colspan="5">
