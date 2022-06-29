@@ -179,6 +179,7 @@ class UserDbHandler
         $password,
     ) {
 
+
         $sql = "
         INSERT INTO users (first_name, last_name, email,
         password, phone, street, postal_code, city, country) 

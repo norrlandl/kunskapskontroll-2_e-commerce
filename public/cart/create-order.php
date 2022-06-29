@@ -61,10 +61,10 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
     }
   }
 
-  if ($checkbox != "checked") {
+  if (!isset($_POST["checkbox"])) {
     $error .= '
     <li>
-        Checkboxen måste vara ikryssad
+        Checkboxen måste vara ifylld.
     </li>
 ';
   }

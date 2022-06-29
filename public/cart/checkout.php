@@ -212,7 +212,7 @@ if (isset($_SESSION["errorMessages"])) {
         <div class="form-check">
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="checkbox" id="gridCheck" value="checked">
+          <input class="form-check-input" type="checkbox" name="checkbox" id="gridCheck">
           <label class="form-check-label" for="gridCheck">
             Bekräfta villkoren
           </label>
