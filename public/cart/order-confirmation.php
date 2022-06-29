@@ -8,8 +8,10 @@ if (empty($_SESSION['cartItems'])) {
 
 if (isset($_GET["orderSuccess"])) {
   $message = '
-  <div class="alert alert-success alert-margin">
-    Din order har genomförts.
+  <div class="order-confirmation-success">
+    <div class="alert alert-success alert-margin">
+      Din order har genomförts.
+    </div>
   </div>
   ';
 }
@@ -22,6 +24,7 @@ foreach ($cartItems as $cartId => $cartItem) {
 unset($_SESSION['cartItems'])
 
 
+
 ?>
 
 
@@ -31,7 +34,10 @@ unset($_SESSION['cartItems'])
   <div class="row">
     <div class="info">
       <h3>Tack för att du handlar hos oss!</h3>
+
+
       <?= $message ?>
+
 
       <p>För att se orderdetaljer gå till <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">mina sidor</a>.
       </p>
@@ -40,7 +46,7 @@ unset($_SESSION['cartItems'])
 
 
   <div class="container-small">
-    <h4>Order #3</h4>
+    <h4>Din order</h4>
     <table class="table table-checkout">
 
       <thead>
