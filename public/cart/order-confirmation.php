@@ -5,6 +5,15 @@ if (empty($_SESSION['cartItems'])) {
   header('Location: checkout.php');
 }
 
+
+if (isset($_GET["orderSuccess"])) {
+  $message = '
+  <div class="alert alert-success">
+    Din order har genomförts.
+  </div>
+  ';
+}
+
 $cartItems = $_SESSION['cartItems'];
 $totalSum = 0;
 foreach ($cartItems as $cartId => $cartItem) {
@@ -21,7 +30,8 @@ unset($_SESSION['cartItems'])
 <div class="container">
   <div class="row">
     <div class="info">
-      <p><b>Din order har genomförts!</b></p>
+      <h3>Tack för att du handlar hos oss!</h3>
+      <?= $message ?>
 
       <p>För att se orderdetaljer gå till <a href="/kunskapskontroll-2_e-commerce/public/user/user.php">mina sidor</a>.
       </p>

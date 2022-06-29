@@ -7,7 +7,7 @@ $message = "";
 
 if (isset($_GET['mustLogin'])) {
     $message = '
-    <div class="error_msg">
+    <div class="alert alert-info">
         Sidan är inloggningsskyddad. Var snäll och logga in.
     </div>
     ';
@@ -15,10 +15,10 @@ if (isset($_GET['mustLogin'])) {
 
 if (isset($_GET['logout'])) {
     $message = '
-    <div class="success_msg">
-        Du är nu utloggad.
+    <div class="alert alert-success">
+       Du är nu utloggad.
     </div>
-        ';
+    ';
 }
 
 if (isset($_GET["userDeleted"])) {
@@ -26,8 +26,8 @@ if (isset($_GET["userDeleted"])) {
     session_destroy();
 
     $message = '
-    <div class="success_msg">
-        Du har nu raderat ditt konto.
+    <div class="alert alert-success">
+       Du har nu raderat ditt konto.
     </div>
     ';
 }
@@ -37,7 +37,7 @@ if (isset($_GET["tableDeleted"])) {
     session_destroy();
 
     $message = '
-    <div class="success_msg">
+    <div class="alert alert-success">
         Du har nu raderat alla användare.
     </div>
     ';
@@ -57,7 +57,7 @@ if (isset($_POST['doLogin'])) {
         exit;
     } else {
         $message = '
-                <div class="error_msg">
+                <div class="alert alert-danger">
                     Fel inloggningsuppgifter. Försök igen!
                 </div>
             ';
@@ -72,8 +72,7 @@ if (isset($_POST['doLogin'])) {
             <form method="POST" action="#">
                 <h2>Logga in</h2>
                 <?= $message ?>
-                <br><br>
-
+                <br>
                 <div class="form-outline mb-4">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
