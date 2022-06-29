@@ -30,8 +30,6 @@
   width: 20%;
 }
 
-
-
 .table-user .modal-footer {
   display: flex;
   justify-content: space-between;
@@ -62,4 +60,20 @@
  #updateModal .modal-footer form {
   display: flex;
   justify-content: space-between;
+ }
+
+ .order-date {
+  font-weight: 300;
+ }
+
+ .order-details-title p {
+  font-size: 20px;
+ }
+
+ .order-details-title h4 {
+  margin-bottom: 10px;
+ }
+
+ .table-order-details {
+  margin-top: 50px;
  }
