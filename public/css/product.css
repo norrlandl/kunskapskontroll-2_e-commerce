@@ -51,6 +51,7 @@
 
 .shipping p:nth-child(1){
   font-weight: 600;
+  margin-bottom: 0.7rem;
 }
 
 .shipping p:nth-child(2){
