@@ -6,6 +6,8 @@ $pageTitle = "Uppdatera produkt";
 $error = "";
 $message = "";
 
+$singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
+
 if (isset($_POST["updateProduct"])) {
 
     $title = trim($_POST['title']);
@@ -29,11 +31,6 @@ if (isset($_POST["updateProduct"])) {
         $error .= "<li>Lagerantal är obligatoriskt</li>";
     }
 
-    if (!is_uploaded_file($_FILES['img_url']['tmp_name'])) {
-        $error .= "<li>En bild måste laddas upp</li>";
-    }
-
-
     if ($error) {
         $message = "
             <ul class='alert alert-danger list-unstyled'>
@@ -45,6 +42,14 @@ if (isset($_POST["updateProduct"])) {
             $fileName         = $_FILES['img_url']['name'];
             $fileType         = $_FILES['img_url']['type'];
             $fileTempPath   = $_FILES['img_url']['tmp_name'];
+            $path             = '../../img/';
+            $newFilePath = $path . $fileName;
+        }
+
+        if (!is_uploaded_file($_FILES['img_url']['tmp_name'])) {
+            $fileName         = $singleProduct["img_url"];
+            $fileType         = "jpg";
+            $fileTempPath   = "C:\Users\Joni\AppData\Local\Temp\phpB5AE.tmp";
             $path             = '../../img/';
             $newFilePath = $path . $fileName;
         }
@@ -82,9 +87,6 @@ if (isset($_POST["updateProduct"])) {
         }
     }
 }
-
-
-$singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
 
 ?>
 
