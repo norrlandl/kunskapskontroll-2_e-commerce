@@ -8,7 +8,7 @@ if (empty($_SESSION['cartItems'])) {
 
 if (isset($_GET["orderSuccess"])) {
   $message = '
-  <div class="alert alert-success">
+  <div class="alert alert-success alert-margin">
     Din order har genomförts.
   </div>
   ';
@@ -91,7 +91,7 @@ unset($_SESSION['cartItems'])
         <th>
           <p>Totalsumma:</p>
         </th>
-        <th>
+        <th colspan="2">
           <p><?= $totalSum ?>kr</p>
         </th>
       </tr>
