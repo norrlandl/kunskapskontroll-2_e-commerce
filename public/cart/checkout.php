@@ -85,10 +85,7 @@ if (isset($_SESSION["errorMessages"])) {
                   </select>
                 </div>
 
-
-
                 <!-- <input type="number" class="total-amount-<?= $cartId ?> update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0"> -->
-
 
               </form>
             </td>

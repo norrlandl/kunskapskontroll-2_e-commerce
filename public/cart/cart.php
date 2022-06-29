@@ -70,7 +70,19 @@ foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
                 <form id="update-cart-form" class="updateCart">
                   <input type="hidden" name="cartId" value="<?= $cartId ?>">
                   <input type="hidden" name="price" value="<?= $cartItem['price'] ?>">
-                  <input type="number" class="total-amount-<?= $cartId ?> update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0">
+
+                  <!-- <input type="number" class="total-amount-<?= $cartId ?> update-quantity" name="quantity" value="<?= $cartItem['quantity'] ?>" min="0"> -->
+                  <div class="input-group mb-3">
+                    <select class="total-amount-<?= $cartId ?> update-quantity custom-select select-checkout" id="quantity" name="quantity">
+                      <?php
+
+                      for ($i = 1; $i <= $cartItem['stock']; $i++) {
+                        echo "<option value=" . $i . ">" . $i . "</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
+
                 </form>
               </td>
               <td>
