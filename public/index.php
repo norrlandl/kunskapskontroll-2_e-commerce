@@ -11,11 +11,11 @@ $products = $globalDbHandler->fetchAllFromDb("products");
   <div class="row">
     <div class="info">
       <p>
-      <h5>POSTERS FRÅN NORGE</h5>
-      <p>
+        <b>POSTERS FRÅN NORGE</b>
+      </p>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim penatibus felis, nulla sodales arcu ac enim a at. Nibh quisque feugiat accumsan vel, est vitae. Hac elit nibh dui in neque eget arcu. Urna aliquet posuere at tincidunt.
-      <p>
+      </p>
     </div>
   </div>
   <div class="wrapping">
