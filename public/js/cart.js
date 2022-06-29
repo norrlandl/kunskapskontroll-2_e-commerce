@@ -74,6 +74,7 @@ buyButtonElements.forEach((element) => {
               <form id="update-cart-form" class="updateCart">
                 <input type="hidden" name="cartId" value="${productId}">
                 <input type="hidden" name="price" value="${price}">
+
                 <input type="number" class="total-amount-${productId} update-quantity" name="quantity" value="${quantity}" min="0">
               </form>
             </td>
