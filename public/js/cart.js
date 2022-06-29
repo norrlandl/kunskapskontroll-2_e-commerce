@@ -43,7 +43,7 @@ buyButtonElements.forEach((element) => {
     const img = data.get("img");
     const title = data.get("title");
     const price = data.get("price");
-    const description = data.get("description");
+    // const description = data.get("description");
 
     try {
       fetch(
@@ -67,10 +67,7 @@ buyButtonElements.forEach((element) => {
             </td>
             <td>
               <p class="cart-title">${title}</p>
-          
-           
-                <p>${price}kr</p>
-             
+              <p>${price}kr</p>
             </td>
             <td>
               <!-- UPDATE -->
@@ -86,12 +83,10 @@ buyButtonElements.forEach((element) => {
             <td>
               <!-- DELETE -->
               <form class="delete-button">
-              <input type="hidden" name="cartId" value="<?= $cartId ?>">
-              <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
-              </button>
-
-
-            </form>
+                <input type="hidden" name="cartId" value="${productId}">
+                <button type="submit" class="hide" value=""><i class='fa-solid fa-trash-can'></i>
+                </button>
+              </form>
             </td>
           </tr>
         `;
