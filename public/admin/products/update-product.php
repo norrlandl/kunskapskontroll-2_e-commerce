@@ -31,6 +31,11 @@ if (isset($_POST["updateProduct"])) {
         $error .= "<li>Lagerantal är obligatoriskt</li>";
     }
 
+    if (!is_uploaded_file($_FILES['img_url']['tmp_name'])) {
+        $error .= "<li>En bild måste laddas upp</li>";
+    }
+
+
     if ($error) {
         $message = "
             <ul class='alert alert-danger list-unstyled'>
@@ -39,14 +44,44 @@ if (isset($_POST["updateProduct"])) {
             ";
     } else {
 
-        $productDbHandler->updateProduct(
-            $_GET['productID'],
-            $title,
-            $description,
-            $price,
-            $stock
-        );
-        redirect("../index.php");
+        if (is_uploaded_file($_FILES['img_url']['tmp_name'])) {
+            $fileName         = $_FILES['img_url']['name'];
+            $fileType         = $_FILES['img_url']['type'];
+            $fileTempPath   = $_FILES['img_url']['tmp_name'];
+            $path             = '../../img/';
+            $newFilePath = $path . $fileName;
+        }
+
+        $allowedFileTypes = [
+            'image/png',
+            'image/jpeg',
+            'image/gif',
+        ];
+
+        $isFileTypeAllowed = array_search($fileType, $allowedFileTypes, true);
+
+        if (!$isFileTypeAllowed) {
+            $error .= "<li>Filtyp inte tillåten.</li>";
+        }
+
+        if ($_FILES['img_url']['size'] > 10000000) {
+            $error .= "<li>För stor fil. Max är 10 MB.</li>";
+        } else {
+
+            move_uploaded_file($fileTempPath, $newFilePath);
+            $img = $fileName;
+
+
+            $productDbHandler->updateProduct(
+                $_GET['productID'],
+                $title,
+                $description,
+                $price,
+                $stock,
+                $img
+            );
+            redirect("../index.php");
+        }
     }
 }
 
@@ -83,6 +118,16 @@ $singleProduct = $globalDbHandler->fetchById($_GET['productID'], "products");
         <div class="form-group">
             <label for="stock">Lagerantal</label>
             <input type="number" class="form-control" name="stock" value="<?= htmlentities($singleProduct["stock"]) ?>"><br>
+        </div>
+
+        <div class="form-group">
+            <div class="mb-3">
+                <label for="image" class="form-label">Produktfoto</label>
+                <input type="file" id="image" name="img_url" class="form-control" placeholder="Add image">
+            </div>
+            <!-- <label for="stock">Produktfoto</label><br>
+      <label class="btn-file-upload btn btn-outline-info" for="image">&#43; Välj bild
+        <input type="file" id="image" name="img_url" placeholder="Add image"></label> -->
         </div>
 
         <input type="submit" name="updateProduct" class="btn btn-success float-right btn-margin" value="&#10003; Uppdatera">
