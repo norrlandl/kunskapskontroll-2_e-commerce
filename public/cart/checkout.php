@@ -118,8 +118,6 @@ if (isset($_SESSION["errorMessages"])) {
     }
     ?>
 
-
-
     <?= $message ?>
 
     <form action="create-order.php" method="POST">
@@ -210,7 +208,7 @@ if (isset($_SESSION["errorMessages"])) {
         <div class="form-check">
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <input class="form-check-input" type="checkbox" name="checkbox" id="gridCheck" value="checked">
           <label class="form-check-label" for="gridCheck">
             Bekräfta villkoren
           </label>

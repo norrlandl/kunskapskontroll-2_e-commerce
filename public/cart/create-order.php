@@ -15,6 +15,7 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
   $password     = trim($_POST['password']);
   $confirm      = trim($_POST['confirm']);
   $cartTotalSum = $_POST['cartTotalSum'];
+  $checkbox = ($_POST['checkbox']);
 
 
   if (empty($first_name)) {
@@ -58,6 +59,14 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
         </li>
     ';
     }
+  }
+
+  if ($checkbox != "checked") {
+    $error .= '
+    <li>
+        Checkboxen måste vara ikryssad
+    </li>
+';
   }
 
   if ($error) {
